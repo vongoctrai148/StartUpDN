@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="login"
+                template="/WEB-INF/jsp/login/login.jsp">
+    </definition>
+    <definition name="logout"
+                template="/WEB-INF/jsp/login/login.jsp">
+    </definition>
+    <definition name="register"
+                template="/WEB-INF/jsp/login/register.jsp">
+    </definition>
+
+    <definition name="listProject"
+                template="/WEB-INF/jsp/startup/list-project.jsp">
+    </definition>
+    <definition name="projectDetail"
+                template="/WEB-INF/jsp/startup/project-detail.jsp">
+    </definition>
+
+
+    <!--    &lt;!&ndash; Manager Define &ndash;&gt;-->
+<!--    <definition name="homepage-nql.definition" template="/WEB-INF/jsp/layout/nguoiquanli-layout.jsp">-->
+<!--        <put-attribute name="topbar" value="/WEB-INF/jsp/topbar.jsp"/>-->
+<!--        <put-attribute name="sidebar" value="/WEB-INF/jsp/nguoiquanli/sidebar.jsp"/>-->
+<!--        <put-attribute name="body" value="" />-->
+<!--        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp"/>-->
+<!--    </definition>-->
+
+<!--    &lt;!&ndash; Activity NQL &ndash;&gt;-->
+<!--    <definition name="NQL/capnhatdkpm" extends="homepage-nql.definition">-->
+<!--        <put-attribute name="body" value="/WEB-INF/jsp/nguoiquanli/dkpm_nql.jsp" />-->
+<!--    </definition>-->
+
+
+<!--    &lt;!&ndash; Home Page GV &ndash;&gt;-->
+<!--    <definition name="homepage-gv.definition" template="/WEB-INF/jsp/layout/giaovien-layout.jsp">-->
+<!--        <put-attribute name="topbar" value="/WEB-INF/jsp/topbar.jsp"/>-->
+<!--        <put-attribute name="sidebar" value="/WEB-INF/jsp/giaovien/sidebar.jsp"/>-->
+<!--        <put-attribute name="body" value="" />-->
+<!--        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp"/>-->
+<!--    </definition>-->
+<!--    &lt;!&ndash; Activity GV &ndash;&gt;-->
+<!--    <definition name="GV/capnhatdkpm" extends="homepage-gv.definition">-->
+<!--        <put-attribute name="body" value="/WEB-INF/jsp/giaovien/dkpm_gv.jsp" />-->
+<!--    </definition>-->
+
+    <!--    SinhVien-->
+<!--    <definition name="homepage-sv.definition" template="/WEB-INF/jsp/layout/sinhvien-layout.jsp">-->
+<!--        <put-attribute name="topbar" value="/WEB-INF/jsp/topbar.jsp"/>-->
+<!--        <put-attribute name="sidebar" value="/WEB-INF/jsp/sinhvien/sidebar.jsp"/>-->
+<!--        <put-attribute name="body" value="" />-->
+<!--        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp"/>-->
+<!--    </definition>-->
+
+    <!-- Activity SV -->
+<!--    <definition name="SV/capnhatdkpm" extends="homepage-sv.definition">-->
+<!--        <put-attribute name="body" value="/WEB-INF/jsp/sinhvien/dkpm_sv.jsp" />-->
+<!--    </definition>-->
+</tiles-definitions>

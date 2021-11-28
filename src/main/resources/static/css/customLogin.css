@@ -1,0 +1,35 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    margin-top: 0;
+
+}
+.bg-all {
+    background-image: url("http://docs.portal.danang.gov.vn/images/image/16-8phophuong1_1629112723649.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container{
+    width: 30%;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form{
+    margin-top: 10%;
+    padding: 8%;
+    background-color: #d2d2d2;
+    border-radius: 10px;
+}
+.register{
+    margin-left: 10%;
+}
+.btn-register{
+    width: 100%;
+    margin: auto;
+}
