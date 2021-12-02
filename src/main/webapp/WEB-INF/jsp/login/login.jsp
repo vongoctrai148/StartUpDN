@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +18,10 @@
         <div class="container">
             <form:form action="/login" modelAttribute="loginForm" method="POST" class="form">
                 <h1>Sign In</h1>
+                <c:forEach items="${userList}" var="user">
+                    ${user.username}
+                </c:forEach>
+
                 <p style="color: red">${message}</p>
                 <div class="form-group">
                     <label for="username">Username</label>

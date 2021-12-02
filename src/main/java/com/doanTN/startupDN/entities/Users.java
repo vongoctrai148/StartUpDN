@@ -5,9 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Map;
 
 
 @Entity
@@ -35,5 +36,22 @@ public class Users {
     private String houseno;
     private String roles;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Projects> projects;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Blogs> blogs;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Comments> comments;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<EventsReferences> eventsReferences;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<News> news;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<StartUpCurriculumVitae> startUpCurriculumVitaes;
 
 }

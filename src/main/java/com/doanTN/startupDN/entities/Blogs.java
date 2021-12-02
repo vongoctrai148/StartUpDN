@@ -1,0 +1,30 @@
+package com.doanTN.startupDN.entities;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "blogs")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Blogs {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    private Users user;
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
+    private Categories category;
+    private String title;
+    private String slug;
+    private String content;
+    private String postedDate;
+}
