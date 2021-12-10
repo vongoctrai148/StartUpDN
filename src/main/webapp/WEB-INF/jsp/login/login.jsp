@@ -16,13 +16,9 @@
 <body>
     <div class="bg-all">
         <div class="container">
-            <form:form action="/login" modelAttribute="loginForm" method="POST" class="form">
+            <form:form action="/login" modelAttribute="loginForm" method="POST" style="background-color:rgba(0, 0, 0, 0.2); color: white" class="form">
                 <h1>Sign In</h1>
-                <c:forEach items="${userList}" var="user">
-                    ${user.username}
-                </c:forEach>
-
-                <p style="color: red">${message}</p>
+                <p style="color: #fff425; ">${message}</p>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <form:input path="username"  class="form-control" id="username" placeholder="Enter Username"/>

@@ -84,7 +84,7 @@
                     <div class="row align-items-center">
                         <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
                             <a class="d-block" href="index.html">
-                                <img loading="lazy" src="images/logo.png" alt="Constra">
+                                <img loading="lazy" src="/images/logo.png" alt="Constra">
                             </a>
                         </div><!-- logo end -->
 
@@ -222,7 +222,7 @@
         <!--/ Navigation end -->
     </header>
     <!--/ Header end -->
-    <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)">
+    <div id="banner-area" class="banner-area" style="background-image:url(/images/banner/banner1.jpg)">
         <div class="banner-text">
             <div class="container">
                 <div class="row">
@@ -255,97 +255,26 @@
 
 
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/news-single.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                             style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/news-single.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/news-single.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/news-single.html">Xem chi tiết</a>
+                <c:forEach items="${listProjects}" var="project">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
+                        <div class="ts-team-wrapper">
+                            <div class="team-img-wrapper">
+                                <a href="/startup/projectDetail/${project.id}"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
+                                                                 style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
                             </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/news-single.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                             style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/news-single.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/news-single.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/news-single.html">Xem chi tiết</a>
+                            <div class="ts-team-content-classic">
+                                <a href="/startup/projectDetail/${project.id}"><h3 class="ts-name">${project.projectname}</h3></a>
+                                <p class="ts-designation">Start Total</p>
+                                <a href="/startup/projectDetail/${project.id}"><p class="ts-description">Trai began his career in construction with boots on the ground</p></a>
+                                <div class="team-social-icons">
+                                    <a href="/startup/projectDetail/${project.id}">Xem chi tiết</a>
+                                </div>
+                                <!--/ social-icons-->
                             </div>
-                            <!--/ social-icons-->
                         </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/news-single.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                             style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/news-single.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/news-single.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/news-single.html">Xem chi tiết</a>
-                            </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/news-single.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                             style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/news-single.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/news-single.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/news-single.html">Xem chi tiết</a>
-                            </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/news-single.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                             style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/news-single.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/news-single.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/news-single.html">Xem chi tiết</a>
-                            </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-
+                        <!--/ Team wrapper 3 end -->
+                    </div><!-- Col end -->
+                </c:forEach>
             </div><!-- Content row end -->
             <nav aria-label="...">
                 <ul class="pagination pagination-lg">
@@ -366,7 +295,7 @@
                 <div class="row justify-content-between">
                     <div class="col-lg-4 col-md-6 footer-widget footer-about">
                         <h3 class="widget-title">About Us</h3>
-                        <img loading="lazy" width="200px" class="footer-logo" src="images/footer-logo.png" alt="Constra">
+                        <img loading="lazy" width="200px" class="footer-logo" src="/images/footer-logo.png" alt="Constra">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inci done idunt ut
                             labore et dolore magna aliqua.</p>
                         <div class="footer-social">

@@ -14,15 +14,22 @@
                 template="/WEB-INF/jsp/login/register.jsp">
     </definition>
 
-    <definition name="listProject"
+    <definition name="startup/listProject"
                 template="/WEB-INF/jsp/startup/list-project.jsp">
     </definition>
-    <definition name="projectDetail"
+    <definition name="startup/projectDetail"
                 template="/WEB-INF/jsp/startup/project-detail.jsp">
+    </definition>
+    <definition name="startup/saveProject"
+                template="/WEB-INF/jsp/startup/save-project.jsp">
+    </definition>
+
+    <definition name="startup/userListProject"
+                template="/WEB-INF/jsp/startup/user-list-project.jsp">
     </definition>
 
 
-    <!--    &lt;!&ndash; Manager Define &ndash;&gt;-->
+        <!-- Start Up Page -->
 <!--    <definition name="homepage-nql.definition" template="/WEB-INF/jsp/layout/nguoiquanli-layout.jsp">-->
 <!--        <put-attribute name="topbar" value="/WEB-INF/jsp/topbar.jsp"/>-->
 <!--        <put-attribute name="sidebar" value="/WEB-INF/jsp/nguoiquanli/sidebar.jsp"/>-->

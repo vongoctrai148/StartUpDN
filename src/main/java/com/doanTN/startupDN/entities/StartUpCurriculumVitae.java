@@ -24,8 +24,8 @@ public class StartUpCurriculumVitae {
     private String country;
     private String province;
     private String district;
-    private String subDistrict;
-    private String houseNo;
-    private String contactEmail;
-    private String contactPhone;
+    private String subdistrict;
+    private String houseno;
+    private String contactemail;
+    private String contactphone;
 }

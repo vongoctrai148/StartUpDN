@@ -27,14 +27,15 @@ public class EventsReferences {
     private String title;
     private String slug;
     private String content;
-    private String postedDate;
-    private String startDay;
-    private String endDay;
+    private String posteddate;
+    private String startday;
+    private String starttime;
+    private String endtime;
     private String country;
     private String province;
     private String district;
-    private String subDistrict;
-    private String houseNo;
-    private String dayEndEnroll;
-    private int acceptStatus;
+    private String subdistrict;
+    private String houseno;
+    private String dayendenroll;
+    private int acceptstatus;
 }

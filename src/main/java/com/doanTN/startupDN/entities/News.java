@@ -26,5 +26,5 @@ public class News {
     private String title;
     private String slug;
     private String content;
-    private String postedDate;
+    private String posteddate;
 }

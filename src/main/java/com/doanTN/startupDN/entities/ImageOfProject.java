@@ -20,5 +20,10 @@ public class ImageOfProject {
     @ManyToOne
     @JoinColumn(name = "projectid")
     private Projects project;
-    private String imageName;
+    private String imagename;
+
+    public ImageOfProject(Projects project, String imagename) {
+        this.project = project;
+        this.imagename = imagename;
+    }
 }

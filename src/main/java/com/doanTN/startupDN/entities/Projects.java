@@ -1,6 +1,10 @@
 package com.doanTN.startupDN.entities;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,24 +25,40 @@ public class Projects {
     @ManyToOne
     @JoinColumn(name = "categoryid")
     private Categories category;
-    private String projectName;
-    private double amountCalled;
-    private String projectDetail;
+    private String projectname;
+    private double amountcalled;
+    private String projectdetail;
     private String title;
     private String country;
+    private String province;
     private String district;
-    private String subDistrict;
-    private String houseNo;
-    private String totalVoted;
-    private int acepedStatus;
-
-    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+    private String subdistrict;
+    private String houseno;
+    private String totalvoted;
+    private int aceptedstatus;
+    @JsonIgnore
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private List<Comments> comments;
-
-    @OneToOne(mappedBy = "project", fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToOne(mappedBy = "project", fetch = FetchType.LAZY)
     private InvestedProjects investedProject;
-
-    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private List<ImageOfProject> imageOfProjects;
 
+    public Projects(Users user, Categories category, String projectname,
+                    double amountcalled, String projectdetail, String title,
+                    String country, String province, String district, String subdistrict, String houseno) {
+        this.user = user;
+        this.category = category;
+        this.projectname = projectname;
+        this.amountcalled = amountcalled;
+        this.projectdetail = projectdetail;
+        this.title = title;
+        this.country = country;
+        this.province = province;
+        this.district = district;
+        this.subdistrict = subdistrict;
+        this.houseno = houseno;
+    }
 }

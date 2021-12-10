@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -15,7 +18,7 @@
 
     <!-- Favicon
   ================================================== -->
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="icon" type="/image/png" href="/images/favicon.png">
 
     <!-- CSS
   ================================================== -->
@@ -32,8 +35,15 @@
     <link rel="stylesheet" href="/plugins/colorbox/colorbox.css">
     <!-- Template styles-->
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/custom.css">
+    <style>
+        figure{
+            width: 45%;
+        }
+        img {
 
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 <div class="body-inner">
@@ -82,7 +92,7 @@
                     <div class="row align-items-center">
                         <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
                             <a class="d-block" href="index.html">
-                                <img loading="lazy" src="images/logo.png" alt="Constra">
+                                <img loading="lazy" src="/images/logo.png" alt="Constra">
                             </a>
                         </div><!-- logo end -->
 
@@ -220,20 +230,20 @@
         <!--/ Navigation end -->
     </header>
     <!--/ Header end -->
-    <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)">
+    <div id="banner-area" class="banner-area" style="background-image:url(/images/banner/banner1.jpg)">
         <div class="banner-text">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-heading">
-                            <h1 class="banner-title">Our Team</h1>
-                            <nav aria-label="breadcrumb">
+                            <h1 class="banner-title">Project</h1>
+                            <!-- <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb justify-content-center">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">company</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Our Team</li>
+                                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                  <li class="breadcrumb-item"><a href="#">News</a></li>
+                                  <li class="breadcrumb-item active" aria-current="page">News Right sidebar</li>
                                 </ol>
-                            </nav>
+                            </nav> -->
                         </div>
                     </div><!-- Col end -->
                 </div><!-- Row end -->
@@ -241,119 +251,166 @@
         </div><!-- Banner text end -->
     </div><!-- Banner area end -->
 
-
-    <section id="main-container" class="main-container pb-4">
+    <section id="main-container" class="main-container">
         <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-12">
-                    <h3 class="section-sub-title">Our Leaderships</h3>
-                </div>
-            </div>
-            <!--/ Title row end -->
-
-
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/news-single.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                             style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <h1 style="margin-bottom: 10%">Đăng dự án</h1>
+                    <form:form action="/startup/saveProject" method="POST" modelAttribute="projectForm" enctype="multipart/form-data">
+                        <form:hidden path="id"/>
+                        <div class="form-group">
+                            <label for="categoryId">Category</label>
+                            <form:select class="form-control" id="categoryId" path="categoryId">
+                                <form:options items="${categories}" itemLabel="categoryname" itemValue="id"/>
+                            </form:select>
                         </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/news-single.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/news-single.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/news-single.html">Xem chi tiết</a>
+                        <div class="form-group">
+                            <label for="projectname">Project Name</label>
+                            <form:input path="projectname" class="form-control" id="projectname"  placeholder="Enter project name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Project Title</label>
+                            <form:input path="title" class="form-control" id="title"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="amountcalled">Amount want to call</label>
+                            <form:input path="amountcalled" class="form-control" id="amountcalled" />
+                        </div>
+                        <div class="form-group">
+                            <label for="projectdetail">Project Detail</label>
+                            <form:textarea path="projectdetail" class="form-control"  id="projectdetail" style="height: 60vh; color: black" ></form:textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Location Of Project:</label>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label for="country">Country: </label>
+                                <form:select class="form-control" id="country" path="country">
+                                    <option value="Việt Nam">Việt Nam</option>
+                                </form:select>
                             </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/news-single.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                             style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/project-detail.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/project-detail.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/project-detail.html">Xem chi tiết</a>
+                            <div class="form-group col">
+                                <label for="provinceId">Province: </label>
+                                <form:select class="form-control" id="provinceId" path="province">
+                                    <form:options items="${provinces}" itemLabel="name" itemValue="id"/>
+                                </form:select>
                             </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/project-detail.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                                style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/project-detail.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/project-detail.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/project-detail.html">Xem chi tiết</a>
+                            <div class="form-group col">
+                                <label for="districtId">Distric: </label>
+                                <form:select class="form-control" id="districtId" path="district">
+                                    <option selected value="">Chọn Quận Huyện</option>
+                                </form:select>
                             </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/project-detail.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                                style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/project-detail.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/project-detail.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/project-detail.html">Xem chi tiết</a>
+                            <div class="form-group col">
+                                <label for="subdistrictId">Sub Distric: </label>
+                                <form:select class="form-control" id="subdistrictId" path="subdistrict">
+                                    <option selected value="">Chọn Xã Phường</option>
+                                </form:select>
                             </div>
-                            <!--/ social-icons-->
                         </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/project-detail.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                                style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
+                        <div class="form-group">
+                            <label for="housenoId">House no</label>
+                            <form:input type="text" class="form-control" id="housenoId" path="houseno"/>
                         </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/project-detail.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/project-detail.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/project-detail.html">Xem chi tiết</a>
-                            </div>
-                            <!--/ social-icons-->
+                        <label>Lưu ý: </label>
+                        <div class="form-group">
+                            <label>Chọn ảnh cho dự án</label>
+                            <input type="file" multiple id="imageOfProject" name="imageofproject" onchange="preview()" style="display: none;">
+                            <label for="imageOfProject" style="background-color: orange; cursor: pointer; padding: 10px; margin-top: 2%;">
+                                <i class="fas fa-upload"></i>Chọn ảnh
+                            </label>
+                            <div id="images" style="display: flex;"></div>
                         </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form:form>
+                </div><!-- Content Col end -->
 
-            </div><!-- Content row end -->
-            <nav aria-label="...">
-                <ul class="pagination pagination-lg">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">1</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                </ul>
-            </nav>
+                <div class="col-lg-4">
+
+                    <div class="sidebar sidebar-right">
+                        <div class="widget recent-posts">
+                            <h3 class="widget-title">Recent Posts</h3>
+                            <ul class="list-unstyled">
+                                <li class="d-flex align-items-center">
+                                    <div class="posts-thumb">
+                                        <a href="#"><img loading="lazy" alt="img" src="/images/news/news1.jpg"></a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h4 class="entry-title">
+                                            <a href="#">We Just Completes $17.6 Million Medical Clinic In Mid-missouri</a>
+                                        </h4>
+                                    </div>
+                                </li><!-- 1st post end-->
+
+                                <li class="d-flex align-items-center">
+                                    <div class="posts-thumb">
+                                        <a href="#"><img loading="lazy" alt="img" src="/images/news/news2.jpg"></a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h4 class="entry-title">
+                                            <a href="#">Thandler Airport Water Reclamation Facility Expansion Project Named</a>
+                                        </h4>
+                                    </div>
+                                </li><!-- 2nd post end-->
+
+                                <li class="d-flex align-items-center">
+                                    <div class="posts-thumb">
+                                        <a href="#"><img loading="lazy" alt="img" src="/images/news/news3.jpg"></a>
+                                    </div>
+                                    <div class="post-info">
+                                        <h4 class="entry-title">
+                                            <a href="#">Silicon Bench And Cornike Begin Construction Solar Facilities</a>
+                                        </h4>
+                                    </div>
+                                </li><!-- 3rd post end-->
+
+                            </ul>
+
+                        </div><!-- Recent post end -->
+
+                        <div class="widget">
+                            <h3 class="widget-title">Categories</h3>
+                            <ul class="arrow nav nav-tabs">
+                                <li><a href="#">Construction</a></li>
+                                <li><a href="#">Commercial</a></li>
+                                <li><a href="#">Building</a></li>
+                                <li><a href="#">Safety</a></li>
+                                <li><a href="#">Structure</a></li>
+                            </ul>
+                        </div><!-- Categories end -->
+
+                        <div class="widget">
+                            <h3 class="widget-title">Archives </h3>
+                            <ul class="arrow nav nav-tabs">
+                                <li><a href="#">Feburay 2016</a></li>
+                                <li><a href="#">January 2016</a></li>
+                                <li><a href="#">December 2015</a></li>
+                                <li><a href="#">November 2015</a></li>
+                                <li><a href="#">October 2015</a></li>
+                            </ul>
+                        </div><!-- Archives end -->
+
+                        <div class="widget widget-tags">
+                            <h3 class="widget-title">Tags </h3>
+
+                            <ul class="list-unstyled">
+                                <li><a href="#">Construction</a></li>
+                                <li><a href="#">Design</a></li>
+                                <li><a href="#">Project</a></li>
+                                <li><a href="#">Building</a></li>
+                                <li><a href="#">Finance</a></li>
+                                <li><a href="#">Safety</a></li>
+                                <li><a href="#">Contracting</a></li>
+                                <li><a href="#">Planning</a></li>
+                            </ul>
+                        </div><!-- Tags end -->
+
+
+                    </div><!-- Sidebar end -->
+                </div><!-- Sidebar Col end -->
+
+            </div><!-- Main row end -->
 
         </div><!-- Container end -->
     </section><!-- Main container end -->
@@ -364,7 +421,7 @@
                 <div class="row justify-content-between">
                     <div class="col-lg-4 col-md-6 footer-widget footer-about">
                         <h3 class="widget-title">About Us</h3>
-                        <img loading="lazy" width="200px" class="footer-logo" src="images/footer-logo.png" alt="Constra">
+                        <img loading="lazy" width="200px" class="footer-logo" src="/images/footer-logo.png" alt="Constra">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inci done idunt ut
                             labore et dolore magna aliqua.</p>
                         <div class="footer-social">
@@ -444,18 +501,17 @@
     ================================================== -->
 
     <!-- initialize jQuery Library -->
+
     <script src="/plugins/jQuery/jquery.min.js"></script>
     <!-- Bootstrap jQuery -->
     <script src="/plugins/bootstrap/bootstrap.min.js" defer></script>
     <!-- Slick Carousel -->
     <script src="/plugins/slick/slick.min.js"></script>
-    <script src="p/lugins/slick/slick-animation.min.js"></script>
+    <script src="/plugins/slick/slick-animation.min.js"></script>
     <!-- Color box -->
     <script src="/plugins/colorbox/jquery.colorbox.js"></script>
     <!-- shuffle -->
     <script src="/plugins/shuffle/shuffle.min.js" defer></script>
-
-
     <!-- Google Map API Key-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
     <!-- Google Map Plugin-->
@@ -463,6 +519,41 @@
 
     <!-- Template custom -->
     <script src="/js/script.js"></script>
+    <script src="/js/multipleImageJS.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#provinceId').on('change',function(){
+                var provinceId = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: "/province/" + provinceId,
+                    success: function(result) {
+                        var result = JSON.parse(result);
+                        var s = '';
+                        for(var i = 0; i < result.length; i++) {
+                            s += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+                        }
+                        $('#districtId').html(s);
+                    }
+                });
+            });
+            $('#districtId').on('change',function(){
+                var districtId = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: "/district/" + districtId,
+                    success: function(result) {
+                        var result = JSON.parse(result);
+                        var s = '';
+                        for(var i = 0; i < result.length; i++) {
+                            s += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
+                        }
+                        $('#subdistrictId').html(s);
+                    }
+                });
+            });
+        });
+    </script>
 
 </div><!-- Body inner end -->
 </body>

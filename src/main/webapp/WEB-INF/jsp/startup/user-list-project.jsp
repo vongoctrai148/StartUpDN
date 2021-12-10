@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +18,7 @@
 
     <!-- Favicon
   ================================================== -->
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="icon" type="/image/png" href="images/favicon.png">
 
     <!-- CSS
   ================================================== -->
@@ -32,7 +35,6 @@
     <link rel="stylesheet" href="/plugins/colorbox/colorbox.css">
     <!-- Template styles-->
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/custom.css">
 
 </head>
 <body>
@@ -82,7 +84,7 @@
                     <div class="row align-items-center">
                         <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
                             <a class="d-block" href="index.html">
-                                <img loading="lazy" src="images/logo.png" alt="Constra">
+                                <img loading="lazy" src="/images/logo.png" alt="Constra">
                             </a>
                         </div><!-- logo end -->
 
@@ -220,20 +222,13 @@
         <!--/ Navigation end -->
     </header>
     <!--/ Header end -->
-    <div id="banner-area" class="banner-area" style="background-image:url(images/banner/banner1.jpg)">
+    <div id="banner-area" class="banner-area" style="background-image:url(/images/banner/banner1.jpg)">
         <div class="banner-text">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-heading">
-                            <h1 class="banner-title">Our Team</h1>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb justify-content-center">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">company</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Our Team</li>
-                                </ol>
-                            </nav>
+                            <h1 class="banner-title">Profile</h1>
                         </div>
                     </div><!-- Col end -->
                 </div><!-- Row end -->
@@ -241,121 +236,84 @@
         </div><!-- Banner text end -->
     </div><!-- Banner area end -->
 
-
-    <section id="main-container" class="main-container pb-4">
+    <section id="main-container" class="main-container">
         <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-12">
-                    <h3 class="section-sub-title">Our Leaderships</h3>
-                </div>
-            </div>
-            <!--/ Title row end -->
-
-
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/news-single.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                             style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/news-single.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/news-single.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/news-single.html">Xem chi tiết</a>
-                            </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/news-single.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                             style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/project-detail.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/project-detail.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/project-detail.html">Xem chi tiết</a>
-                            </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/project-detail.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                                style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/project-detail.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/project-detail.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/project-detail.html">Xem chi tiết</a>
-                            </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/project-detail.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                                style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/project-detail.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/project-detail.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/project-detail.html">Xem chi tiết</a>
-                            </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                    <div class="ts-team-wrapper">
-                        <div class="team-img-wrapper">
-                            <a href="/project-detail.html"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
-                                                                style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                        </div>
-                        <div class="ts-team-content-classic">
-                            <a href="/project-detail.html"><h3 class="ts-name">Mark Conter</h3></a>
-                            <p class="ts-designation">Safety Officer</p>
-                            <a href="/project-detail.html"><p class="ts-description">Nats Stenman began his career in construction with boots on the ground</p></a>
-                            <div class="team-social-icons">
-                                <a href="/project-detail.html">Xem chi tiết</a>
-                            </div>
-                            <!--/ social-icons-->
-                        </div>
-                    </div>
-                    <!--/ Team wrapper 3 end -->
-                </div><!-- Col end -->
 
-            </div><!-- Content row end -->
-            <nav aria-label="...">
-                <ul class="pagination pagination-lg">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">1</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                </ul>
-            </nav>
+                <div class="col-xl-3 col-lg-4">
+                    <div class="sidebar sidebar-left">
+                        <div class="widget">
+                            <h3 class="widget-title">Danh Mục</h3>
+                            <ul class="nav service-menu">
+                                <li  class="active"><a href="service-single.html">Home Construction</a></li>
+                                <li><a href="service-single.html">My project</a></li>
+                                <li><a href="service-single.html">Project Images</a></li>
+                            </ul>
+                        </div><!-- Widget end -->
 
-        </div><!-- Container end -->
+                        <div class="widget">
+                            <div class="quote-item quote-border">
+                                <div class="quote-text-border">
+                                    This is my quote.
+                                </div>
+
+                                <div class="quote-item-footer">
+                                    <img loading="lazy" class="testimonial-thumb" src="/images/clients/testimonial1.png" alt="testimonial">
+                                    <div class="quote-item-info">
+                                        <h3 class="quote-author">Weldon Cash</h3>
+                                        <span class="quote-subtext">CEO, First Choice Group</span>
+                                    </div>
+                                </div>
+                            </div><!-- Quote item end -->
+
+                        </div><!-- Widget end -->
+
+                    </div><!-- Sidebar end -->
+                </div><!-- Sidebar Col end -->
+
+                <div class="col-xl-8 col-lg-8">
+                    <div class="content-inner-page">
+                        <div style="overflow-x:auto;">
+                            <table class="table table-hover table-striped" width="100%">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Project Name</th>
+                                    <th scope="col">Categrory </th>
+                                    <th scope="col">Amount Called</th>
+                                    <th scope="col">Trạng Thái</th>
+                                    <th align="center" scope="col" colspan="3">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${listProjectOfUser}" var="project">
+                                <tr>
+                                    <td>${project.projectname}</td>
+                                    <td>${project.category.categoryname}</td>
+                                    <td>${project.amountcalled} VND</td>
+                                    <td>
+                                        <script>
+                                            if(${project.aceptedstatus} == 1 ){
+                                            document.write("<p>Đã duyệt</p>");}
+                                            else if(${project.aceptedstatus} == 0){
+                                            document.write("<p>Đang chờ duyệt</p>");}
+                                            else if(${project.aceptedstatus} == 2){
+                                            document.write("<p>Đã từ chối</p>");}
+                                        </script>
+                                    </td>
+                                    <td align="center"><a href="/startup/projectDetail/${project.id}" title="Chi tiết"><i class="fa fa-info-circle"></i></a></td>
+                                    <td align="center"><a href="/startup/saveProject/${project.id}" title="Chỉnh sửa"><i class="fa fa-pen"></i></a></td>
+                                    <td align="center"><a href="/startup/deleteProject/${project.id}" title="Hủy đăng ký"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- Content inner end -->
+                </div><!-- Content Col end -->
+
+
+            </div><!-- Main row end -->
+        </div><!-- Conatiner end -->
     </section><!-- Main container end -->
 
     <footer id="footer" class="footer bg-overlay">
@@ -364,7 +322,7 @@
                 <div class="row justify-content-between">
                     <div class="col-lg-4 col-md-6 footer-widget footer-about">
                         <h3 class="widget-title">About Us</h3>
-                        <img loading="lazy" width="200px" class="footer-logo" src="images/footer-logo.png" alt="Constra">
+                        <img loading="lazy" width="200px" class="footer-logo" src="/images/footer-logo.png" alt="Constra">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inci done idunt ut
                             labore et dolore magna aliqua.</p>
                         <div class="footer-social">
@@ -449,7 +407,7 @@
     <script src="/plugins/bootstrap/bootstrap.min.js" defer></script>
     <!-- Slick Carousel -->
     <script src="/plugins/slick/slick.min.js"></script>
-    <script src="p/lugins/slick/slick-animation.min.js"></script>
+    <script src="/plugins/slick/slick-animation.min.js"></script>
     <!-- Color box -->
     <script src="/plugins/colorbox/jquery.colorbox.js"></script>
     <!-- shuffle -->

@@ -8,22 +8,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "investedproject")
+@Table(name = "province")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class InvestedProjects {
+public class Provinces {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name = "userid")
-    private Users user;
+    private String id;
+    private String name;
     @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "projectid")
-    private Projects project;
+    @OneToMany(mappedBy = "province", fetch = FetchType.LAZY)
+    private List<Districts> districts;
 }

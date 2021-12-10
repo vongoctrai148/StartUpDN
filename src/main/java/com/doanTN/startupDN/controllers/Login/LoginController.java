@@ -1,9 +1,9 @@
 package com.doanTN.startupDN.controllers.Login;
 
-import com.doanTN.startupDN.clients.UserClient;
+import com.doanTN.startupDN.entities.Users;
 import com.doanTN.startupDN.forms.LoginForm;
 import com.doanTN.startupDN.forms.RegisForm;
-import net.bytebuddy.asm.Advice;
+import com.doanTN.startupDN.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,29 +12,38 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
 public class LoginController {
     @Autowired
-    private UserClient userClient;
+    private UserService userService;
 
     @GetMapping("/login")
     public String getLogin(Model model){
         model.addAttribute("loginForm", new LoginForm());
-        model.addAttribute("userList", userClient.getALlUser());
         return "login";
     }
 
     @PostMapping("/login")
-    public String postLogin(Model model, @Valid @ModelAttribute("loginForm") LoginForm loginForm, BindingResult bindingResult){
+    public String postLogin(Model model, @Valid @ModelAttribute("loginForm") LoginForm loginForm, BindingResult bindingResult,
+    HttpSession session){
         if(bindingResult.hasErrors()){
             model.addAttribute("error");
         }
         String username = loginForm.getUsername();
         String password = loginForm.getPassword();
-        if(username.equals("traivo") && password.equals("123")){
-            return "redirect:/startup/homepage";
+        if(userService.loginUser(username, password) == 1){
+            Users user = userService.getUserByUserName(username);
+            session.setAttribute("user", user);
+            if(("startup").equals(user.getRoles())){
+                return "redirect:/startup/listProject";
+            } else if (("investors").equals(user.getRoles())) {
+                return "redirect:/GV/capnhatdkpm";
+            } else if (("admin").equals(user.getRoles())) {
+                return "redirect:/NQL/capnhatdkpm";
+            }
         }
         model.addAttribute("message", "Username or password is incorrect!");
         return "login";
@@ -45,5 +54,15 @@ public class LoginController {
         model.addAttribute("enrollForm", new RegisForm());
         return "register";
     }
+
+//    @GetMapping("/logout")
+//    public String logout(HttpServletRequest request) {
+//        HttpSession session = request.getSession(false);
+//        if (session != null) {
+//            session.invalidate();
+//        }
+//        return "/login";
+//    }
+
 
 }

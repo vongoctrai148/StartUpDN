@@ -14,8 +14,15 @@ public class UserService {
     private UserDAO userDAO;
 
     @Transactional
-    public List<Users> getAllUser(){
+    public List<Users> getAllUser (){
         return userDAO.findAll();
     }
-
+    @Transactional
+    public int loginUser(String username, String password){
+        return userDAO.findUsersByUsernameAndPassword(username, password);
+    }
+    @Transactional
+    public Users getUserByUserName(String username){
+        return userDAO.getUsersByUsername(username);
+    }
 }

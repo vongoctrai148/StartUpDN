@@ -1,12 +1,14 @@
 package com.doanTN.startupDN.daos;
 
 import com.doanTN.startupDN.entities.Users;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 
 public interface UserDAO extends JpaRepository<Users, Long> {
-//    List<UserDto> getAllUsers();
+    @Query("SELECT count(s.username) FROM Users s WHERE s.username = ?1 AND s.passwords = ?2" )
+    int findUsersByUsernameAndPassword (String username, String password);
+
+    @Query("SELECT s FROM Users s WHERE s.username = ?1")
+    Users getUsersByUsername(String username);
 
 }
