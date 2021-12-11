@@ -38,37 +38,47 @@ public class ProjectController {
     @Autowired
     private SubDistrictService subDistrictService;
 
-    @GetMapping("startup/listProject")
-    public String getListProject(Model model, HttpSession session){
-//        Users user = (Users) session.getAttribute("user");
-//        if(("").equals(user) || user == null){
-//            return "redirect:/login";
-//        }
-//        else {
-            model.addAttribute("listProjects", projectService.getAllProjects());
-            return "startup/listProject";
-//        }
+    @GetMapping("/startup/userListProject")
+    public String getUserListProject (Model model, HttpSession session){
+        Users user = (Users) session.getAttribute("user");
+        if(("").equals(user) || user == null){
+            return "redirect:/login";
+        }
+        else {
+            model.addAttribute("listProjectOfUser", projectService.getAllProjectByUsername(user.getUsername()));
+            return "startup/userListProject";
+        }
     }
 
     @GetMapping("startup/saveProject")
     public String getProject(Model model, HttpSession session){
         Users user = (Users) session.getAttribute("user");
-        model.addAttribute("provinces", provinceService.getAllProvinces());
-        model.addAttribute("categories", categoryService.getALlCategories());
-        model.addAttribute("projectForm", new ProjectForm());
-        return "startup/saveProject";
+        if(("").equals(user) || user == null){
+            return "redirect:/login";
+        }
+        else {
+            model.addAttribute("provinces", provinceService.getAllProvinces());
+            model.addAttribute("categories", categoryService.getALlCategories());
+            model.addAttribute("projectForm", new ProjectForm());
+            return "startup/saveProject";
+        }
     }
 
     @GetMapping("startup/saveProject/{id}")
     public String getUpdateProject(Model model, HttpSession session,  @PathVariable("id") Long projectId){
         Users user = (Users) session.getAttribute("user");
-        Projects project = projectService.getProjectById(projectId);
-        model.addAttribute("provinces", provinceService.getAllProvinces());
-        model.addAttribute("categories", categoryService.getALlCategories());
-        model.addAttribute("projectForm", new ProjectForm(project.getId(), project.getCategory().getId(),
-                project.getProjectname(), project.getAmountcalled(), project.getProjectdetail(), project.getTitle(), project.getCountry(),
-                project.getProvince(), project.getDistrict(), project.getSubdistrict(), project.getHouseno()));
-        return "startup/saveProject";
+        if(("").equals(user) || user == null){
+            return "redirect:/login";
+        }
+        else {
+            Projects project = projectService.getProjectById(projectId);
+            model.addAttribute("provinces", provinceService.getAllProvinces());
+            model.addAttribute("categories", categoryService.getALlCategories());
+            model.addAttribute("projectForm", new ProjectForm(project.getId(), project.getCategory().getId(),
+                    project.getProjectname(), project.getAmountcalled(), project.getProjectdetail(), project.getTitle(), project.getCountry(),
+                    project.getProvince(), project.getDistrict(), project.getSubdistrict(), project.getHouseno()));
+            return "startup/saveProject";
+        }
     }
 
     @PostMapping("startup/saveProject")
@@ -85,7 +95,7 @@ public class ProjectController {
             Arrays.asList(imageOfProject).stream().forEach(file -> {
                 String fileName = project.getId() + file.getOriginalFilename();
                 projectService.addImageOfProject( projectService.getProjectById(project.getId()), fileName);
-                fileNames.add(project.getId() + file.getOriginalFilename());
+                fileNames.add(fileName);
                 Path imagePath = Paths.get("src/main/resources/static/images/projectImages/" + fileName);
                 try {
                     Files.write(imagePath, file.getBytes());
@@ -105,7 +115,7 @@ public class ProjectController {
                     projectService.deleteImageByName(fileName);
                 }
                 projectService.addImageOfProject( projectService.getProjectById(project.getId()), fileName);
-                fileNames.add(project.getId() + file.getOriginalFilename());
+                fileNames.add(fileName);
                 Path imagePath = Paths.get("src/main/resources/static/images/projectImages/" + fileName);
                 try {
                     Files.write(imagePath, file.getBytes());

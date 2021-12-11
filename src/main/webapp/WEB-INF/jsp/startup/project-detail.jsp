@@ -18,7 +18,7 @@
     <!-- Favicon
 ================================================== -->
     <link rel="icon" type="image/png" href="/images/favicon.png" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <!-- CSS
 ================================================== -->
     <!-- Bootstrap -->
@@ -330,15 +330,15 @@
                         </h3>
                     </div>
                     <div class="vote-box">
-                        <p>
-                            Vote for project:
-                            <a href="#"><i class="far fa-star"></i></a>
-                            <a href="#"><i class="far fa-star"></i></a>
-                            <a href="#"><i class="far fa-star"></i></a>
-                            <a href="#"><i class="far fa-star"></i></a>
-                            <a href="#"><i class="far fa-star"></i></a>
-                        </p>
-                        <button class="btn btn-success btn-sm">Vote</button>
+                        <form action="/startup/voteStar" method="POST" class="form-inline">
+                            <input type="hidden" name="projectId" value="${project.id}">
+                            <p style="font-weight: bold">
+                                VOTE FOR THIS PROJECT:
+                                <span class="my-rating-9"></span>
+                                <input type="hidden" class="live-rating" name="ratedStar" style="margin-left: 1%;"></input>
+                            </p>
+                            <button class="btn btn-outline-success" style="margin-left: 4%">Vote</button>
+                        </form>
                     </div>
                     <div class="author-box d-nlock d-sm-flex">
                         <div class="author-img mb-4 mb-md-0">
@@ -661,7 +661,22 @@
 
     <!-- Javascript Files
 ================================================== -->
-
+    <script>
+        $(function() {
+            $(".my-rating-9").starRating({
+                initialRating: 5,
+                disableAfterRate: false,
+                onHover: function(currentIndex, currentRating, $el){
+                    console.log('index: ', currentIndex, 'currentRating: ', currentRating, ' DOM element ', $el);
+                    $('.live-rating').val(currentIndex);
+                },
+                onLeave: function(currentIndex, currentRating, $el){
+                    console.log('index: ', currentIndex, 'currentRating: ', currentRating, ' DOM element ', $el);
+                    $('.live-rating').val(currentRating);
+                }
+            });
+        });
+    </script>
     <!-- initialize jQuery Library -->
     <script src="/plugins/jQuery/jquery.min.js"></script>
     <!-- Bootstrap jQuery -->
@@ -678,7 +693,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
     <!-- Google Map Plugin-->
     <script src="/plugins/google-map/map.js" defer></script>
-
+    <script src="/js/star.js"></script>
     <!-- Template custom -->
     <script src="/js/script.js"></script>
 </div>

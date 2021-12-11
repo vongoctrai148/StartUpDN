@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Replies")
+@Table(name = "replies")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,4 +22,5 @@ public class Replies {
     private Comments comment;
     private String binhluan;
     private String postedday;
+    private int liketotal;
 }

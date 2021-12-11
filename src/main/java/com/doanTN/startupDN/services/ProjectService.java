@@ -52,6 +52,13 @@ public class ProjectService {
         return projectDAO.save(project);
     }
 
+    @Transactional
+    public void updateRating(Long id, float totalVoted, int sumVoted){
+        Projects project = projectDAO.findById(id).get();
+        project.setTotalvoted(totalVoted);
+        project.setSumvoted(sumVoted);
+        projectDAO.save(project);
+    }
 
     @Transactional
     public List<Projects> getAllProjectByUsername (String username){
@@ -76,6 +83,7 @@ public class ProjectService {
             return false;
         }
     }
+
     @Transactional
     public void deleteImageById (Long id){
         imageOfProjectDAO.deleteById(id);

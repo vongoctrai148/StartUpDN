@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "project")
+@Table(name = "projects")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,8 +34,11 @@ public class Projects {
     private String district;
     private String subdistrict;
     private String houseno;
-    private String totalvoted;
+    private float totalvoted;
+    private int sumvoted;
     private int aceptedstatus;
+    private int liketotal;
+    private String postedday;
     @JsonIgnore
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private List<Comments> comments;
@@ -61,4 +64,6 @@ public class Projects {
         this.subdistrict = subdistrict;
         this.houseno = houseno;
     }
+
+
 }

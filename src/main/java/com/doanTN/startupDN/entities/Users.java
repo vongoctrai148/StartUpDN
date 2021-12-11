@@ -36,6 +36,7 @@ public class Users {
     private String houseno;
     private String roles;
     private String job;
+    private String avataruser;
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Projects> projects;
