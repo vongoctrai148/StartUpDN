@@ -14,28 +14,33 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="bg-all">
-        <div class="container">
-            <form:form action="/login" modelAttribute="loginForm" method="POST" style="background-color:rgba(0, 0, 0, 0.2); color: white" class="form">
-                <h1>Sign In</h1>
-                <p style="color: #fff425; ">${message}</p>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <form:input path="username"  class="form-control" id="username" placeholder="Enter Username"/>
-                    <form:errors path="username"/>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+
+                <div class="card-body">
+                    <form:form action="/login" modelAttribute="loginForm" method="POST" style=" color: white" class="form">
+                        <h1>Sign In</h1>
+                        <p style="color: #fff425; ">${message}</p>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <form:input path="username"  class="form-control" id="username" placeholder="Enter Username"/>
+                            <form:errors path="username"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <form:password path="password" class="form-control" id="password" placeholder="Password"/>
+                            <form:errors path="password"/>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" name="checkme" class="form-check-input" id="checkmeout"/>
+                            <label class="form-check-label" for="checkmeout">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <a href="/register" class="register">Click here to register</a>
+                    </form:form>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <form:password path="password" class="form-control" id="password" placeholder="Password"/>
-                    <form:errors path="password"/>
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" name="checkme" class="form-check-input" id="checkmeout"/>
-                    <label class="form-check-label" for="checkmeout">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <a href="/register" class="register">Click here to register</a>
-            </form:form>
+            </div>
         </div>
     </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

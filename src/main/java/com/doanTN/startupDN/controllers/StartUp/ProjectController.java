@@ -38,6 +38,17 @@ public class ProjectController {
     @Autowired
     private SubDistrictService subDistrictService;
 
+    @GetMapping("/startup/userProfile")
+    public String getUserProfile(Model model, HttpSession session ){
+        Users user = (Users) session.getAttribute("user");
+        if(("").equals(user) || user == null){
+            return "redirect:/login";
+        }
+        else {
+            return "startup/userProfile";
+        }
+    }
+
     @GetMapping("/startup/userListProject")
     public String getUserListProject (Model model, HttpSession session){
         Users user = (Users) session.getAttribute("user");
@@ -126,6 +137,18 @@ public class ProjectController {
         }
         return "redirect:/startup/listProject";
 
+    }
+
+    @GetMapping("/startup/userListImage")
+    public String getUserListImage (Model model, HttpSession session){
+        Users user = (Users) session.getAttribute("user");
+        if(("").equals(user) || user == null){
+            return "redirect:/login";
+        }
+        else {
+            model.addAttribute("listImageOfUser", projectService.getAllImageByUsername(user.getUsername()));
+            return "startup/userListImage";
+        }
     }
 
 }

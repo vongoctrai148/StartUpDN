@@ -19,4 +19,8 @@ public interface ImageOfProjectDAO extends JpaRepository<ImageOfProject,Long> {
     @Modifying
     @Query("DELETE FROM ImageOfProject WHERE imagename = ?1")
     void deleteByImagename(String imageName);
+
+    @Query("SELECT im FROM ImageOfProject im, Projects p, Users u WHERE im.project.id = p.id " +
+            "AND p.user.id = u.id AND u.username = ?1")
+    List<ImageOfProject> getALlImageByUserName (String username);
 }

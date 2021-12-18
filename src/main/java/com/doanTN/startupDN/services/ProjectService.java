@@ -1,12 +1,11 @@
 package com.doanTN.startupDN.services;
 
+import com.doanTN.startupDN.daos.CommentsDAO;
 import com.doanTN.startupDN.daos.ImageOfProjectDAO;
 import com.doanTN.startupDN.daos.ProjectDAO;
-import com.doanTN.startupDN.entities.Categories;
-import com.doanTN.startupDN.entities.ImageOfProject;
-import com.doanTN.startupDN.entities.Projects;
-import com.doanTN.startupDN.entities.Users;
+import com.doanTN.startupDN.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,16 +17,19 @@ public class ProjectService {
     private ProjectDAO projectDAO;
     @Autowired
     private ImageOfProjectDAO imageOfProjectDAO;
+    @Autowired
+    private CommentsDAO commentsDAO;
 
     @Transactional
-    public List<Projects> getAllProjects(){
-        return projectDAO.findAll();
+    public List<Projects> getAllProjects(Pageable pageable){
+        return projectDAO.getProjectsByTotalvoted(pageable);
     }
 
     @Transactional
     public Projects getProjectById(Long id){
         return projectDAO.findById(id).get();
     }
+
     @Transactional
     public Projects saveProject (Users user, Categories category, String projectName, double amountCalled, String projectDetail,
                              String title, String country, String province, String district, String subDistrict, String houseNo){
@@ -61,15 +63,21 @@ public class ProjectService {
     }
 
     @Transactional
+    public int getTotalProject(){
+        return projectDAO.getTotalProducts();
+    }
+
+    @Transactional
     public List<Projects> getAllProjectByUsername (String username){
         return projectDAO.findAllByUsername(username);
     }
 
+
+    //Image of project
     @Transactional
     public List<ImageOfProject> getAllImageByProjectId (Long id){
         return imageOfProjectDAO.findAllImageByProjectId(id);
     }
-
     @Transactional
     public void addImageOfProject( Projects project, String fileName){
         imageOfProjectDAO.save(new ImageOfProject(project, fileName));
@@ -85,6 +93,11 @@ public class ProjectService {
     }
 
     @Transactional
+    public List<ImageOfProject> getAllImageByUsername (String username){
+        return imageOfProjectDAO.getALlImageByUserName(username);
+    }
+
+    @Transactional
     public void deleteImageById (Long id){
         imageOfProjectDAO.deleteById(id);
     }
@@ -93,4 +106,16 @@ public class ProjectService {
     public void deleteImageByName (String imageName){
         imageOfProjectDAO.deleteByImagename(imageName);
     }
+
+    //Comments
+    @Transactional
+    public void addComment(Users user, Projects project, String comment, String postedDay){
+        commentsDAO.save(new Comments(user, project, comment, postedDay));
+    }
+    @Transactional
+    public List<Comments> getAllCommentByProjectId (Long id){
+        return commentsDAO.findAllByProjectId(id);
+    }
+
+
 }

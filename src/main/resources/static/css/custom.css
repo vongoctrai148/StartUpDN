@@ -78,7 +78,20 @@ pre.prettyprint {
     vertical-align: top;
     font-family: helvetica, arial, verdana;
 }
-
+.ts-name {
+    line-height: 22px;
+    height: 66px;
+    overflow: hidden;
+    font-size: 18px;
+    text-align: center;
+}
+.ts-description{
+    line-height: 18px;
+    overflow: hidden;
+    height: 90px;
+    margin-bottom: 15px;
+    text-align: justify;
+}
 .jq-star {
     width: 100px;
     height: 100px;

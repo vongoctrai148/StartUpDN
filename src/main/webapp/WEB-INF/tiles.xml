@@ -14,34 +14,44 @@
                 template="/WEB-INF/jsp/login/register.jsp">
     </definition>
 
-    <definition name="startup/listProject"
-                template="/WEB-INF/jsp/startup/list-project.jsp">
+
+
+
+
+
+    <!-- Start Up Page -->
+    <definition name="homepage-startup.definition" template="/WEB-INF/jsp/layout/startup-layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/startup/header.jsp"/>
+<!--        <put-attribute name="sidebar" value="/WEB-INF/jsp/startup/.jsp"/>-->
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/startup/footer.jsp"/>
+    </definition>
+
+    <!-- Activity startup -->
+    <definition name="startup/listProject" extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/startup/list-project.jsp" />
     </definition>
     <definition name="startup/projectDetail"
-                template="/WEB-INF/jsp/startup/project-detail.jsp">
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/startup/project-detail.jsp" />
     </definition>
     <definition name="startup/saveProject"
-                template="/WEB-INF/jsp/startup/save-project.jsp">
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/startup/save-project.jsp" />
     </definition>
 
     <definition name="startup/userListProject"
-                template="/WEB-INF/jsp/startup/user-list-project.jsp">
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/startup/user-list-project.jsp" />
     </definition>
-
-
-        <!-- Start Up Page -->
-<!--    <definition name="homepage-nql.definition" template="/WEB-INF/jsp/layout/nguoiquanli-layout.jsp">-->
-<!--        <put-attribute name="topbar" value="/WEB-INF/jsp/topbar.jsp"/>-->
-<!--        <put-attribute name="sidebar" value="/WEB-INF/jsp/nguoiquanli/sidebar.jsp"/>-->
-<!--        <put-attribute name="body" value="" />-->
-<!--        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp"/>-->
-<!--    </definition>-->
-
-<!--    &lt;!&ndash; Activity NQL &ndash;&gt;-->
-<!--    <definition name="NQL/capnhatdkpm" extends="homepage-nql.definition">-->
-<!--        <put-attribute name="body" value="/WEB-INF/jsp/nguoiquanli/dkpm_nql.jsp" />-->
-<!--    </definition>-->
-
+    <definition name="startup/userListImage"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/startup/user-image-of-project.jsp" />
+    </definition>
+    <definition name="startup/userProfile"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/startup/user-profile.jsp" />
+    </definition>
 
 <!--    &lt;!&ndash; Home Page GV &ndash;&gt;-->
 <!--    <definition name="homepage-gv.definition" template="/WEB-INF/jsp/layout/giaovien-layout.jsp">-->

@@ -49,12 +49,6 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/register")
-    public String getRegister(Model model){
-        model.addAttribute("enrollForm", new RegisForm());
-        return "register";
-    }
-
 //    @GetMapping("/logout")
 //    public String logout(HttpServletRequest request) {
 //        HttpSession session = request.getSession(false);

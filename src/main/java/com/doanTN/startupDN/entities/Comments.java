@@ -32,4 +32,11 @@ public class Comments {
     @JsonIgnore
     @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY)
     private List<Replies> replies;
+
+    public Comments(Users user, Projects project, String binhluan, String postedday) {
+        this.user = user;
+        this.project = project;
+        this.binhluan = binhluan;
+        this.postedday = postedday;
+    }
 }
