@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,14 +92,14 @@
 
                 <div class="col-xl-8 col-lg-8">
                     <div class="content-inner-page">
-                        <div style="overflow-x:auto;">
+                        <div class="table-responsive">
                             <table class="table table-hover table-striped" width="100%">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Project Name</th>
-                                    <th scope="col">Categrory </th>
+                                    <th scope="col"><div style="width: 200px">Project Name</div></th>
+                                    <th scope="col"><div style="width: 100px">Categrory </th>
                                     <th scope="col">Amount Called</th>
-                                    <th scope="col">Trạng Thái</th>
+                                    <th scope="col"><div style="width: 120px">Trạng Thái</div></th>
                                     <th align="center" scope="col" colspan="3">Action</th>
                                 </tr>
                                 </thead>
@@ -107,7 +108,7 @@
                                 <tr>
                                     <td>${project.projectname}</td>
                                     <td>${project.category.categoryname}</td>
-                                    <td>${project.amountcalled} VND</td>
+                                    <td><fmt:formatNumber value="${project.amountcalled}" type="currency" currencySymbol="VND"/></td>
                                     <td>
                                         <script>
                                             if(${project.aceptedstatus} == 1 ){

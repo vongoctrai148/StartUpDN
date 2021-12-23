@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +87,7 @@
                                 <h2 class="entry-title">
                                     ${project.category.categoryname} > ${project.title}
                                 </h2>
-                                <h4 style=" color: orange">Số vốn kêu gọi: ${project.amountcalled} VNĐ</h4>
+                                <h4 style=" color: orange">Số vốn kêu gọi: <fmt:formatNumber value="${project.amountcalled}" type="currency" currencySymbol="VND"/></h4>
                                 <blockquote>
                                     <p>Location: ${project.houseno} - ${project.subdistrict} - ${project.district}
                                         - ${project.province} - ${project.country}</p>

@@ -8,7 +8,7 @@
                 <div class="row align-items-center">
                     <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
                         <a class="d-block" href="/startup/listProject">
-                            <img loading="lazy" src="/images/projectImages/logodanang.png" alt="StartupDN">
+                            <img loading="lazy" src="/images/projectImages/logodanang.png" style="width: 70px; height: 70px" alt="StartupDN">
                         </a>
                     </div><!-- logo end -->
 
