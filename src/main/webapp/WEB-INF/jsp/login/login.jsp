@@ -20,24 +20,24 @@
 
                 <div class="card-body">
                     <form:form action="/login" modelAttribute="loginForm" method="POST" style=" color: white" class="form">
-                        <h1>Sign In</h1>
+                        <h1>Đăng nhập</h1>
                         <p style="color: #fff425; ">${message}</p>
                         <div class="form-group">
-                            <label for="username">Username</label>
-                            <form:input path="username"  class="form-control" id="username" placeholder="Enter Username"/>
+                            <label for="username">Tài khoản</label>
+                            <form:input path="username"  class="form-control" id="username" placeholder="Nhập tài khoản"/>
                             <form:errors path="username"/>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <form:password path="password" class="form-control" id="password" placeholder="Password"/>
+                            <label for="password">Mật khẩu</label>
+                            <form:password path="password" class="form-control" id="password" placeholder="Nhập mật khẩu"/>
                             <form:errors path="password"/>
                         </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" name="checkme" class="form-check-input" id="checkmeout"/>
-                            <label class="form-check-label" for="checkmeout">Check me out</label>
+                        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                        <div class="form-group" style="margin-top: 2%">
+                            <label>Bạn chưa có tài khoản?</label>
+                            <br>
+                            <a href="/register" class="register">Đăng ký ngay ở đây!</a>
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <a href="/register" class="register">Click here to register</a>
                     </form:form>
                 </div>
             </div>

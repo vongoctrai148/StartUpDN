@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-heading">
-                            <h1 class="banner-title">Profile</h1>
+                            <h1 class="banner-title">Thông tin cá nhân</h1>
                         </div>
                     </div><!-- Col end -->
                 </div><!-- Row end -->
@@ -64,9 +64,9 @@
                         <div class="widget">
                             <h3 class="widget-title">Danh Mục</h3>
                             <ul class="nav service-menu">
-                                <li><a href="/startup/userProfile">My Profile</a></li>
-                                <li><a href="/startup/userListProject">My project</a></li>
-                                <li class="active"><a href="/startup/userListImage">Project Images</a></li>
+                                <li><a href="/startup/userProfile">Thông tin của tôi</a></li>
+                                <li><a href="/startup/userListProject">Các dự án của tôi</a></li>
+                                <li class="active"><a href="/startup/userListImage">Hình ảnh dự án</a></li>
                             </ul>
                         </div><!-- Widget end -->
 
@@ -77,7 +77,7 @@
                                 </div>
 
                                 <div class="quote-item-footer">
-                                    <img loading="lazy" class="testimonial-thumb" src="/images/clients/testimonial1.png" alt="testimonial">
+                                    <img loading="lazy" class="testimonial-thumb" src="/images/userImages/${user.avataruser}" alt="testimonial">
                                     <div class="quote-item-info">
                                         <h3 class="quote-author">${user.fullname}</h3>
                                         <span class="quote-subtext">${user.job}</span>
@@ -120,7 +120,6 @@
 <%--                                                <input type="radio" name="shuffle-filter" id="healthcare" value="healthcare">Healthcare--%>
 <%--                                            </label>--%>
 <%--                                        </div><!-- project filter end -->--%>
-
                                         <div class="row shuffle-wrapper">
                                             <div class="col-1 shuffle-sizer"></div>
                                             <c:forEach items="${listImageOfUser}" var="image">
@@ -130,7 +129,6 @@
                                                             <img class="img-fluid" src="/images/projectImages/${image.imagename}" alt="project-image">
                                                             <span class="gallery-icon"><i class="fa fa-search"></i></span>
                                                         </a>
-
                                                         <div class="project-item-info">
                                                             <div class="project-item-info-content">
                                                                 <h3 class="project-item-title">
@@ -140,22 +138,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                             </div><!-- shuffle item 1 end -->
                                             </c:forEach>
                                         </div><!-- shuffle end -->
-
-
                                     </div>
-
-                                    <div class="col-12">
-                                        <div class="general-btn text-center">
-                                            <a class="btn btn-primary" href="projects.html">View All Projects</a>
-                                        </div>
-                                    </div>
-
                                 </div><!-- Content row end -->
-
                             </div><!-- Conatiner end -->
                         </section><!-- Main container end -->
 

@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--/ Topbar end -->
 <!-- Header start -->
 <header id="header" class="header-one">
@@ -39,8 +39,11 @@
                                 </div>
                             </li>
                             <li class="header-get-a-quote">
-                                <a class="btn btn-primary" href="/startup/userProfile" title="profile">${user.fullname}</a>
+                                <a class="btn btn-primary" id="userLogin" href="/startup/userProfile" title="Thông tin cá nhân">${user.fullname}</a>
+                                <a href="/logout" class="btn-outline-warning">Đăng xuất</a>
                             </li>
+
+
                         </ul><!-- Ul end -->
                     </div><!-- header right end -->
                 </div><!-- logo area end -->
@@ -61,11 +64,11 @@
                         <div id="navbar-collapse" class="collapse navbar-collapse">
                             <ul class="nav navbar-nav mr-auto">
                                 <li class="nav-item dropdown active">
-                                    <a href="/startup/listProject" class="nav-link dropdown-toggle" >Home</a>
+                                    <a href="/startup/listProject" class="nav-link dropdown-toggle" >Trang chủ</a>
                                 </li>
 
                                 <li class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Company <i class="fa fa-angle-down"></i></a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Các công ty <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="about.html">About Us</a></li>
                                         <li><a href="team.html">Our People</a></li>
@@ -74,15 +77,13 @@
                                         <li><a href="pricing.html">Pricing</a></li>
                                     </ul>
                                 </li>
-
                                 <li class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Projects <i class="fa fa-angle-down"></i></a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dự án <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="projects.html">Projects All</a></li>
-                                        <li><a href="projects-single.html">Projects Single</a></li>
+                                        <li><a href="/startup/userListProject">Các dự án của tôi</a></li>
+                                        <li><a href="/startup/saveProject">Đăng dự án</a></li>
                                     </ul>
                                 </li>
-
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Services <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
@@ -90,7 +91,6 @@
                                         <li><a href="service-single.html">Services Single</a></li>
                                     </ul>
                                 </li>
-
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Features <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
@@ -106,7 +106,6 @@
                                         </li>
                                     </ul>
                                 </li>
-
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">News <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
@@ -115,7 +114,6 @@
                                         <li><a href="news-single.html">News Single</a></li>
                                     </ul>
                                 </li>
-
                                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                             </ul>
                         </div>

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,8 +22,12 @@ public class ProjectService {
     private CommentsDAO commentsDAO;
 
     @Transactional
-    public List<Projects> getAllProjects(Pageable pageable){
-        return projectDAO.getProjectsByTotalvoted(pageable);
+    public List<Projects> getAllProjects(int acceptStatus,Pageable pageable){
+        return projectDAO.getProjectsByTotalvoted(acceptStatus, pageable);
+    }
+    @Transactional
+    public List<Projects> getProjectsByCategoryId(Long categoryId, int acceptStatus,Pageable pageable){
+        return projectDAO.getProjectsByCategoryId(categoryId, acceptStatus, pageable);
     }
 
     @Transactional
@@ -32,9 +37,9 @@ public class ProjectService {
 
     @Transactional
     public Projects saveProject (Users user, Categories category, String projectName, double amountCalled, String projectDetail,
-                             String title, String country, String province, String district, String subDistrict, String houseNo){
+                             String title, String country, String province, String district, String subDistrict, String houseNo, Date postedDay){
         return projectDAO.save(new Projects(user, category, projectName, amountCalled, projectDetail, title, country, province,
-                district, subDistrict, houseNo));
+                district, subDistrict, houseNo, postedDay));
     }
 
     @Transactional
@@ -65,6 +70,9 @@ public class ProjectService {
     @Transactional
     public int getTotalProject(){
         return projectDAO.getTotalProducts();
+    }@Transactional
+    public int getTotalProjectByCategoryId(Long categoryId){
+        return projectDAO.getTotalProductsByCategoryId(categoryId);
     }
 
     @Transactional
@@ -109,7 +117,7 @@ public class ProjectService {
 
     //Comments
     @Transactional
-    public void addComment(Users user, Projects project, String comment, String postedDay){
+    public void addComment(Users user, Projects project, String comment, Date postedDay){
         commentsDAO.save(new Comments(user, project, comment, postedDay));
     }
     @Transactional

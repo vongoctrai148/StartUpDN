@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -28,7 +29,7 @@ public class Users {
     private String email;
     private String phone;
     private String cccd;
-    private String birthday;
+    private Date birthday;
     private String country;
     private String province;
     private String district;
@@ -56,4 +57,23 @@ public class Users {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<StartUpCurriculumVitae> startUpCurriculumVitaes;
 
+    public Users(String username, String passwords, String fullname, String gender, String email,
+                 String phone, String cccd, Date birthday, String country, String province,
+                 String district, String subdistrict, String houseno, String roles, String avataruser) {
+        this.username = username;
+        this.passwords = passwords;
+        this.fullname = fullname;
+        this.gender = gender;
+        this.email = email;
+        this.phone = phone;
+        this.cccd = cccd;
+        this.birthday = birthday;
+        this.country = country;
+        this.province = province;
+        this.district = district;
+        this.subdistrict = subdistrict;
+        this.houseno = houseno;
+        this.roles = roles;
+        this.avataruser = avataruser;
+    }
 }

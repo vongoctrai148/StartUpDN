@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-heading">
-                            <h1 class="banner-title">Project</h1>
+                            <h1 class="banner-title">Dự án</h1>
                             <!-- <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb justify-content-center">
                                   <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -73,33 +73,33 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
-                    <h1 style="margin-bottom: 10%">Đăng dự án</h1>
+                    <h1 style="margin-bottom: 10%">Dự án của bạn</h1>
                     <form:form action="/startup/saveProject" method="POST" modelAttribute="projectForm" enctype="multipart/form-data">
                         <form:hidden path="id"/>
                         <div class="form-group">
-                            <label for="categoryId">Category</label>
+                            <label for="categoryId">Danh mục dự án</label>
                             <form:select class="form-control" id="categoryId" path="categoryId">
                                 <form:options items="${categories}" itemLabel="categoryname" itemValue="id"/>
                             </form:select>
                         </div>
                         <div class="form-group">
-                            <label for="projectname">Project Name</label>
+                            <label for="projectname">Tên dự án</label>
                             <form:input path="projectname" class="form-control" id="projectname"  placeholder="Enter project name"/>
                         </div>
                         <div class="form-group">
-                            <label for="title">Project Title</label>
+                            <label for="title">Tiêu đề cho dự án (Mục đích)</label>
                             <form:input path="title" class="form-control" id="title"/>
                         </div>
                         <div class="form-group">
-                            <label for="amountcalled">Amount want to call</label>
+                            <label for="amountcalled">Số tiền muốn kêu gọi</label>
                             <form:input path="amountcalled" class="form-control" id="amountcalled" />
                         </div>
                         <div class="form-group">
-                            <label for="projectdetail">Project Detail</label>
+                            <label for="projectdetail">Mô tả chi tiết dự án</label>
                             <form:textarea path="projectdetail" class="form-control"  id="projectdetail" style="height: 60vh; color: black" ></form:textarea>
                         </div>
                         <div class="form-group">
-                            <label>Location Of Project:</label>
+                            <label>Địa chỉ dự án:</label>
                         </div>
                         <div class="form-row">
                             <div class="form-group col">
@@ -109,26 +109,26 @@
                                 </form:select>
                             </div>
                             <div class="form-group col">
-                                <label for="provinceId">Province: </label>
+                                <label for="provinceId">Tỉnh/Thành phố: </label>
                                 <form:select class="form-control" id="provinceId" path="province">
                                     <form:options items="${provinces}" itemLabel="name" itemValue="id"/>
                                 </form:select>
                             </div>
                             <div class="form-group col">
-                                <label for="districtId">Distric: </label>
+                                <label for="districtId">Quận/Huyện: </label>
                                 <form:select class="form-control" id="districtId" path="district">
                                     <option selected value="">Chọn Quận Huyện</option>
                                 </form:select>
                             </div>
                             <div class="form-group col">
-                                <label for="subdistrictId">Sub Distric: </label>
+                                <label for="subdistrictId">Xã/Phường: </label>
                                 <form:select class="form-control" id="subdistrictId" path="subdistrict">
                                     <option selected value="">Chọn Xã Phường</option>
                                 </form:select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="housenoId">House no</label>
+                            <label for="housenoId">Địa chỉ nhà - Đường/Thôn</label>
                             <form:input type="text" class="form-control" id="housenoId" path="houseno"/>
                         </div>
                         <label>Lưu ý: </label>
@@ -140,53 +140,12 @@
                             </label>
                             <div id="images" style="display: flex;"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Đăng dự án</button>
                     </form:form>
                 </div><!-- Content Col end -->
 
                 <div class="col-lg-4">
-
                     <div class="sidebar sidebar-right">
-                        <div class="widget recent-posts">
-                            <h3 class="widget-title">Recent Posts</h3>
-                            <ul class="list-unstyled">
-                                <li class="d-flex align-items-center">
-                                    <div class="posts-thumb">
-                                        <a href="#"><img loading="lazy" alt="img" src="/images/news/news1.jpg"></a>
-                                    </div>
-                                    <div class="post-info">
-                                        <h4 class="entry-title">
-                                            <a href="#">We Just Completes $17.6 Million Medical Clinic In Mid-missouri</a>
-                                        </h4>
-                                    </div>
-                                </li><!-- 1st post end-->
-
-                                <li class="d-flex align-items-center">
-                                    <div class="posts-thumb">
-                                        <a href="#"><img loading="lazy" alt="img" src="/images/news/news2.jpg"></a>
-                                    </div>
-                                    <div class="post-info">
-                                        <h4 class="entry-title">
-                                            <a href="#">Thandler Airport Water Reclamation Facility Expansion Project Named</a>
-                                        </h4>
-                                    </div>
-                                </li><!-- 2nd post end-->
-
-                                <li class="d-flex align-items-center">
-                                    <div class="posts-thumb">
-                                        <a href="#"><img loading="lazy" alt="img" src="/images/news/news3.jpg"></a>
-                                    </div>
-                                    <div class="post-info">
-                                        <h4 class="entry-title">
-                                            <a href="#">Silicon Bench And Cornike Begin Construction Solar Facilities</a>
-                                        </h4>
-                                    </div>
-                                </li><!-- 3rd post end-->
-
-                            </ul>
-
-                        </div><!-- Recent post end -->
-
                         <div class="widget">
                             <h3 class="widget-title">Categories</h3>
                             <ul class="arrow nav nav-tabs">

@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-heading">
-                            <h1 class="banner-title">Profile</h1>
+                            <h1 class="banner-title">Thông tin cá nhân</h1>
                         </div>
                     </div><!-- Col end -->
                 </div><!-- Row end -->
@@ -64,9 +64,9 @@
                         <div class="widget">
                             <h3 class="widget-title">Danh Mục</h3>
                             <ul class="nav service-menu">
-                                <li><a href="/startup/userProfile">My Profile</a></li>
-                                <li class="active"><a href="/startup/userListProject">My project</a></li>
-                                <li><a href="/startup/userListImage">Project Images</a></li>
+                                <li><a href="/startup/userProfile">Thông tin của tôi</a></li>
+                                <li class="active"><a href="/startup/userListProject">Các dự án của tôi</a></li>
+                                <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>
                             </ul>
                         </div><!-- Widget end -->
 
@@ -77,7 +77,7 @@
                                 </div>
 
                                 <div class="quote-item-footer">
-                                    <img loading="lazy" class="testimonial-thumb" src="/images/clients/testimonial1.png" alt="testimonial">
+                                    <img loading="lazy" class="testimonial-thumb" src="/images/userImages/${user.avataruser}" alt="testimonial">
                                     <div class="quote-item-info">
                                         <h3 class="quote-author">${user.fullname}</h3>
                                         <span class="quote-subtext">${user.job}</span>
@@ -96,11 +96,11 @@
                             <table class="table table-hover table-striped" width="100%">
                                 <thead>
                                 <tr>
-                                    <th scope="col"><div style="width: 200px">Project Name</div></th>
-                                    <th scope="col"><div style="width: 100px">Categrory </th>
-                                    <th scope="col">Amount Called</th>
+                                    <th scope="col"><div style="width: 200px">Tên dự án</div></th>
+                                    <th scope="col"><div style="width: 100px">Danh mục </th>
+                                    <th scope="col">Số tiền kêu gọi</th>
                                     <th scope="col"><div style="width: 120px">Trạng Thái</div></th>
-                                    <th align="center" scope="col" colspan="3">Action</th>
+                                    <th align="center" scope="col" colspan="3">Hoạt động</th>
                                 </tr>
                                 </thead>
                                 <tbody>

@@ -11,102 +11,103 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.css">
     <link rel="stylesheet" href="css/customLogin.css">
-    <title>Login</title>
+    <title>Đăng ký tài khoản</title>
 </head>
 <body>
 <div class="container">
     <div class="d-flex justify-content-center h-100">
         <div class="card register">
             <div class="card-body">
-                <h2 style="color: white">Sign up</h2>
-                <form action="" class="formRegister" >
+                <h2 style="color: white">Đăng ký tài khoản</h2>
+                <form:form action="/saveUser" method="POST" class="formRegister" modelAttribute="enrollForm" >
+                    <form:hidden path="id"/>
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="UserName *" value="" />
+                                <form:input path="username" class="form-control" placeholder="Tài khoản *" value="" />
+                                <form:errors path="username" style="color: yellow"/>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password *" value="" />
+                                <form:password path="password" class="form-control" placeholder="Mật khẩu *" value="" />
+                                <form:errors path="password" style="color: yellow"/>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
+                                <form:password path="rePassword" class="form-control" placeholder="Nhập lại mật khẩu *" value="" />
+                                <form:errors path="rePassword" style="color: yellow"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Full Name *" value="" />
+                                <form:input path="fullname" class="form-control" placeholder="Họ tên *" value="" />
+                                <form:errors path="fullname" style="color: yellow"/>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="CCCD *" value="" />
+                                <form:input path="phone" maxlength="12" minlength="10" class="form-control" placeholder="Số điện thoại *" value="" />
+                                <form:errors path="phone" style="color: yellow"/>
                             </div>
                             <div class="form-group">
                                 <label for="birthday" style="color: white">Ngày sinh</label>
-                                <input type="date" maxlength="10" minlength="10" id="birthday" placeholder="birthday" class="form-control" value="" />
+                                <form:input path="birthday" type="date" maxlength="10" minlength="10" id="birthday" placeholder="Ngày sinh*" class="form-control" value="" />
+                                <form:errors path="birthday" style="color: yellow"/>
                             </div>
                             <%--Gender--%>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" id="man" checked>
+                                <form:radiobutton class="form-check-input" path="gender" id="man" value="Male" checked="checked" />
                                 <label class="form-check-label" for="man" style="color: white">
-                                    Man
+                                    Nam
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" id="woman">
+                                <form:radiobutton class="form-check-input" path="gender" value="Female" id="woman"/>
                                 <label class="form-check-label" for="woman" style="color: white">
-                                    Woman
+                                    Nữ
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="form-group">
+                                <form:input type="email" path="email" class="form-control" placeholder="Email *" value="" />
+                                <form:errors path="email" style="color: yellow"/>
+                            </div>
+                            <div class="form-group">
+                                <form:input path="cccd" type="text" class="form-control" placeholder="CMND/CCCD *" value="" />
+                                <form:errors path="cccd" style="color: yellow"/>
+                            </div>
                             <h5 style="color: white">Địa chỉ của bạn:</h5>
                             <div class="form-group">
-                                <select class="form-control">
-                                    <option class="hidden"  selected disabled>Country</option>
-                                    <option>Việt Nam</option>
-                                    <option>America</option>
-                                    <option>England</option>
-                                </select>
+                                <form:select class="form-control" id="provinceId" path="province">
+                                    <option class="hidden"  selected disabled>Tỉnh/Thành phố*</option>
+                                    <form:options items="${provinces}" itemLabel="name" itemValue="id"/>
+                                </form:select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control">
-                                    <option class="hidden"  selected disabled>Province</option>
-                                    <option>Việt Nam</option>
-                                    <option>America</option>
-                                    <option>England</option>
-                                </select>
+                                <form:select class="form-control" id="districtId" path="district">
+                                    <option class="hidden" selected disabled>Quận/Huyện*</option>
+                                </form:select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control">
-                                    <option class="hidden"  selected disabled>District</option>
-                                    <option>Việt Nam</option>
-                                    <option>America</option>
-                                    <option>England</option>
-                                </select>
+                                <form:select class="form-control" id="subdistrictId" path="subdistrict">
+                                    <option class="hidden" selected disabled>Xã/Phường*</option>
+                                </form:select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control">
-                                    <option class="hidden"  selected disabled>Sub District</option>
-                                    <option>Việt Nam</option>
-                                    <option>America</option>
-                                    <option>England</option>
-                                </select>
+                                <form:input path="houseno" class="form-control" placeholder="Số nhà - đường*" value="" />
+                                <form:errors path="houseno" style="color: yellow"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="House no" value="" />
+                                <form:select class="form-control" path="roles">
+                                    <option class="hidden"  selected disabled>Với tư cách là:*</option>
+                                    <option value="startup">Start Up</option>
+                                    <option value="investors">Nhà đầu tư</option>
+                                </form:select>
                             </div>
-                            <input type="submit" class="btn btn-warning"  value="Register"/>
+                            <input type="submit" class="btn btn-warning"  value="Đăng ký"/>
                         </div>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="plugins/jQuery/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script type="text/javascript">

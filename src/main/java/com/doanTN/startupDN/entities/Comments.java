@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -27,13 +28,12 @@ public class Comments {
     @JoinColumn(name = "projectid")
     private Projects project;
     private String binhluan;
-    private String liketotal;
-    private String postedday;
+    private Date postedday;
     @JsonIgnore
     @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY)
     private List<Replies> replies;
 
-    public Comments(Users user, Projects project, String binhluan, String postedday) {
+    public Comments(Users user, Projects project, String binhluan, Date postedday) {
         this.user = user;
         this.project = project;
         this.binhluan = binhluan;

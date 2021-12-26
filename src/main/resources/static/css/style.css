@@ -289,7 +289,7 @@ a:focus {
   font-weight: 900;
   font-size: 36px;
   line-height: 46px;
-  margin: 0 0 60px;
+  margin: 0 0 30px 30px;
   color: #212121;
 }
 
@@ -3055,7 +3055,7 @@ label {
 /* Contact page 2 */
 .ts-service-box.text-center .ts-service-icon.icon-squre i {
   float: none;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .ts-service-box.text-center .ts-service-box-content {

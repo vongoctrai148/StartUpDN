@@ -11,4 +11,7 @@ public interface UserDAO extends JpaRepository<Users, Long> {
     @Query("SELECT s FROM Users s WHERE s.username = ?1")
     Users getUsersByUsername(String username);
 
+    @Query("SELECT count(s.username) FROM Users s WHERE s.username = ?1")
+    int checkUserExist(String username);
+
 }

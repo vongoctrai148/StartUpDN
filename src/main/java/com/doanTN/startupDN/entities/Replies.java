@@ -22,5 +22,6 @@ public class Replies {
     private Comments comment;
     private String binhluan;
     private String postedday;
-    private int liketotal;
+
+
 }

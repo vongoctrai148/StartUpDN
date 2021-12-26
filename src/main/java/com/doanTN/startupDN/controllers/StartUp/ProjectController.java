@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -96,12 +98,12 @@ public class ProjectController {
     public String postProject (Model model, @RequestParam("imageofproject") MultipartFile[] imageOfProject,
                               @Valid @ModelAttribute("projectForm") ProjectForm projectForm, BindingResult bindingResult, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
-        if(projectForm.getId().toString() == "" || projectForm.getId().equals("") ){
+        if(projectForm.getId() == null || projectForm.getId().equals("") ){
+            java.util.Date posteddate = new java.util.Date();
             Projects project = projectService.saveProject(userDAO.getUsersByUsername(user.getUsername()), categoryService.getCategoryById(projectForm.getCategoryId()),
                     projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
                     provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
-                    subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno());
-
+                    subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno(), posteddate);
             List<String> fileNames = new ArrayList<>();
             Arrays.asList(imageOfProject).stream().forEach(file -> {
                 String fileName = project.getId() + file.getOriginalFilename();

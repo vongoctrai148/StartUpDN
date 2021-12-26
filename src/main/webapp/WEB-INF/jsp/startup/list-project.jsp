@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-heading">
-                            <h1 class="banner-title">PROJECTS</h1>
+                            <h1 class="banner-title">Dự án</h1>
 <%--                            <nav aria-label="breadcrumb">--%>
 <%--                                <ol class="breadcrumb justify-content-center">--%>
 <%--                                    <li class="breadcrumb-item"><a href="#">Home</a></li>--%>
@@ -61,18 +61,29 @@
             </div><!-- Container end -->
         </div><!-- Banner text end -->
     </div><!-- Banner area end -->
-
-
+    <h5 style="margin-top: 3%; margin-left: 5%">Tìm kiếm theo danh mục cho các dự án: </h5>
+    <form action="/startup/listProject" method="post" class="form-inline" style="margin-top: 2%; margin-left: 5%">
+        <div class="input-group">
+            <div class="form-outline">
+                <select id="category" class="form-control" name="categoryId">
+                    <c:forEach items="${categories}" var="category">
+                        <option value="${category.id}">${category.categoryname}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
     <section id="main-container" class="main-container pb-4">
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-12">
-                    <h3 class="section-sub-title">Our Projects</h3>
+                    <h3 class="section-sub-title">Các dự án</h3>
                 </div>
             </div>
             <!--/ Title row end -->
-
-
             <div class="row">
                 <c:forEach items="${listProjects}" var="project">
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
@@ -83,7 +94,7 @@
                             </div>
                             <div class="ts-team-content-classic">
                                 <a href="/startup/projectDetail/${project.id}"><h3 class="ts-name">${project.projectname}</h3></a>
-                                <p class="ts-designation">Star: ${project.totalvoted}</p>
+                                <p class="ts-designation">Được đánh giá: ${project.totalvoted}</p>
                                 <a href="/startup/projectDetail/${project.id}"><p class="ts-description">${project.projectdetail}</p></a>
                                 <div class="team-social-icons">
                                     <a href="/startup/projectDetail/${project.id}">Xem chi tiết</a>

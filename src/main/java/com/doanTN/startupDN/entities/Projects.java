@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -37,8 +38,7 @@ public class Projects {
     private float totalvoted;
     private int sumvoted;
     private int aceptedstatus;
-    private int liketotal;
-    private String postedday;
+    private Date postedday;
     @JsonIgnore
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private List<Comments> comments;
@@ -51,7 +51,7 @@ public class Projects {
 
     public Projects(Users user, Categories category, String projectname,
                     double amountcalled, String projectdetail, String title,
-                    String country, String province, String district, String subdistrict, String houseno) {
+                    String country, String province, String district, String subdistrict, String houseno, Date postedday) {
         this.user = user;
         this.category = category;
         this.projectname = projectname;
@@ -63,7 +63,10 @@ public class Projects {
         this.district = district;
         this.subdistrict = subdistrict;
         this.houseno = houseno;
+        this.postedday = postedday;
     }
+
+
 
 
 }

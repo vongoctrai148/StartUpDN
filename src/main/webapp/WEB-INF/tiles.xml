@@ -14,11 +14,6 @@
                 template="/WEB-INF/jsp/login/register.jsp">
     </definition>
 
-
-
-
-
-
     <!-- Start Up Page -->
     <definition name="homepage-startup.definition" template="/WEB-INF/jsp/layout/startup-layout.jsp">
         <put-attribute name="header" value="/WEB-INF/jsp/startup/header.jsp"/>

@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-heading">
-                            <h1 class="banner-title">Project</h1>
+                            <h1 class="banner-title">Dự án</h1>
                             <nav aria-label="breadcrumb">
                                 <!-- <ol class="breadcrumb justify-content-center">
                           <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -72,6 +72,7 @@
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="post-content post-single">
+                        <h4><a href="#"> ${project.category.categoryname} > ${project.projectname}</a></h4>
                         <div class="post-media post-image">
                             <img loading="lazy" src="/images/news/news1.jpg" class="img-fluid" alt="post-image" />
                         </div>
@@ -80,14 +81,14 @@
                             <div class="entry-header">
                                 <div class="post-meta">
                                     <span class="post-author"> <i class="far fa-user"></i><a href="#">${project.user.fullname}</a> </span>
-                                    <span class="post-cat"> <i class="far fa-folder-open"></i><a href="#">${project.projectname}</a></span>
-                                    <span class="post-meta-date"><i class="far fa-calendar"></i> June 14, 2016</span>
+
+                                    <span class="post-meta-date"><i class="far fa-calendar"></i> Ngày đăng: <fmt:formatDate pattern = "dd-MM-yyyy" value = "${project.postedday}" /> </span>
                                     <span class="post-comment"><i class="far fa-comment"></i> 03<a href="#" class="comments-link">Comments</a></span>
                                 </div>
-                                <h2 class="entry-title">
-                                    ${project.category.categoryname} > ${project.title}
-                                </h2>
-                                <h4 style=" color: orange">Số vốn kêu gọi: <fmt:formatNumber value="${project.amountcalled}" type="currency" currencySymbol="VND"/></h4>
+                                <h5>
+                                    -> Mục đích dự án: ${project.title}
+                                </h5>
+                                <h4 style=" color: orange">Số vốn kêu gọi: <fmt:formatNumber value="${project.amountcalled}" maxFractionDigits="0" currencyCode="VND" type="currency" currencySymbol="VND"/></h4>
                                 <blockquote>
                                     <p>Location: ${project.houseno} - ${project.subdistrict} - ${project.district}
                                         - ${project.province} - ${project.country}</p>
@@ -146,11 +147,11 @@
                         <form action="/startup/voteStar" method="POST" class="form-inline">
                             <input type="hidden" name="projectId" value="${project.id}">
                             <p style="font-weight: bold">
-                                VOTE FOR THIS PROJECT:
+                                ĐÁNH GIÁ CHO DỰ ÁN NÀY:
                                 <span class="my-rating-9"></span>
                                 <input type="hidden" class="live-rating" name="ratedStar" style="margin-left: 1%;"/>
                             </p>
-                            <button class="btn btn-outline-success" style="margin-left: 4%">Vote</button>
+                            <button class="btn btn-outline-success" style="margin-left: 4%">Xác nhận</button>
                         </form>
                     </div>
                     <div class="author-box d-nlock d-sm-flex">
@@ -178,7 +179,7 @@
                     <!-- Post comment start -->
                     <div id="comments" class="comments-area">
                         <div class="comments-form border-box">
-                            <h4 class="title-normal">Add a comment</h4>
+                            <h4 class="title-normal">Bình luận</h4>
 
                             <form role="form" action="/startup/postComment" method="post">
                                 <input type="hidden" value="${user.username}" name="username">
@@ -196,7 +197,7 @@
                                     <p>${user.fullname}</p>
                                 </div>
                                 <div class="clearfix text-md-right">
-                                    <button class="btn btn-primary" type="submit" aria-label="post-comment">Post Comment</button>
+                                    <button class="btn btn-primary" type="submit" aria-label="post-comment">Gửi</button>
                                 </div>
                             </form>
                             <!-- Form end -->
@@ -206,11 +207,11 @@
                             <c:forEach items="${comments}" var="comment">
                                 <li>
                                     <div class="comment d-flex">
-                                        <img loading="lazy" class="comment-avatar" alt="author" src="/images/news/avator1.png" />
+                                        <img loading="lazy" class="comment-avatar" alt="author" src="/images/userImages/${comment.user.avataruser}" />
                                         <div class="comment-body">
                                             <div class="meta-data">
                                                 <span class="comment-author mr-3">${comment.user.fullname}</span>
-                                                <span class="comment-date float-right">${comment.postedday}</span>
+                                                <span class="comment-date float-right"><fmt:formatDate pattern = "dd-MM-yyyy" value = "${comment.postedday}" /> </span>
                                             </div>
                                             <div class="comment-content">
                                                 <p>

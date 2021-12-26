@@ -24,7 +24,7 @@
         strokeWidth: 4,
         strokeColor: 'black',
         initialRating: 0,
-        starSize: 40,
+        starSize: 30,
         callback: noop,
         onHover: noop,
         onLeave: noop

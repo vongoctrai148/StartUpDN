@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-heading">
-                            <h1 class="banner-title">Profile</h1>
+                            <h1 class="banner-title">Thông tin cá nhân</h1>
                         </div>
                     </div><!-- Col end -->
                 </div><!-- Row end -->
@@ -64,9 +64,9 @@
                         <div class="widget">
                             <h3 class="widget-title">Danh Mục</h3>
                             <ul class="nav service-menu">
-                                <li class="active"><a href="/startup/userProfile">My Profile</a></li>
-                                <li><a href="/startup/userListProject">My project</a></li>
-                                <li><a href="/startup/userListImage">Project Images</a></li>
+                                <li class="active"><a href="/startup/userProfile">Thông tin của tôi</a></li>
+                                <li><a href="/startup/userListProject">Các dự án của tôi</a></li>
+                                <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>
                             </ul>
                         </div><!-- Widget end -->
 
@@ -77,7 +77,7 @@
                                 </div>
 
                                 <div class="quote-item-footer">
-                                    <img loading="lazy" class="testimonial-thumb" src="/images/clients/testimonial1.png" alt="testimonial">
+                                    <img loading="lazy" class="testimonial-thumb" src="/images/userImages/${user.avataruser}" alt="testimonial">
                                     <div class="quote-item-info">
                                         <h3 class="quote-author">${user.fullname}</h3>
                                         <span class="quote-subtext">${user.job}</span>
@@ -92,7 +92,7 @@
 
                 <div class="col-xl-8 col-lg-8">
                     <div class="content-inner-page">
-                        <h3 class="register-heading">User Profile</h3>
+                        <h3 class="register-heading">Thông tin cá nhân</h3>
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
@@ -100,7 +100,7 @@
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label>Full Name</label>
+                                                    <label>Họ tên</label>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <p>${user.fullname}</p>
@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label>Phone</label>
+                                                    <label>Số điện thoại</label>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <p>${user.phone}</p>
@@ -124,49 +124,38 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label>Birthday</label>
+                                                    <label>Ngày sinh</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <p>${user.birthday}</p>
+                                                    <p><fmt:formatDate pattern = "dd-MM-yyyy" value = "${user.birthday}" /></p>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label>Profession</label>
+                                                    <label>Chuyên môn</label>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <p>${user.job}</p>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
-
-
-
                                     <div class="col-12">
                                         <div class="general-btn text-center">
-                                            <a class="btn btn-primary" href="projects.html">Edit Profile</a>
+                                            <a class="btn btn-primary" href="projects.html">Chỉnh sửa thông tin cá nhân</a>
                                         </div>
                                     </div>
-
                                 </div><!-- Content row end -->
-
                             </div><!-- Conatiner end -->
                             <!-- Main container end -->
-
                         </div><!-- Content inner end -->
                     </div><!-- Content Col end -->
                 </div><!-- Content Col end -->
-
-
             </div><!-- Main row end -->
         </div><!-- Conatiner end -->
     </section><!-- Main container end -->
     <!-- Javascript Files
     ================================================== -->
-
     <!-- initialize jQuery Library -->
     <script src="/plugins/jQuery/jquery.min.js"></script>
     <!-- Bootstrap jQuery -->
@@ -178,16 +167,12 @@
     <script src="/plugins/colorbox/jquery.colorbox.js"></script>
     <!-- shuffle -->
     <script src="/plugins/shuffle/shuffle.min.js" defer></script>
-
-
     <!-- Google Map API Key-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
     <!-- Google Map Plugin-->
     <script src="/plugins/google-map/map.js" defer></script>
-
     <!-- Template custom -->
     <script src="/js/script.js"></script>
-
 </div><!-- Body inner end -->
 </body>
 

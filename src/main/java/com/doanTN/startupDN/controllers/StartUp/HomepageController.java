@@ -2,6 +2,7 @@ package com.doanTN.startupDN.controllers.StartUp;
 
 import com.doanTN.startupDN.entities.Projects;
 import com.doanTN.startupDN.entities.Users;
+import com.doanTN.startupDN.services.CategoryService;
 import com.doanTN.startupDN.services.ProjectService;
 import com.doanTN.startupDN.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 @Controller
@@ -24,20 +26,32 @@ public class HomepageController {
     private ProjectService projectService;
     @Autowired
     private UserService userService;
-    public static final int PAGE_SIZE = 3;
+    @Autowired
+    private CategoryService categoryService;
+    public static final int PAGE_SIZE = 8;
     @GetMapping("startup/listProject")
     public String getListProject(Model model, HttpSession session,
     @RequestParam(value = "page", defaultValue = "1") int page) {
 
         Users user = (Users) session.getAttribute("user");
-        if (("").equals(user) || user == null) {
-            return "redirect:/login";
-        } else {
-            model.addAttribute("listProjects", projectService.getAllProjects(PageRequest.of(page-1,PAGE_SIZE)));
+
+            model.addAttribute("listProjects", projectService.getAllProjects(1, PageRequest.of(page-1,PAGE_SIZE)));
             model.addAttribute("pageSize",(projectService.getTotalProject()/PAGE_SIZE)+1);
+            model.addAttribute("categories", categoryService.getALlCategories());
             return "startup/listProject";
-        }
+
     }
+
+    @PostMapping("startup/listProject")
+    public String postSearchCategory(Model model, @RequestParam("categoryId") Long categoryId,
+                                     @RequestParam(value = "page", defaultValue = "1") int page){
+        model.addAttribute("listProjects", projectService.getProjectsByCategoryId( categoryId,1, PageRequest.of(page-1,20)));
+        model.addAttribute("pageSize",(projectService.getTotalProjectByCategoryId(categoryId)/20)+1);
+        model.addAttribute("categories", categoryService.getALlCategories());
+        return "startup/listProject";
+    }
+
+
 
     @GetMapping("/startup/projectDetail/{id}")
     public String getHomepage(HttpSession session, Model model, @PathVariable("id") Long projectId){
@@ -52,6 +66,7 @@ public class HomepageController {
             return "startup/projectDetail";
         }
     }
+
     @PostMapping("/startup/voteStar")
     public String postRate (HttpServletRequest request){
         String star = request.getParameter("ratedStar");
@@ -74,12 +89,11 @@ public class HomepageController {
         Long projectId = Long.valueOf(request.getParameter("projectId"));
         String username = request.getParameter("username");
         java.util.Date posteddate = new java.util.Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        String strDate = formatter.format(posteddate);
         if(comment.equals("") || comment == null) {
             return "redirect:/startup/projectDetail/" + projectId;
         }
-        projectService.addComment(userService.getUserByUserName(username), projectService.getProjectById(projectId), comment, strDate);
+        projectService.addComment(userService.getUserByUserName(username),
+                projectService.getProjectById(projectId), comment, posteddate);
         return "redirect:/startup/projectDetail/" + projectId;
     }
 
