@@ -89,7 +89,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
                         <div class="ts-team-wrapper">
                             <div class="team-img-wrapper">
-                                <a href="/startup/projectDetail/${project.id}"><img loading="lazy" src="https://app.subsocial.network/ipfs/ipfs/Qmew3pMQhbC1uFEwfb6XF84C8VQAD1ZvmNmJvFaeLmU96x"
+                                <a href="/startup/projectDetail/${project.id}"><img loading="lazy" src="/images/projects/${project.imagepresent}"
                                                                  style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
                             </div>
                             <div class="ts-team-content-classic">

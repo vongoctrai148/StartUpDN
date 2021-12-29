@@ -5,6 +5,7 @@ import com.doanTN.startupDN.entities.Projects;
 import com.doanTN.startupDN.entities.Users;
 import com.doanTN.startupDN.forms.ProjectForm;
 import com.doanTN.startupDN.services.*;
+import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,65 +81,117 @@ public class ProjectController {
     @GetMapping("startup/saveProject/{id}")
     public String getUpdateProject(Model model, HttpSession session,  @PathVariable("id") Long projectId){
         Users user = (Users) session.getAttribute("user");
+        Projects project = projectService.getProjectById(projectId);
         if(("").equals(user) || user == null){
             return "redirect:/login";
         }
-        else {
-            Projects project = projectService.getProjectById(projectId);
-            model.addAttribute("provinces", provinceService.getAllProvinces());
-            model.addAttribute("categories", categoryService.getALlCategories());
-            model.addAttribute("projectForm", new ProjectForm(project.getId(), project.getCategory().getId(),
-                    project.getProjectname(), project.getAmountcalled(), project.getProjectdetail(), project.getTitle(), project.getCountry(),
-                    project.getProvince(), project.getDistrict(), project.getSubdistrict(), project.getHouseno()));
-            return "startup/saveProject";
+        else{
+            if(!user.getUsername().equals(project.getUser().getUsername())){
+                return "page404";
+            } else{
+                model.addAttribute("project", project);
+                model.addAttribute("provinces", provinceService.getAllProvinces());
+                model.addAttribute("categories", categoryService.getALlCategories());
+                model.addAttribute("projectForm", new ProjectForm(project.getId(), project.getCategory().getId(),
+                        project.getProjectname(), project.getAmountcalled(), project.getProjectdetail(), project.getTitle(), project.getCountry(),
+                        project.getProvince(), project.getDistrict(), project.getSubdistrict(), project.getHouseno()));
+                return "startup/saveProject";
+            }
         }
     }
 
     @PostMapping("startup/saveProject")
-    public String postProject (Model model, @RequestParam("imageofproject") MultipartFile[] imageOfProject,
-                              @Valid @ModelAttribute("projectForm") ProjectForm projectForm, BindingResult bindingResult, HttpSession session) {
+    public String postProject (Model model, @RequestParam("imageofproject") MultipartFile[] imageOfProject, @RequestParam("imagepresent") MultipartFile imagepresent,
+                              @Valid @ModelAttribute("projectForm") ProjectForm projectForm, BindingResult bindingResult, HttpSession session) throws IOException {
         Users user = (Users) session.getAttribute("user");
-        if(projectForm.getId() == null || projectForm.getId().equals("") ){
-            java.util.Date posteddate = new java.util.Date();
-            Projects project = projectService.saveProject(userDAO.getUsersByUsername(user.getUsername()), categoryService.getCategoryById(projectForm.getCategoryId()),
-                    projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
-                    provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
-                    subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno(), posteddate);
-            List<String> fileNames = new ArrayList<>();
-            Arrays.asList(imageOfProject).stream().forEach(file -> {
-                String fileName = project.getId() + file.getOriginalFilename();
-                projectService.addImageOfProject( projectService.getProjectById(project.getId()), fileName);
-                fileNames.add(fileName);
-                Path imagePath = Paths.get("src/main/resources/static/images/projectImages/" + fileName);
-                try {
-                    Files.write(imagePath, file.getBytes());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+        if(bindingResult.hasErrors()){
+            model.addAttribute("error");
         }else {
-            Projects project = projectService.updateProject(projectForm.getId(), categoryService.getCategoryById(projectForm.getCategoryId()),
-                    projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
-                    provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
-                    subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno());
-            List<String> fileNames = new ArrayList<>();
-            Arrays.asList(imageOfProject).stream().forEach(file -> {
-                String fileName = project.getId() + file.getOriginalFilename();
-                if(projectService.checkImageExists(fileName)){
-                    projectService.deleteImageByName(fileName);
+            if (projectForm.getId()== null || projectForm.getId().equals("")) {
+                java.util.Date posteddate = new java.util.Date();
+                String imgPresent = imagepresent.getOriginalFilename();
+                Path imgPresentPath = Paths.get("src/main/resources/static/images/projects/" + imgPresent);
+                Files.write(imgPresentPath, imagepresent.getBytes());
+                Projects project = projectService.saveProject(userDAO.getUsersByUsername(user.getUsername()), categoryService.getCategoryById(projectForm.getCategoryId()),
+                        projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
+                        provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
+                        subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno(), imgPresent, posteddate);
+                List<String> fileNames = new ArrayList<>();
+                Arrays.asList(imageOfProject).stream().forEach(file -> {
+                    String fileName = project.getId() + file.getOriginalFilename();
+                    projectService.addImageOfProject(projectService.getProjectById(project.getId()), fileName);
+                    fileNames.add(fileName);
+                    Path imagePath = Paths.get("src/main/resources/static/images/projectImages/" + fileName);
+                    try {
+                        Files.write(imagePath, file.getBytes());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                return "redirect:/startup/listProject";
+            } else {
+                if (imagepresent.isEmpty() || imagepresent == null &&
+                        imageOfProject.toString() == null || imageOfProject.toString().isEmpty()) {
+                    projectService.updateProjectWithOutIMG(projectForm.getId(), categoryService.getCategoryById(projectForm.getCategoryId()),
+                            projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
+                            provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
+                            subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno());
+                } else if (imagepresent.isEmpty() || imagepresent == null) {
+                    Projects project = projectService.updateProjectWithOutIMG(projectForm.getId(), categoryService.getCategoryById(projectForm.getCategoryId()),
+                            projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
+                            provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
+                            subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno());
+                    List<String> fileNames = new ArrayList<>();
+                    System.out.println(fileNames);
+                    Arrays.asList(imageOfProject).stream().forEach(file -> {
+                        String fileName = project.getId() + file.getOriginalFilename();
+                        if (projectService.checkImageExists(fileName)) {
+                            projectService.deleteImageByName(fileName);
+                            System.out.println(fileName);
+                        }
+                        projectService.addImageOfProject(projectService.getProjectById(project.getId()), fileName);
+                        fileNames.add(fileName);
+                        Path imagePath = Paths.get("src/main/resources/static/images/projectImages/" + fileName);
+                        try {
+                            Files.write(imagePath, file.getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                } else {
+                    String imgPresent = imagepresent.getOriginalFilename();
+                    Path imgPresentPath = Paths.get("src/main/resources/static/images/projects/" + imgPresent);
+                    Files.write(imgPresentPath, imagepresent.getBytes());
+                    Projects project = projectService.updateProject(projectForm.getId(), categoryService.getCategoryById(projectForm.getCategoryId()),
+                            projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
+                            provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
+                            subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno(), imgPresent);
+                    List<String> fileNames = new ArrayList<>();
+                    System.out.println(fileNames);
+                    Arrays.asList(imageOfProject).stream().forEach(file -> {
+                        String fileName = project.getId() + file.getOriginalFilename();
+                        if (projectService.checkImageExists(fileName)) {
+                            projectService.deleteImageByName(fileName);
+                        }
+                        projectService.addImageOfProject(projectService.getProjectById(project.getId()), fileName);
+                        fileNames.add(fileName);
+                        Path imagePath = Paths.get("src/main/resources/static/images/projectImages/" + fileName);
+                        try {
+                            Files.write(imagePath, file.getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                 }
-                projectService.addImageOfProject( projectService.getProjectById(project.getId()), fileName);
-                fileNames.add(fileName);
-                Path imagePath = Paths.get("src/main/resources/static/images/projectImages/" + fileName);
-                try {
-                    Files.write(imagePath, file.getBytes());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+                return "redirect:/startup/listProject";
+            }
         }
-        return "redirect:/startup/listProject";
-
+        if(projectForm.getId() == null || projectForm.getId().equals("")){
+            model.addAttribute("message", "Vui lòng không để trống các trường, nhấn back để quay lại!");
+            return "startup/saveProject";
+        }else{
+            return "redirect:/startup/saveProject/"+projectForm.getId();
+        }
     }
 
     @GetMapping("/startup/userListImage")
@@ -152,5 +205,7 @@ public class ProjectController {
             return "startup/userListImage";
         }
     }
+
+
 
 }

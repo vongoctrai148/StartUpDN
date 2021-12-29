@@ -38,6 +38,7 @@ public class Projects {
     private float totalvoted;
     private int sumvoted;
     private int aceptedstatus;
+    private String imagepresent;
     private Date postedday;
     @JsonIgnore
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
@@ -51,7 +52,7 @@ public class Projects {
 
     public Projects(Users user, Categories category, String projectname,
                     double amountcalled, String projectdetail, String title,
-                    String country, String province, String district, String subdistrict, String houseno, Date postedday) {
+                    String country, String province, String district, String subdistrict, String houseno, String imagepresent, Date postedday) {
         this.user = user;
         this.category = category;
         this.projectname = projectname;
@@ -63,10 +64,7 @@ public class Projects {
         this.district = district;
         this.subdistrict = subdistrict;
         this.houseno = houseno;
+        this.imagepresent = imagepresent;
         this.postedday = postedday;
     }
-
-
-
-
 }

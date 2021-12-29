@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,14 +16,17 @@ public class ProjectForm {
     private Long id;
     private String userId;
     private Long categoryId;
+    @NotBlank(message = "Vui lòng nhập tên")
     private String projectname;
     private double amountcalled;
+    @NotBlank(message = "Vui lòng nhập chi tiết của dự án")
     private String projectdetail;
     private String title;
     private String country;
     private String province;
     private String district;
     private String subdistrict;
+    @NotBlank(message = "Vui lòng nhập địa chỉ cụ thể")
     private String houseno;
 
     public ProjectForm(Long id, Long categoryId, String projectname, double amountcalled,

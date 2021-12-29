@@ -32,14 +32,11 @@ public class HomepageController {
     @GetMapping("startup/listProject")
     public String getListProject(Model model, HttpSession session,
     @RequestParam(value = "page", defaultValue = "1") int page) {
-
-        Users user = (Users) session.getAttribute("user");
-
-            model.addAttribute("listProjects", projectService.getAllProjects(1, PageRequest.of(page-1,PAGE_SIZE)));
-            model.addAttribute("pageSize",(projectService.getTotalProject()/PAGE_SIZE)+1);
-            model.addAttribute("categories", categoryService.getALlCategories());
-            return "startup/listProject";
-
+        session.getAttribute("user");
+        model.addAttribute("listProjects", projectService.getAllProjects(1, PageRequest.of(page-1,PAGE_SIZE)));
+        model.addAttribute("pageSize",(projectService.getTotalProject()/PAGE_SIZE)+1);
+        model.addAttribute("categories", categoryService.getALlCategories());
+        return "startup/listProject";
     }
 
     @PostMapping("startup/listProject")
@@ -55,46 +52,52 @@ public class HomepageController {
 
     @GetMapping("/startup/projectDetail/{id}")
     public String getHomepage(HttpSession session, Model model, @PathVariable("id") Long projectId){
-        Users user = (Users) session.getAttribute("user");
-        if(("").equals(user) || user == null){
-            return "redirect:/login";
-        }
-        else {
-            model.addAttribute("comments", projectService.getAllCommentByProjectId(projectId));
-            model.addAttribute("imageOfProject", projectService.getAllImageByProjectId(projectId));
-            model.addAttribute("project", projectService.getProjectById(projectId));
-            return "startup/projectDetail";
-        }
+        session.getAttribute("user");
+        model.addAttribute("comments", projectService.getAllCommentByProjectId(projectId));
+        model.addAttribute("imageOfProject", projectService.getAllImageByProjectId(projectId));
+        model.addAttribute("project", projectService.getProjectById(projectId));
+        return "startup/projectDetail";
+
     }
 
     @PostMapping("/startup/voteStar")
-    public String postRate (HttpServletRequest request){
+    public String postRate (HttpServletRequest request, HttpSession session){
         String star = request.getParameter("ratedStar");
-        if(star.equals("") || star == null){
-            star = String.valueOf(5);
+        Users user = (Users) session.getAttribute("user");
+        if(("").equals(user) || user == null){
+            return "redirect:/login";
+        } else {
+            if (star.equals("") || star == null) {
+                star = String.valueOf(5);
+            }
+            float starRated = Float.parseFloat((star));
+            Long projectId = Long.valueOf(request.getParameter("projectId"));
+            Projects project = projectService.getProjectById(projectId);
+            float totalRate = project.getTotalvoted();
+            int sumRate = project.getSumvoted();
+            projectService.updateRating(projectId, (totalRate * sumRate + starRated) / (sumRate + 1), project.getSumvoted() + 1);
+            return "redirect:/startup/projectDetail/" + projectId;
         }
-        float starRated = Float.parseFloat((star));
-        Long projectId = Long.valueOf(request.getParameter("projectId"));
-        Projects project = projectService.getProjectById(projectId);
-        float totalRate = project.getTotalvoted();
-        int sumRate = project.getSumvoted();
-        projectService.updateRating(projectId, (totalRate*sumRate+starRated)/(sumRate+1), project.getSumvoted()+1);
-        return "redirect:/startup/projectDetail/" + projectId;
     }
 
-
     @PostMapping("/startup/postComment")
-    public String postComment (HttpServletRequest request, Model model){
+    public String postComment (HttpServletRequest request, Model model, HttpSession session){
         String comment = request.getParameter("binhluan");
         Long projectId = Long.valueOf(request.getParameter("projectId"));
         String username = request.getParameter("username");
         java.util.Date posteddate = new java.util.Date();
-        if(comment.equals("") || comment == null) {
+        Users user = (Users) session.getAttribute("user");
+        if(("").equals(user) || user == null){
+            return "redirect:/login";
+        } else {
+            if (comment.equals("") || comment == null) {
+                return "redirect:/startup/projectDetail/" + projectId;
+            }
+
+            projectService.addComment(userService.getUserByUserName(username),
+                    projectService.getProjectById(projectId), comment, posteddate);
             return "redirect:/startup/projectDetail/" + projectId;
         }
-        projectService.addComment(userService.getUserByUserName(username),
-                projectService.getProjectById(projectId), comment, posteddate);
-        return "redirect:/startup/projectDetail/" + projectId;
     }
 
 

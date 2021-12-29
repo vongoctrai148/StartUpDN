@@ -77,7 +77,7 @@
                                 </div>
 
                                 <div class="quote-item-footer">
-                                    <img loading="lazy" class="testimonial-thumb" src="/images/userImages/${user.avataruser}" alt="testimonial">
+                                    <img loading="lazy" class="testimonial-thumb" src="/images/userImages/${user.avataruser}" alt="Ảnh đại diện">
                                     <div class="quote-item-info">
                                         <h3 class="quote-author">${user.fullname}</h3>
                                         <span class="quote-subtext">${user.job}</span>
@@ -142,7 +142,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="general-btn text-center">
-                                            <a class="btn btn-primary" href="projects.html">Chỉnh sửa thông tin cá nhân</a>
+                                            <a class="btn btn-primary" href="/startup/updateProfile">Chỉnh sửa thông tin cá nhân</a>
                                         </div>
                                     </div>
                                 </div><!-- Content row end -->

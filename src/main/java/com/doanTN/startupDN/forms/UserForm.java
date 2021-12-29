@@ -1,6 +1,9 @@
 package com.doanTN.startupDN.forms;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
@@ -8,13 +11,8 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisForm {
+public class UserForm {
     private Long id;
-    @NotBlank(message = "Vui lòng nhập tài khoản")
-    private String username;
-    @NotBlank(message = "Vui lòng nhập mật khẩu")
-    private String password;
-    private String rePassword;
     @NotBlank(message = "Vui lòng nhập họ tên")
     private String fullname;
     @NotBlank(message = "Vui lòng chọn giới tính")
@@ -31,15 +29,13 @@ public class RegisForm {
     private String subdistrict;
     @NotBlank(message = "Vui lòng nhập địa chỉ")
     private String houseno;
-    private String roles;
     private String job;
     private String avataruser;
 
-    public RegisForm(Long id,  String username, String fullname, String email,
-                     String phone, String cccd, String birthday, String province, String district,
-                     String subdistrict, String houseno, String job) {
+    public UserForm(Long id, String fullname, String email, String phone,
+                    String cccd, String birthday, String province, String district,
+                    String subdistrict,  String houseno, String job, String avataruser) {
         this.id = id;
-        this.username = username;
         this.fullname = fullname;
         this.email = email;
         this.phone = phone;
@@ -50,5 +46,6 @@ public class RegisForm {
         this.subdistrict = subdistrict;
         this.houseno = houseno;
         this.job = job;
+        this.avataruser = avataruser;
     }
 }

@@ -70,11 +70,11 @@
     <section id="main-container" class="main-container">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="col-lg mb-5 mb-lg-0">
                     <div class="post-content post-single">
                         <h4><a href="#"> ${project.category.categoryname} > ${project.projectname}</a></h4>
                         <div class="post-media post-image">
-                            <img loading="lazy" src="/images/news/news1.jpg" class="img-fluid" alt="post-image" />
+                            <img loading="lazy" src="/images/projects/${project.imagepresent}" class="img-fluid" alt="post-image" />
                         </div>
 
                         <div class="post-body">
@@ -99,9 +99,9 @@
                             <div class="entry-content">
                                 <textarea class="form-control" id="projectDetail" style="height: 100vh; color: black" readonly>${project.projectdetail}</textarea>
                             </div>
-                            <div id="page-slider" class="page-slider">
+                            <div id="page-slider" class="page-slider" style="display: flex; justify-content: center; align-items: center;">
                                 <c:forEach items="${imageOfProject}" var="image">
-                                    <div class="item">
+                                    <div class="item" style="text-align: center;">
                                         <img loading="lazy" class="img-fluid" src="/images/projectImages/${image.imagename}" />
                                     </div>
                                 </c:forEach>
@@ -156,7 +156,7 @@
                     </div>
                     <div class="author-box d-nlock d-sm-flex">
                         <div class="author-img mb-4 mb-md-0">
-                            <img loading="lazy" src="/images/news/avator1.png" alt="author" />
+                            <img loading="lazy" src="/images/userImages/${project.user.avataruser}" alt="author" />
                         </div>
                         <div class="author-info">
                             <h3>Thông tin liên hệ</h3>
@@ -181,7 +181,7 @@
                         <div class="comments-form border-box">
                             <h4 class="title-normal">Bình luận</h4>
 
-                            <form role="form" action="/startup/postComment" method="post">
+                            <form role="form" action="/startup/postComment" method="POST">
                                 <input type="hidden" value="${user.username}" name="username">
                                 <input type="hidden" value="${project.id}" name="projectId">
                                 <div class="row">
@@ -218,39 +218,8 @@
                                                    ${comment.binhluan}
                                                 </p>
                                             </div>
-<%--                                            <div class="text-left">--%>
-<%--&lt;%&ndash;                                                <a class="comment-reply font-weight-bold" href="#"><i class="fas fa-thumbs-up"> 10 Likes</i></a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                                <a class="comment-reply font-weight-bold" href="#"><i class="fas fa-reply">Reply</i></a>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                                <a class="comment-reply font-weight-bold" href="#"><i class="fas fa-trash"></i></a>&ndash;%&gt;--%>
-<%--                                            </div>--%>
                                         </div>
                                     </div>
-                                    <!-- Comments end -->
-<%--                                    <ul class="comments-reply">--%>
-<%--                                        <li>--%>
-<%--                                            <div class="comment d-flex">--%>
-<%--                                                <img loading="lazy" class="comment-avatar" alt="author" src="/images/news/avator2.png" />--%>
-<%--                                                <div class="comment-body">--%>
-<%--                                                    <div class="meta-data">--%>
-<%--                                                        <span class="comment-author mr-3">Tom Harnandez</span>--%>
-<%--                                                        <span class="comment-date float-right">January 17, 2016 at 1:38 pm</span>--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="comment-content">--%>
-<%--                                                        <p>--%>
-<%--                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation--%>
-<%--                                                            ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen.--%>
-<%--                                                        </p>--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="text-left">--%>
-<%--&lt;%&ndash;                                                        <a class="comment-reply font-weight-bold" href="#"><i class="fas fa-thumbs-up"> 10 Likes</i></a>&ndash;%&gt;--%>
-<%--                                                        <a class="comment-reply font-weight-bold" href="#"><i class="fas fa-reply">Reply</i></a>--%>
-<%--                                                    </div>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                            <!-- Comments end -->--%>
-<%--                                        </li>--%>
-<%--                                    </ul>--%>
-                                    <!-- comments-reply end -->
                                 </li>
                             </c:forEach>
                             <!-- Comments-list li end -->
@@ -260,94 +229,38 @@
                     <!-- Post comment end -->
                 </div>
                 <!-- Content Col end -->
+<%--                <div class="col-lg-4">--%>
+<%--                    <div class="sidebar sidebar-right">--%>
+<%--                        <div class="widget">--%>
+<%--                            <h3 class="widget-title">Categories</h3>--%>
+<%--                            <ul class="arrow nav nav-tabs">--%>
+<%--                                <li><a href="#">Construction</a></li>--%>
+<%--                                <li><a href="#">Commercial</a></li>--%>
+<%--                                <li><a href="#">Building</a></li>--%>
+<%--                                <li><a href="#">Safety</a></li>--%>
+<%--                                <li><a href="#">Structure</a></li>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
+<%--                        <!-- Categories end -->--%>
+<%--                        <div class="widget widget-tags">--%>
+<%--                            <h3 class="widget-title">Tags</h3>--%>
 
-                <div class="col-lg-4">
-                    <div class="sidebar sidebar-right">
-                        <div class="widget recent-posts">
-                            <h3 class="widget-title">Các tin liên quan</h3>
-                            <ul class="list-unstyled">
-                                <li class="d-flex align-items-center">
-                                    <div class="posts-thumb">
-                                        <a href="#"><img loading="lazy" alt="img" src="/images/news/news1.jpg" /></a>
-                                    </div>
-                                    <div class="post-info">
-                                        <h4 class="entry-title">
-                                            <a href="#">We Just Completes $17.6 Million Medical Clinic In Mid-missouri</a>
-                                        </h4>
-                                    </div>
-                                </li>
-                                <!-- 1st post end-->
-
-                                <li class="d-flex align-items-center">
-                                    <div class="posts-thumb">
-                                        <a href="#"><img loading="lazy" alt="img" src="/images/news/news2.jpg" /></a>
-                                    </div>
-                                    <div class="post-info">
-                                        <h4 class="entry-title">
-                                            <a href="#">Thandler Airport Water Reclamation Facility Expansion Project Named</a>
-                                        </h4>
-                                    </div>
-                                </li>
-                                <!-- 2nd post end-->
-
-                                <li class="d-flex align-items-center">
-                                    <div class="posts-thumb">
-                                        <a href="#"><img loading="lazy" alt="img" src="/images/news/news3.jpg" /></a>
-                                    </div>
-                                    <div class="post-info">
-                                        <h4 class="entry-title">
-                                            <a href="#">Silicon Bench And Cornike Begin Construction Solar Facilities</a>
-                                        </h4>
-                                    </div>
-                                </li>
-                                <!-- 3rd post end-->
-                            </ul>
-                        </div>
-                        <!-- Recent post end -->
-
-                        <div class="widget">
-                            <h3 class="widget-title">Categories</h3>
-                            <ul class="arrow nav nav-tabs">
-                                <li><a href="#">Construction</a></li>
-                                <li><a href="#">Commercial</a></li>
-                                <li><a href="#">Building</a></li>
-                                <li><a href="#">Safety</a></li>
-                                <li><a href="#">Structure</a></li>
-                            </ul>
-                        </div>
-                        <!-- Categories end -->
-
-                        <div class="widget">
-                            <h3 class="widget-title">Archives</h3>
-                            <ul class="arrow nav nav-tabs">
-                                <li><a href="#">Feburay 2016</a></li>
-                                <li><a href="#">January 2016</a></li>
-                                <li><a href="#">December 2015</a></li>
-                                <li><a href="#">November 2015</a></li>
-                                <li><a href="#">October 2015</a></li>
-                            </ul>
-                        </div>
-                        <!-- Archives end -->
-
-                        <div class="widget widget-tags">
-                            <h3 class="widget-title">Tags</h3>
-
-                            <ul class="list-unstyled">
-                                <li><a href="#">Construction</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Project</a></li>
-                                <li><a href="#">Building</a></li>
-                                <li><a href="#">Finance</a></li>
-                                <li><a href="#">Safety</a></li>
-                                <li><a href="#">Contracting</a></li>
-                                <li><a href="#">Planning</a></li>
-                            </ul>
-                        </div>
-                        <!-- Tags end -->
-                    </div>
-                    <!-- Sidebar end -->
-                </div>
-                <!-- Sidebar Col end -->
+<%--                            <ul class="list-unstyled">--%>
+<%--                                <li><a href="#">Construction</a></li>--%>
+<%--                                <li><a href="#">Design</a></li>--%>
+<%--                                <li><a href="#">Project</a></li>--%>
+<%--                                <li><a href="#">Building</a></li>--%>
+<%--                                <li><a href="#">Finance</a></li>--%>
+<%--                                <li><a href="#">Safety</a></li>--%>
+<%--                                <li><a href="#">Contracting</a></li>--%>
+<%--                                <li><a href="#">Planning</a></li>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
+<%--                        <!-- Tags end -->--%>
+<%--                    </div>--%>
+<%--                    <!-- Sidebar end -->--%>
+<%--                </div>--%>
+<%--                <!-- Sidebar Col end -->--%>
             </div>
             <!-- Main row end -->
         </div>

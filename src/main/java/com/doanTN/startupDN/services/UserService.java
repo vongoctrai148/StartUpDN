@@ -38,4 +38,38 @@ public class UserService {
         userDAO.save(new Users(username, password, fullname, gender, email, phone, CCCD, birthDay,
                 country, province, district, subDistrict, houseno, role, avatarUser));
     }
+
+    @Transactional
+    public void updateProfile(Long id, String fullname, String gender, String email, String phone, String CCCD, Date birthday,
+                         String province, String district, String subDistrict, String houseno, String job,String avatarUser){
+        Users user = userDAO.findById(id).get();
+        if(avatarUser == null){
+        user.setFullname(fullname);
+        user.setGender(gender);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setCccd(CCCD);
+        user.setBirthday(birthday);
+        user.setProvince(province);
+        user.setDistrict(district);
+        user.setSubdistrict(subDistrict);
+        user.setHouseno(houseno);
+        user.setJob(job);
+        userDAO.save(user);
+        }else{
+            user.setFullname(fullname);
+            user.setGender(gender);
+            user.setEmail(email);
+            user.setPhone(phone);
+            user.setCccd(CCCD);
+            user.setBirthday(birthday);
+            user.setProvince(province);
+            user.setDistrict(district);
+            user.setSubdistrict(subDistrict);
+            user.setHouseno(houseno);
+            user.setJob(job);
+            user.setAvataruser(avatarUser);
+            userDAO.save(user);
+        }
+    }
 }

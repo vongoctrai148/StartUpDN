@@ -37,14 +37,32 @@ public class ProjectService {
 
     @Transactional
     public Projects saveProject (Users user, Categories category, String projectName, double amountCalled, String projectDetail,
-                             String title, String country, String province, String district, String subDistrict, String houseNo, Date postedDay){
+                             String title, String country, String province, String district, String subDistrict, String houseNo, String imgPresent, Date postedDay){
         return projectDAO.save(new Projects(user, category, projectName, amountCalled, projectDetail, title, country, province,
-                district, subDistrict, houseNo, postedDay));
+                district, subDistrict, houseNo, imgPresent, postedDay));
     }
 
     @Transactional
     public Projects updateProject (Long id, Categories category, String projectName, double amountCalled, String projectDetail,
-                                 String title, String country, String province, String district, String subDistrict, String houseNo){
+                                 String title, String country, String province, String district, String subDistrict, String houseNo, String imgPresent){
+        Projects project = projectDAO.findById(id).get();
+        project.setCategory(category);
+        project.setProjectname(projectName);
+        project.setAmountcalled(amountCalled);
+        project.setProjectdetail(projectDetail);
+        project.setTitle(title);
+        project.setCountry(country);
+        project.setProvince(province);
+        project.setDistrict(district);
+        project.setSubdistrict(subDistrict);
+        project.setHouseno(houseNo);
+        project.setImagepresent(imgPresent);
+        return projectDAO.save(project);
+    }
+
+    @Transactional
+    public Projects updateProjectWithOutIMG (Long id, Categories category, String projectName, double amountCalled, String projectDetail,
+                                   String title, String country, String province, String district, String subDistrict, String houseNo){
         Projects project = projectDAO.findById(id).get();
         project.setCategory(category);
         project.setProjectname(projectName);

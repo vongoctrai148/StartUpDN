@@ -48,6 +48,16 @@
         <put-attribute name="body" value="/WEB-INF/jsp/startup/user-profile.jsp" />
     </definition>
 
+    <definition name="startup/updateProfile"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/startup/user-update-profile.jsp" />
+    </definition>
+
+    <definition name="page404"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/startup/page-404.jsp" />
+    </definition>
+
 <!--    &lt;!&ndash; Home Page GV &ndash;&gt;-->
 <!--    <definition name="homepage-gv.definition" template="/WEB-INF/jsp/layout/giaovien-layout.jsp">-->
 <!--        <put-attribute name="topbar" value="/WEB-INF/jsp/topbar.jsp"/>-->

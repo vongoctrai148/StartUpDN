@@ -40,10 +40,8 @@
                             </li>
                             <li class="header-get-a-quote">
                                 <a class="btn btn-primary" id="userLogin" href="/startup/userProfile" title="Thông tin cá nhân">${user.fullname}</a>
-                                <a href="/logout" class="btn-outline-warning">Đăng xuất</a>
+                                <a href="/logout" onclick="return confirm('Bạn có muốn đăng xuất?')" class="btn-outline-warning">Đăng xuất</a>
                             </li>
-
-
                         </ul><!-- Ul end -->
                     </div><!-- header right end -->
                 </div><!-- logo area end -->
