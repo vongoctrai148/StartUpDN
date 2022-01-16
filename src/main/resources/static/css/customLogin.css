@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 /*http://docs.portal.danang.gov.vn/images/image/16-8phophuong1_1629112723649.jpg*/
 html,body{
-    background-image: url(/images/danang_background.png);
+    background-image: url("http://docs.portal.danang.gov.vn/images/image/16-8phophuong1_1629112723649.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;

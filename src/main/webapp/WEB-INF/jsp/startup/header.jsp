@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--/ Topbar end -->
 <!-- Header start -->
@@ -39,8 +40,15 @@
                                 </div>
                             </li>
                             <li class="header-get-a-quote">
-                                <a class="btn btn-primary" id="userLogin" href="/startup/userProfile" title="Thông tin cá nhân">${user.fullname}</a>
-                                <a href="/logout" onclick="return confirm('Bạn có muốn đăng xuất?')" class="btn-outline-warning">Đăng xuất</a>
+                                   <c:choose>
+                                       <c:when test="${user.fullname!=null}">
+                                           <a class="btn btn-primary" id="userLogin" href="/startup/userProfile" title="Thông tin cá nhân">${user.fullname}</a>
+                                           <a href="/logout" onclick="return confirm('Bạn có muốn đăng xuất?')" class="btn-outline-warning">Đăng xuất</a>
+                                       </c:when>
+                                       <c:otherwise>
+                                           <a class="btn btn-primary" id="userLogin" href="/startup/userProfile" title="Thông tin cá nhân">Login</a>
+                                       </c:otherwise>
+                                   </c:choose>
                             </li>
                         </ul><!-- Ul end -->
                     </div><!-- header right end -->
@@ -68,11 +76,11 @@
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Các công ty <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="team.html">Our People</a></li>
-                                        <li><a href="testimonials.html">Testimonials</a></li>
-                                        <li><a href="faq.html">Faq</a></li>
-                                        <li><a href="pricing.html">Pricing</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Our People</a></li>
+                                        <li><a href="#">Testimonials</a></li>
+                                        <li><a href="#">Faq</a></li>
+                                        <li><a href="#">Pricing</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -85,15 +93,15 @@
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Services <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="services.html">Services All</a></li>
-                                        <li><a href="service-single.html">Services Single</a></li>
+                                        <li><a href="#">Services All</a></li>
+                                        <li><a href="#">Services Single</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Features <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="typography.html">Typography</a></li>
-                                        <li><a href="404.html">404</a></li>
+                                        <li><a href="#">Typography</a></li>
+                                        <li><a href="#">404</a></li>
                                         <li class="dropdown-submenu">
                                             <a href="#!" class="dropdown-toggle" data-toggle="dropdown">Parent Menu</a>
                                             <ul class="dropdown-menu">
@@ -107,12 +115,12 @@
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">News <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="news-left-sidebar.html">News Left Sidebar</a></li>
-                                        <li><a href="news-right-sidebar.html">News Right Sidebar</a></li>
-                                        <li><a href="news-single.html">News Single</a></li>
+                                        <li><a href="#">News Left Sidebar</a></li>
+                                        <li><a href="#">News Right Sidebar</a></li>
+                                        <li><a href="#">News Single</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                             </ul>
                         </div>
                     </nav>

@@ -23,7 +23,8 @@ public class InvestedProjects {
     @JoinColumn(name = "userid")
     private Users user;
     @JsonIgnore
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "projectid")
     private Projects project;
+    private int acceptstatus;
 }

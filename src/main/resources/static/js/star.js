@@ -5,6 +5,12 @@
     // Create the defaults once
     var pluginName = 'starRating';
     var noop = function(){};
+    var size;
+    if(window.innerWidth <= 422){
+        size = 20;
+    }else{
+        size = 30;
+    }
     var defaults = {
         totalStars: 5,
         useFullStars: false,
@@ -24,7 +30,7 @@
         strokeWidth: 4,
         strokeColor: 'black',
         initialRating: 0,
-        starSize: 30,
+        starSize: size,
         callback: noop,
         onHover: noop,
         onLeave: noop

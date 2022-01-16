@@ -39,6 +39,12 @@
                 extends="homepage-startup.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/startup/user-list-project.jsp" />
     </definition>
+
+    <definition name="startup/acceptInvestion"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/startup/accept-investion.jsp" />
+    </definition>
+
     <definition name="startup/userListImage"
                 extends="homepage-startup.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/startup/user-image-of-project.jsp" />

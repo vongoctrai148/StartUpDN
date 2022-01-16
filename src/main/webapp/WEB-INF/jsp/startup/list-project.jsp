@@ -76,6 +76,16 @@
             </button>
         </div>
     </form>
+    <form action="/startup/searchProject" method="post" class="form-inline" style="margin-top: 2%; margin-left: 5%">
+        <div class="input-group">
+            <div class="form-outline">
+                <input type="text" class="form-control" name="projectName" placeholder="Nhập tên dự án"/>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
     <section id="main-container" class="main-container pb-4">
         <div class="container">
             <div class="row text-center">
@@ -85,26 +95,33 @@
             </div>
             <!--/ Title row end -->
             <div class="row">
-                <c:forEach items="${listProjects}" var="project">
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
-                        <div class="ts-team-wrapper">
-                            <div class="team-img-wrapper">
-                                <a href="/startup/projectDetail/${project.id}"><img loading="lazy" src="/images/projects/${project.imagepresent}"
-                                                                 style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
-                            </div>
-                            <div class="ts-team-content-classic">
-                                <a href="/startup/projectDetail/${project.id}"><h3 class="ts-name">${project.projectname}</h3></a>
-                                <p class="ts-designation">Được đánh giá: ${project.totalvoted}</p>
-                                <a href="/startup/projectDetail/${project.id}"><p class="ts-description">${project.projectdetail}</p></a>
-                                <div class="team-social-icons">
-                                    <a href="/startup/projectDetail/${project.id}">Xem chi tiết</a>
+                <c:choose>
+                    <c:when test="${listProjects!=null}">
+                        <c:forEach items="${listProjects}" var="project">
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-5">
+                                <div class="ts-team-wrapper">
+                                    <div class="team-img-wrapper">
+                                        <a href="/startup/projectDetail/${project.id}"><img loading="lazy" src="/images/projects/${project.imagepresent}"
+                                                                         style="height: 300px; width: 300px;"  class="img-fluid" alt="team-img"></a>
+                                    </div>
+                                    <div class="ts-team-content-classic">
+                                        <a href="/startup/projectDetail/${project.id}"><h3 class="ts-name">${project.projectname}</h3></a>
+                                        <p class="ts-designation">Được đánh giá: ${project.totalvoted}</p>
+                                        <a href="/startup/projectDetail/${project.id}"><p class="ts-description">${project.projectdetail}</p></a>
+                                        <div class="team-social-icons">
+                                            <a href="/startup/projectDetail/${project.id}">Xem chi tiết</a>
+                                        </div>
+                                        <!--/ social-icons-->
+                                    </div>
                                 </div>
-                                <!--/ social-icons-->
-                            </div>
-                        </div>
-                        <!--/ Team wrapper 3 end -->
-                    </div><!-- Col end -->
-                </c:forEach>
+                                <!--/ Team wrapper 3 end -->
+                            </div><!-- Col end -->
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <h2>Không có kết quả</h2>
+                    </c:otherwise>
+                </c:choose>
             </div><!-- Content row end -->
             <nav aria-label="...">
                 <ul class="pagination pagination-lg">

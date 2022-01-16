@@ -1,9 +1,7 @@
 package com.doanTN.startupDN.controllers.User;
 
 
-
 import com.doanTN.startupDN.entities.Users;
-import com.doanTN.startupDN.forms.ProjectForm;
 import com.doanTN.startupDN.forms.RegisForm;
 import com.doanTN.startupDN.forms.UserForm;
 import com.doanTN.startupDN.services.DistrictService;
@@ -27,6 +25,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -47,38 +47,39 @@ public class UserController {
 //    }
 
     @GetMapping("/register")
-    public String getRegister(Model model){
+    public String getRegister(Model model) {
         model.addAttribute("provinces", provinceService.getAllProvinces());
         model.addAttribute("enrollForm", new RegisForm());
         return "register";
     }
 
     @PostMapping("/saveUser")
-    public String postRegister(Model model, @Valid @ModelAttribute("enrollForm") RegisForm regisForm, BindingResult bindingResult, HttpSession session){
+    public String postRegister(Model model, @Valid @ModelAttribute("enrollForm") RegisForm regisForm, BindingResult bindingResult, HttpSession session) {
         model.addAttribute("provinces", provinceService.getAllProvinces());
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("error");
         }
-        if(userService.checkUserExist(regisForm.getUsername()) == 1){
+        if (userService.checkUserExist(regisForm.getUsername()) == 1) {
             bindingResult.rejectValue("username", "error.user", "Tài khoản đã tồn tại");
-        }else{
-            if(!regisForm.getPassword().equals(regisForm.getRePassword())){
+        } else {
+            if (!regisForm.getPassword().equals(regisForm.getRePassword())) {
                 bindingResult.rejectValue("rePassword", "error.user", "Mật khẩu không khớp nhau");
-            }else{
-                if(regisForm.getBirthday() == null || regisForm.getBirthday().equals("")){
-                    bindingResult.rejectValue("birthday", "error.user", "Vui lòng chọn ngày sinh" );
-                }else {
+            } else {
+                if (regisForm.getBirthday() == null || regisForm.getBirthday().equals("")) {
+                    bindingResult.rejectValue("birthday", "error.user", "Vui lòng chọn ngày sinh");
+                } else {
                     Date tgiansd = Date.valueOf(regisForm.getBirthday());
                     java.util.Date date = new java.util.Date();
-                    if(tgiansd.after(date)) {
+                    if (tgiansd.after(date)) {
                         bindingResult.rejectValue("birthday", "error.user", "Hãy chọn ngày sinh nhỏ hơn!");
-                    }else {
+                    } else {
                         userService.userRegister(regisForm.getUsername(), regisForm.getPassword(), regisForm.getFullname(), regisForm.getGender(),
                                 regisForm.getEmail(), regisForm.getPhone(), regisForm.getCccd(), Date.valueOf(regisForm.getBirthday()), "Việt Nam",
-                                regisForm.getProvince(), regisForm.getDistrict(), regisForm.getSubdistrict(), regisForm.getHouseno(), regisForm.getRoles(), "empty.png");
+                                provinceService.findProvinceNameById(regisForm.getProvince()), districtService.findDistrictNameById(regisForm.getDistrict()),
+                                subDistrictService.findSubDistrictNameById(regisForm.getSubdistrict()), regisForm.getHouseno(), regisForm.getRoles(), "empty.png");
                         Users user = userService.getUserByUserName(regisForm.getUsername());
                         session.setAttribute("user", user);
-                        if(("startup").equals(user.getRoles())){
+                        if (("startup").equals(user.getRoles())) {
                             return "redirect:/startup/listProject";
                         } else if (("investors").equals(user.getRoles())) {
                             return "redirect:/investor/";
@@ -87,50 +88,83 @@ public class UserController {
                 }
             }
         }
-        model.addAttribute("message", "Username or password is incorrect!");
+        model.addAttribute("message", "Vui lòng điền vào các trường!");
         return "register";
     }
 
-    @GetMapping("/startup/updateProfile")
-    public String getUpdateProfile(Model model, HttpSession session){
+    @GetMapping("/startup/userProfile")
+    public String getUserProfile(Model model, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
-        if(("").equals(user) || user == null){
+        if (("").equals(user) || user == null) {
             return "redirect:/login";
+        } else {
+            model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
+            return "startup/userProfile";
         }
-        else {
-            model.addAttribute("updateForm", new UserForm(user.getId(), user.getFullname(),
-                    user.getEmail(), user.getPhone(), user.getCccd(), user.getBirthday().toString(),
-                    user.getProvince(), user.getDistrict(), user.getSubdistrict(), user.getHouseno(), user.getJob(), user.getAvataruser()));
+    }
+
+    @GetMapping("/startup/updateProfile")
+    public String getUpdateProfile(Model model, HttpSession session) {
+        Users user = (Users) session.getAttribute("user");
+        if (("").equals(user) || user == null) {
+            return "redirect:/login";
+        } else {
+            Users getUser = userService.getUserByUserName(user.getUsername());
+            model.addAttribute("profileUser", getUser);
+            model.addAttribute("updateForm", new UserForm(getUser.getId(), getUser.getFullname(),
+                    getUser.getEmail(), getUser.getPhone(), getUser.getCccd(), user.getBirthday().toString(),
+                    getUser.getProvince(), user.getDistrict(), getUser.getSubdistrict(), getUser.getHouseno(), getUser.getJob(), getUser.getAvataruser()));
             model.addAttribute("provinces", provinceService.getAllProvinces());
             return "startup/updateProfile";
         }
     }
 
     @PostMapping("/startup/updateProfile")
-    public String postUpdateProfile (Model model,  @Valid @ModelAttribute("updateForm") UserForm userForm, BindingResult bindingResult
-    , @RequestParam("avatarUser") MultipartFile avatarUser) throws IOException {
+    public String postUpdateProfile(Model model, @Valid @ModelAttribute("updateForm") UserForm userForm, BindingResult bindingResult
+            , @RequestParam("avatarUser") MultipartFile avatarUser, HttpSession session) throws IOException {
         model.addAttribute("provinces", provinceService.getAllProvinces());
-        if(bindingResult.hasErrors()){
+        Date birthDay;
+        if (bindingResult.hasErrors()) {
             model.addAttribute("error");
-        }else{
-            if(userForm.getBirthday() == null || userForm.getBirthday().equals("")){
-                bindingResult.rejectValue("birthday", "error.user", "Vui lòng chọn ngày sinh" );
-            }else{
-                Date tgiansd = Date.valueOf(userForm.getBirthday());
+        } else {
+            if (userForm.getBirthday() == null || userForm.getBirthday().equals("")) {
+                Users user = (Users) session.getAttribute("user");
+                LocalDateTime datetime = LocalDateTime.parse(user.getBirthday().toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S"));
+                String newDateFormat = datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                userForm.setBirthday(newDateFormat);
+//                userForm.setBirthday(user.getBirthday().toString());
+//                bindingResult.rejectValue("birthday", "error.user", "Vui lòng chọn ngày sinh" );
+            } else {
+                birthDay = Date.valueOf(userForm.getBirthday());
                 java.util.Date date = new java.util.Date();
-                if(tgiansd.after(date)) {
+                if (birthDay.after(date)) {
                     bindingResult.rejectValue("birthday", "error.user", "Hãy chọn ngày sinh nhỏ hơn!");
-                }else {
-                    String filename = userForm.getCccd().trim() + avatarUser.getOriginalFilename();
-                    Path imgPresentPath = Paths.get("src/main/resources/static/images/userImages/" + filename);
-                    Files.write(imgPresentPath, avatarUser.getBytes());
-                    userService.updateProfile(userForm.getId(), userForm.getFullname(), userForm.getGender(),
-                            userForm.getEmail(), userForm.getPhone(), userForm.getCccd(), Date.valueOf(userForm.getBirthday()),
-                            provinceService.findProvinceNameById(userForm.getProvince()), districtService.findDistrictNameById(userForm.getDistrict()),
-                            subDistrictService.findSubDistrictNameById(userForm.getSubdistrict()), userForm.getHouseno(), userForm.getJob(), filename );
-                    return "startup/userProfile";
+                    return "startup/updateProfile";
                 }
             }
+            String filename;
+            if (avatarUser == null || avatarUser.getOriginalFilename().equals("")) {
+                filename = null;
+            } else {
+                filename = userForm.getCccd().trim() + avatarUser.getOriginalFilename();
+                Path imgPresentPath = Paths.get("src/main/resources/static/images/userImages/" + filename);
+                Files.write(imgPresentPath, avatarUser.getBytes());
+            }
+//                    if(userForm.getProvince())
+            try {
+                int a = Integer.parseInt(userForm.getProvince());
+                userService.updateProfile(userForm.getId(), userForm.getFullname(), userForm.getGender(),
+                        userForm.getEmail(), userForm.getPhone(), userForm.getCccd(), Date.valueOf(userForm.getBirthday()),
+                        provinceService.findProvinceNameById(userForm.getProvince()), districtService.findDistrictNameById(userForm.getDistrict()),
+                        subDistrictService.findSubDistrictNameById(userForm.getSubdistrict()), userForm.getHouseno(), userForm.getJob(), filename);
+
+            } catch (NumberFormatException e) {
+                userService.updateProfile(userForm.getId(), userForm.getFullname(), userForm.getGender(),
+                        userForm.getEmail(), userForm.getPhone(), userForm.getCccd(), Date.valueOf(userForm.getBirthday()),
+                        userForm.getProvince(), userForm.getDistrict(), userForm.getSubdistrict(), userForm.getHouseno(), userForm.getJob(), filename);
+            }
+            return "redirect:/startup/userProfile";
+
         }
         return "startup/updateProfile";
     }

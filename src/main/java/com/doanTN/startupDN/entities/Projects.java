@@ -44,8 +44,8 @@ public class Projects {
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private List<Comments> comments;
     @JsonIgnore
-    @OneToOne(mappedBy = "project", fetch = FetchType.LAZY)
-    private InvestedProjects investedProject;
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+    private List<InvestedProjects> investedProjects;
     @JsonIgnore
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private List<ImageOfProject> imageOfProjects;

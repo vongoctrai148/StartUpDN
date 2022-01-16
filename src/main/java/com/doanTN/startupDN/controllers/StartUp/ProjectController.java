@@ -40,17 +40,8 @@ public class ProjectController {
     private DistrictService districtService;
     @Autowired
     private SubDistrictService subDistrictService;
-
-    @GetMapping("/startup/userProfile")
-    public String getUserProfile(Model model, HttpSession session ){
-        Users user = (Users) session.getAttribute("user");
-        if(("").equals(user) || user == null){
-            return "redirect:/login";
-        }
-        else {
-            return "startup/userProfile";
-        }
-    }
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/startup/userListProject")
     public String getUserListProject (Model model, HttpSession session){
@@ -59,6 +50,7 @@ public class ProjectController {
             return "redirect:/login";
         }
         else {
+            model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
             model.addAttribute("listProjectOfUser", projectService.getAllProjectByUsername(user.getUsername()));
             return "startup/userListProject";
         }
@@ -142,7 +134,6 @@ public class ProjectController {
                             provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
                             subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno());
                     List<String> fileNames = new ArrayList<>();
-                    System.out.println(fileNames);
                     Arrays.asList(imageOfProject).stream().forEach(file -> {
                         String fileName = project.getId() + file.getOriginalFilename();
                         if (projectService.checkImageExists(fileName)) {
@@ -201,11 +192,39 @@ public class ProjectController {
             return "redirect:/login";
         }
         else {
+            model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
             model.addAttribute("listImageOfUser", projectService.getAllImageByUsername(user.getUsername()));
             return "startup/userListImage";
         }
     }
 
 
+    @GetMapping("/startup/acceptInvestion")
+    public String getAcceptInvestion (Model model, HttpSession session){
+        Users user = (Users) session.getAttribute("user");
+        if(("").equals(user) || user == null){
+            return "redirect:/login";
+        }
+        else {
+            model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
+            model.addAttribute("listProjectOfUser", projectService.getAllProjectByUsernameAndAcceptStatus(user.getUsername(), 0));
+            return "startup/acceptInvestion";
+        }
+    }
+
+    @GetMapping("/startup/acceptForInvestor/{projectId}/{userId}")
+    public String getAcceptForInvestor(Model model, HttpSession session, @PathVariable("userId") Long userId,
+                                       @PathVariable("projectId")Long projectId){
+        Users user = (Users) session.getAttribute("user");
+        if(("").equals(user) || user == null){
+            return "redirect:/login";
+        }
+        else {
+//            model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
+            projectService.acceptInvestor(projectId, userId);
+            projectService.deleteInvestorRequest(projectId, 0);
+            return "redirect:/startup/acceptInvestion";
+        }
+    }
 
 }

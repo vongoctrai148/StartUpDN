@@ -67,13 +67,14 @@
                                 <li class="active"><a href="/startup/userProfile">Thông tin của tôi</a></li>
                                 <li><a href="/startup/userListProject">Các dự án của tôi</a></li>
                                 <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>
+                                <li><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>
                             </ul>
                         </div><!-- Widget end -->
 
                         <div class="widget">
                             <div class="quote-item quote-border">
                                 <div class="quote-text-border">
-                                    This is my quote.
+                                    Thêm đoạn trích.
                                 </div>
 
                                 <div class="quote-item-footer">
@@ -98,17 +99,19 @@
                                 <div class="col-12">
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                            <form:form action="/startup/updateProfile" method="post" modelAttribute="updateForm" enctype="multipart/form-data">
+                                            <form:form action="/startup/updateProfile" name="formUpdate" method="post" onsubmit="return validateProfile()" modelAttribute="updateForm"  enctype="multipart/form-data">
                                                 <div class="row register-form">
                                                     <form:hidden path="id"/>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <form:input path="fullname" class="form-control" placeholder="Họ tên *" value="" />
+                                                            <form:input path="fullname" class="form-control" id="fullNameId" placeholder="Họ tên *" name="fullname" />
                                                             <form:errors path="fullname"/>
+                                                            <p id="isNameValid"></p>
                                                         </div>
                                                         <div class="form-group">
-                                                            <form:input path="email" type="email" class="form-control" placeholder="email *" value="" />
+                                                            <form:input path="email" type="email" class="form-control" placeholder="email *"  />
                                                             <form:errors path="email"/>
+                                                            <p id="isEmailValid"></p>
                                                         </div>
                                                         <div class="form-group">
                                                             <form:input path="phone" class="form-control" placeholder="Phone *" value="" />
@@ -136,8 +139,9 @@
                                                                     <form:radiobutton path="gender" name="gender" value="Female"/>
                                                                     <span>Female </span>
                                                                 </label>
-                                                                <form:errors path="gender"/>
                                                             </div>
+                                                            <p id="genderErrror"></p>
+                                                            <form:errors path="gender"/>
                                                         </div>
 
                                                     </div>
@@ -187,6 +191,7 @@
     <!-- Javascript Files
     ================================================== -->
     <!-- initialize jQuery Library -->
+    <script src="/js/validation.js"></script>
     <script src="/plugins/jQuery/jquery.min.js"></script>
     <!-- Bootstrap jQuery -->
     <script src="/plugins/bootstrap/bootstrap.min.js" defer></script>
@@ -217,6 +222,7 @@
                             s += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
                         }
                         $('#districtId').html(s);
+                        $('#subdistrictId').html('<option value=""></option>')
                     }
                 });
             });

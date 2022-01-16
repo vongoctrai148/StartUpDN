@@ -67,20 +67,21 @@
                                 <li class="active"><a href="/startup/userProfile">Thông tin của tôi</a></li>
                                 <li><a href="/startup/userListProject">Các dự án của tôi</a></li>
                                 <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>
+                                <li><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>
                             </ul>
                         </div><!-- Widget end -->
 
                         <div class="widget">
                             <div class="quote-item quote-border">
                                 <div class="quote-text-border">
-                                    This is my quote.
+                                    Thêm đoạn trích.
                                 </div>
 
                                 <div class="quote-item-footer">
-                                    <img loading="lazy" class="testimonial-thumb" src="/images/userImages/${user.avataruser}" alt="Ảnh đại diện">
+                                    <img loading="lazy" class="testimonial-thumb" src="/images/userImages/${profileUser.avataruser}" alt="Ảnh đại diện">
                                     <div class="quote-item-info">
-                                        <h3 class="quote-author">${user.fullname}</h3>
-                                        <span class="quote-subtext">${user.job}</span>
+                                        <h3 class="quote-author">${profileUser.fullname}</h3>
+                                        <span class="quote-subtext">${profileUser.job}</span>
                                     </div>
                                 </div>
                             </div><!-- Quote item end -->
@@ -103,7 +104,7 @@
                                                     <label>Họ tên</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <p>${user.fullname}</p>
+                                                    <p>${profileUser.fullname}</p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -111,7 +112,7 @@
                                                     <label>Email</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <p>${user.email}</p>
+                                                    <p>${profileUser.email}</p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -119,7 +120,7 @@
                                                     <label>Số điện thoại</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <p>${user.phone}</p>
+                                                    <p>${profileUser.phone}</p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -127,7 +128,7 @@
                                                     <label>Ngày sinh</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <p><fmt:formatDate pattern = "dd-MM-yyyy" value = "${user.birthday}" /></p>
+                                                    <p><fmt:formatDate pattern = "dd-MM-yyyy" value = "${profileUser.birthday}" /></p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -135,7 +136,7 @@
                                                     <label>Chuyên môn</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <p>${user.job}</p>
+                                                    <p>${profileUser.job}</p>
                                                 </div>
                                             </div>
                                         </div>

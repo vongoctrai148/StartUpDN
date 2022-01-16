@@ -113,23 +113,6 @@
                                     <p>#Safety</p>
                                     <p>#Planning</p>
                                 </div>
-                                <div class="share-items">
-                                    <ul class="post-social-icons list-unstyled">
-                                        <li class="social-icons-head">Share:</li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-google-plus"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                         <!-- post-body end -->
@@ -151,7 +134,14 @@
                                 <span class="my-rating-9"></span>
                                 <input type="hidden" class="live-rating" name="ratedStar" style="margin-left: 1%;"/>
                             </p>
-                            <button class="btn btn-outline-success" style="margin-left: 4%">Xác nhận</button>
+                            <c:choose>
+                                <c:when test="${user.fullname!=null}">
+                                    <button class="btn btn-outline-success" style="margin-left: 4%">Xác nhận</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button class="btn btn-outline-success" onclick="return confirm('Bạn cần đăng nhập trước!')" style="margin-left: 4%">Xác nhận</button>
+                                </c:otherwise>
+                            </c:choose>
                         </form>
                     </div>
                     <div class="author-box d-nlock d-sm-flex">
@@ -197,7 +187,15 @@
                                     <p>${user.fullname}</p>
                                 </div>
                                 <div class="clearfix text-md-right">
-                                    <button class="btn btn-primary" type="submit" aria-label="post-comment">Gửi</button>
+                                    <c:choose>
+                                        <c:when test="${user.fullname!=null}">
+                                            <button class="btn btn-primary" type="submit" aria-label="post-comment">Gửi</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button class="btn btn-primary" type="submit" onclick="return confirm('Bạn cần đăng nhập trước')" aria-label="post-comment">Gửi</button>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </div>
                             </form>
                             <!-- Form end -->

@@ -50,8 +50,8 @@ public class LoginController {
         if(bindingResult.hasErrors()){
             model.addAttribute("error");
         }
-        String username = loginForm.getUsername();
-        String password = loginForm.getPassword();
+        String username = loginForm.getUsername().trim();
+        String password = loginForm.getPassword().trim();
         if(userService.loginUser(username, password) == 1){
             Users user = userService.getUserByUserName(username);
             session.setAttribute("user", user);
@@ -63,7 +63,7 @@ public class LoginController {
                 return "redirect:/admin/";
             }
         }
-        model.addAttribute("message", "Username or password is incorrect!");
+        model.addAttribute("message", "Sai tên đăng nhập hoặc mật khẩu");
         return "login";
     }
 

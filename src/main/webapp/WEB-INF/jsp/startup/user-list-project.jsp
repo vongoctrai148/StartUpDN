@@ -67,20 +67,21 @@
                                 <li><a href="/startup/userProfile">Thông tin của tôi</a></li>
                                 <li class="active"><a href="/startup/userListProject">Các dự án của tôi</a></li>
                                 <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>
+                                <li><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>
                             </ul>
                         </div><!-- Widget end -->
 
                         <div class="widget">
                             <div class="quote-item quote-border">
                                 <div class="quote-text-border">
-                                    This is my quote.
+                                    Thêm đoạn trích.
                                 </div>
 
                                 <div class="quote-item-footer">
-                                    <img loading="lazy" class="testimonial-thumb" src="/images/userImages/${user.avataruser}" alt="testimonial">
+                                    <img loading="lazy" class="testimonial-thumb" src="/images/userImages/${profileUser.avataruser}" alt="testimonial">
                                     <div class="quote-item-info">
-                                        <h3 class="quote-author">${user.fullname}</h3>
-                                        <span class="quote-subtext">${user.job}</span>
+                                        <h3 class="quote-author">${profileUser.fullname}</h3>
+                                        <span class="quote-subtext">${profileUser.job}</span>
                                     </div>
                                 </div>
                             </div><!-- Quote item end -->
@@ -108,7 +109,7 @@
                                 <tr>
                                     <td>${project.projectname}</td>
                                     <td>${project.category.categoryname}</td>
-                                    <td><fmt:formatNumber value="${project.amountcalled}" type="currency" currencySymbol="VND"/></td>
+                                    <td><fmt:formatNumber value="${project.amountcalled}" maxFractionDigits="0" currencyCode="VND"  type="currency" currencySymbol="VND"/></td>
                                     <td>
                                         <script>
                                             if(${project.aceptedstatus} == 1 ){

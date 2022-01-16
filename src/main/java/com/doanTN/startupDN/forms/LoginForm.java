@@ -11,8 +11,8 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginForm {
-    @NotBlank(message = "Please enter username")
+    @NotBlank(message = "Vui lòng nhập tài khoản")
     private String username;
-    @NotBlank(message = "Please enter password")
+    @NotBlank(message = "Vui lòng nhập mật khẩu")
     private String password;
 }

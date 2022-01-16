@@ -2,6 +2,7 @@ package com.doanTN.startupDN.services;
 
 import com.doanTN.startupDN.daos.CommentsDAO;
 import com.doanTN.startupDN.daos.ImageOfProjectDAO;
+import com.doanTN.startupDN.daos.InvestedProjectsDAO;
 import com.doanTN.startupDN.daos.ProjectDAO;
 import com.doanTN.startupDN.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class ProjectService {
     private ImageOfProjectDAO imageOfProjectDAO;
     @Autowired
     private CommentsDAO commentsDAO;
+    @Autowired
+    private InvestedProjectsDAO investedProjectsDAO;
 
     @Transactional
     public List<Projects> getAllProjects(int acceptStatus,Pageable pageable){
@@ -28,6 +31,15 @@ public class ProjectService {
     @Transactional
     public List<Projects> getProjectsByCategoryId(Long categoryId, int acceptStatus,Pageable pageable){
         return projectDAO.getProjectsByCategoryId(categoryId, acceptStatus, pageable);
+    }
+
+    @Transactional
+    public List<Projects> searchProjects(int acceptStatus, String projectName, Pageable pageable){
+        return projectDAO.searchProjects(acceptStatus, projectName, pageable);
+    }
+    @Transactional
+    public int getTotalSearchResult(int acceptedStatus, String projectName){
+        return projectDAO.getTotalSearchResult(acceptedStatus, projectName);
     }
 
     @Transactional
@@ -88,7 +100,8 @@ public class ProjectService {
     @Transactional
     public int getTotalProject(){
         return projectDAO.getTotalProducts();
-    }@Transactional
+    }
+    @Transactional
     public int getTotalProjectByCategoryId(Long categoryId){
         return projectDAO.getTotalProductsByCategoryId(categoryId);
     }
@@ -144,4 +157,19 @@ public class ProjectService {
     }
 
 
+    @Transactional
+    public List<Projects> getAllProjectByUsernameAndAcceptStatus (String username, int acceptStatus){
+        return projectDAO.findAllByUsernameAndInvestionStatus(username, acceptStatus);
+    }
+
+    @Transactional
+    public void acceptInvestor (Long projectId, Long userId){
+        InvestedProjects investedProject = investedProjectsDAO.getAllByProjectIdAndUserId(projectId, userId);
+        investedProject.setAcceptstatus(1);
+    }
+
+    @Transactional
+    public void deleteInvestorRequest(Long projectId, int acceptStatus){
+        investedProjectsDAO.deleteByProjectId(projectId, acceptStatus);
+    }
 }

@@ -43,7 +43,7 @@ public class UserService {
     public void updateProfile(Long id, String fullname, String gender, String email, String phone, String CCCD, Date birthday,
                          String province, String district, String subDistrict, String houseno, String job,String avatarUser){
         Users user = userDAO.findById(id).get();
-        if(avatarUser == null){
+        if(avatarUser == null || avatarUser.equals("")){
         user.setFullname(fullname);
         user.setGender(gender);
         user.setEmail(email);

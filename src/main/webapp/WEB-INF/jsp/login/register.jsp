@@ -19,29 +19,32 @@
         <div class="card register">
             <div class="card-body">
                 <h2 style="color: white">Đăng ký tài khoản</h2>
-                <form:form action="/saveUser" method="POST" class="formRegister" modelAttribute="enrollForm" >
+                <form:form action="/saveUser" method="POST" name="formRegister" onsubmit="return validateData()" class="formRegister" modelAttribute="enrollForm" >
                     <form:hidden path="id"/>
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <form:input path="username" class="form-control" placeholder="Tài khoản *" value="" />
+                                <form:input path="username" id="username" name="username" class="form-control" placeholder="Tài khoản *" value="" />
                                 <form:errors path="username" style="color: yellow"/>
+                                <p id="isUsernameValid" style="color: yellow"></p>
                             </div>
                             <div class="form-group">
-                                <form:password path="password" class="form-control" placeholder="Mật khẩu *" value="" />
+                                <form:password path="password" id="password" class="form-control" placeholder="Mật khẩu *" value="" />
                                 <form:errors path="password" style="color: yellow"/>
                             </div>
                             <div class="form-group">
-                                <form:password path="rePassword" class="form-control" placeholder="Nhập lại mật khẩu *" value="" />
+                                <form:password path="rePassword" id="rePassword" class="form-control" placeholder="Nhập lại mật khẩu *" value="" />
                                 <form:errors path="rePassword" style="color: yellow"/>
+                                <p id="isPasswordMatched" style="color: yellow"></p>
                             </div>
                             <div class="form-group">
                                 <form:input path="fullname" class="form-control" placeholder="Họ tên *" value="" />
                                 <form:errors path="fullname" style="color: yellow"/>
                             </div>
                             <div class="form-group">
-                                <form:input path="phone" maxlength="12" minlength="10" class="form-control" placeholder="Số điện thoại *" value="" />
+                                <form:input path="phone" name="phone" maxlength="12" id="phone" minlength="10" class="form-control" placeholder="Số điện thoại *" value="" />
                                 <form:errors path="phone" style="color: yellow"/>
+                                <p id="isPhoneValid" style="color: yellow"></p>
                             </div>
                             <div class="form-group">
                                 <label for="birthday" style="color: white">Ngày sinh</label>
@@ -64,8 +67,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <form:input type="email" path="email" class="form-control" placeholder="Email *" value="" />
+                                <form:input type="email" path="email" name="email" id="email" class="form-control" placeholder="Email *" value="" />
                                 <form:errors path="email" style="color: yellow"/>
+                                <p id="isEmailValid" style="color: yellow;"></p>
                             </div>
                             <div class="form-group">
                                 <form:input path="cccd" type="text" class="form-control" placeholder="CMND/CCCD *" value="" />
@@ -77,16 +81,19 @@
                                     <option class="hidden"  selected disabled>Tỉnh/Thành phố*</option>
                                     <form:options items="${provinces}" itemLabel="name" itemValue="id"/>
                                 </form:select>
+                                <p id="checkProvince" style="color: yellow"></p>
                             </div>
                             <div class="form-group">
                                 <form:select class="form-control" id="districtId" path="district">
                                     <option class="hidden" selected disabled>Quận/Huyện*</option>
                                 </form:select>
+                                <p id="checkDistrict" style="color: yellow"></p>
                             </div>
                             <div class="form-group">
                                 <form:select class="form-control" id="subdistrictId" path="subdistrict">
                                     <option class="hidden" selected disabled>Xã/Phường*</option>
                                 </form:select>
+                                <p id="checkSubDistrict" style="color: yellow"></p>
                             </div>
                             <div class="form-group">
                                 <form:input path="houseno" class="form-control" placeholder="Số nhà - đường*" value="" />
@@ -107,6 +114,7 @@
         </div>
     </div>
 </div>
+<script src="js/validation.js"></script>
 <script src="plugins/jQuery/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -124,6 +132,7 @@
                         s += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
                     }
                     $('#districtId').html(s);
+                    $('#subdistrictId').html('<option value=""></option>')
                 }
             });
         });
