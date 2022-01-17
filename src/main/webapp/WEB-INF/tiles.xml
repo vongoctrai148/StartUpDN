@@ -35,7 +35,7 @@
         <put-attribute name="body" value="/WEB-INF/jsp/startup/save-project.jsp" />
     </definition>
 
-    <definition name="startup/userListProject"
+    <definition name="user/userListProject"
                 extends="homepage-startup.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/startup/user-list-project.jsp" />
     </definition>
@@ -45,16 +45,16 @@
         <put-attribute name="body" value="/WEB-INF/jsp/startup/accept-investion.jsp" />
     </definition>
 
-    <definition name="startup/userListImage"
+    <definition name="user/userListImage"
                 extends="homepage-startup.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/startup/user-image-of-project.jsp" />
     </definition>
-    <definition name="startup/userProfile"
+    <definition name="user/userProfile"
                 extends="homepage-startup.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/startup/user-profile.jsp" />
     </definition>
 
-    <definition name="startup/updateProfile"
+    <definition name="user/updateProfile"
                 extends="homepage-startup.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/startup/user-update-profile.jsp" />
     </definition>
@@ -62,6 +62,57 @@
     <definition name="page404"
                 extends="homepage-startup.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/startup/page-404.jsp" />
+    </definition>
+
+    <!--    INVESTORS-->
+    <definition name="investor"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/investors/investors-list.jsp" />
+    </definition>
+    <definition name="investorsdetails"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/investors/investors-details.jsp" />
+    </definition>
+    <definition name="investedProjects"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/investors/invested-projects.jsp" />
+    </definition>
+
+    <definition name="event"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/event/list-event.jsp" />
+    </definition>
+    <definition name="detailsEvent"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/event/event-details.jsp" />
+    </definition>
+    <definition name="blog"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/blog/list-blog.jsp" />
+    </definition>
+    <definition name="detailsBlog"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/blog/details-blog.jsp" />
+    </definition>
+
+    <!--    ======================================="admin"=======================-->
+    <definition name="listAcount"
+                template="/WEB-INF/jsp/admin/user/listUser.jsp">
+    </definition>
+    <definition name="addUser"
+                template="/WEB-INF/jsp/admin/user/addUser.jsp">
+    </definition>
+    <definition name="listProject"
+                template="/WEB-INF/jsp/admin/project/listProject.jsp">
+    </definition>
+    <definition name="detailsProject"
+                template="/WEB-INF/jsp/admin/project/detailsProject.jsp">
+    </definition>
+    <definition name="statistical"
+                template="/WEB-INF/jsp/admin/statistical.jsp">
+    </definition>
+    <definition name="homepage"
+                template="/WEB-INF/jsp/admin/homepage.jsp">
     </definition>
 
 <!--    &lt;!&ndash; Home Page GV &ndash;&gt;-->

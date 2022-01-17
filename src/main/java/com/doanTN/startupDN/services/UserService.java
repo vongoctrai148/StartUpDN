@@ -72,4 +72,8 @@ public class UserService {
             userDAO.save(user);
         }
     }
+    @Transactional
+    public void deleteUserById(Long id){
+        userDAO.deleteById(id);
+    }
 }

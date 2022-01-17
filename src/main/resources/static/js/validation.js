@@ -152,3 +152,7 @@ function validateData() {
         return false;
     }
 }
+
+function validateProject() {
+
+}

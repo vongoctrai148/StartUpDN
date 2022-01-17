@@ -172,4 +172,41 @@ public class ProjectService {
     public void deleteInvestorRequest(Long projectId, int acceptStatus){
         investedProjectsDAO.deleteByProjectId(projectId, acceptStatus);
     }
+
+
+    //Amin action
+    @Transactional
+    public Projects getDetailProjectById(Long id){
+        return projectDAO.findById(id).get();
+    }
+
+    @Transactional
+    public List<Projects> getProjectsByAceptedstatus(){
+        return projectDAO.findProjectsByAceptedstatus();
+    }
+
+    @Transactional
+    public void acept(Long id){
+        Projects projects = projectDAO.findById(id).get();
+        projects.setAceptedstatus(1);
+        projectDAO.save(projects);
+    }
+
+    @Transactional
+    public void deny(Long id){
+        Projects projects = projectDAO.findById(id).get();
+        projects.setAceptedstatus(0);
+        projectDAO.save(projects);
+    }
+
+    @Transactional
+    public List<Projects> getAllProject(){
+        return projectDAO.findAll();
+    }
+
+
+    @Transactional
+    public List<Projects> geta(Long userId){
+        return projectDAO.geta(userId);
+    }
 }

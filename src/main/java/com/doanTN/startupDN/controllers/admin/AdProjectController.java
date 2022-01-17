@@ -1,0 +1,87 @@
+package com.doanTN.startupDN.controllers.admin;
+
+
+import com.doanTN.startupDN.entities.Users;
+import com.doanTN.startupDN.services.ProjectService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.servlet.http.HttpSession;
+
+
+@Controller
+public class AdProjectController {
+    @Autowired
+    private ProjectService projectService;
+
+    @GetMapping("/admin")
+    public String getHomePage(HttpSession session) {
+        Users user = (Users) session.getAttribute("user");
+        if (("").equals(user) || user == null) {
+            return "redirect:/login";
+        } else {
+            return "homepage";
+        }
+    }
+
+    @GetMapping("/admin/ListProject")
+    public String getProjectByStatus(Model model, HttpSession session) {
+        Users user = (Users) session.getAttribute("user");
+        if (("").equals(user) || user == null) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("listProject", projectService.getProjectsByAceptedstatus());
+            return "listProject";
+        }
+    }
+
+    @GetMapping("/admin/listProject/detailsProject/{id}")
+    public String getDetailsProject(@PathVariable Long id, Model model, HttpSession session) {
+        Users user = (Users) session.getAttribute("user");
+        if (("").equals(user) || user == null) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("project", projectService.getDetailProjectById(id));
+            return "detailsProject";
+        }
+    }
+
+    @GetMapping("/admin/listProject/detailsProject/acept/{id}")
+    public String getAceptProject(@PathVariable("id") Long id, HttpSession session) {
+        Users user = (Users) session.getAttribute("user");
+        if (("").equals(user) || user == null) {
+            return "redirect:/login";
+        } else {
+            projectService.acept(id);
+            return "redirect:/admin/ListProject";
+        }
+    }
+
+    @GetMapping("/admin/listProject/detailsProject/deny/{id}")
+    public String getDenyProject(@PathVariable("id") Long id, HttpSession session) {
+        Users user = (Users) session.getAttribute("user");
+        if (("").equals(user) || user == null) {
+            return "redirect:/login";
+        } else {
+            projectService.deny(id);
+            return "redirect:/admin/ListProject";
+        }
+    }
+
+    @GetMapping("/admin/statistics")
+    public String getStatistics(Model model, HttpSession session) {
+        Users user = (Users) session.getAttribute("user");
+        if (("").equals(user) || user == null) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("total", projectService.getTotalProject());
+            model.addAttribute("projects", projectService.getAllProject());
+            return "statistical";
+        }
+    }
+
+
+}

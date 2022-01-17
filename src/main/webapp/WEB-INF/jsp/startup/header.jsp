@@ -42,11 +42,11 @@
                             <li class="header-get-a-quote">
                                    <c:choose>
                                        <c:when test="${user.fullname!=null}">
-                                           <a class="btn btn-primary" id="userLogin" href="/startup/userProfile" title="Thông tin cá nhân">${user.fullname}</a>
+                                           <a class="btn btn-primary" id="userLogin" href="/user/userProfile" title="Thông tin cá nhân">${user.fullname}</a>
                                            <a href="/logout" onclick="return confirm('Bạn có muốn đăng xuất?')" class="btn-outline-warning">Đăng xuất</a>
                                        </c:when>
                                        <c:otherwise>
-                                           <a class="btn btn-primary" id="userLogin" href="/startup/userProfile" title="Thông tin cá nhân">Login</a>
+                                           <a class="btn btn-primary" id="userLogin" href="/user/userProfile" title="Thông tin cá nhân">Login</a>
                                        </c:otherwise>
                                    </c:choose>
                             </li>

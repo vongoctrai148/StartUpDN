@@ -30,4 +30,12 @@ public interface ProjectDAO extends JpaRepository<Projects, Long> {
     List<Projects> searchProjects(int acceptStatus, String projectName, Pageable pageable);
     @Query("SELECT count(p) FROM Projects p WHERE p.aceptedstatus = ?1 AND lower( p.projectname) LIKE lower(?2)")
     int getTotalSearchResult(int acceptedStatus, String projectName);
+
+
+    //Admin queries
+    @Query("select p from Projects p WHERE p.aceptedstatus = 0")
+    List<Projects> findProjectsByAceptedstatus();
+
+    @Query("select  p from Projects p, Users u ,InvestedProjects i where u.id = i.id and i.user.id = ?1 ")
+    List<Projects> geta(Long userId);
 }

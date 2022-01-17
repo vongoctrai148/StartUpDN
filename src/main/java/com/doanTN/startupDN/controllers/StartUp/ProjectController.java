@@ -42,45 +42,65 @@ public class ProjectController {
     private SubDistrictService subDistrictService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private InvestorsServices investorsServices;
 
-    @GetMapping("/startup/userListProject")
-    public String getUserListProject (Model model, HttpSession session){
+    //    @GetMapping("/startup/userListProject")
+//    public String getUserListProject (Model model, HttpSession session){
+//        Users user = (Users) session.getAttribute("user");
+//        if(("").equals(user) || user == null){
+//            return "redirect:/login";
+//        }
+//        else {
+//            model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
+//            model.addAttribute("listProjectOfUser", projectService.getAllProjectByUsername(user.getUsername()));
+//            return "startup/userListProject";
+//        }
+//    }
+    @GetMapping("/user/userListProject")
+    public String getUserListProject(Model model, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
-        if(("").equals(user) || user == null){
+        if (("").equals(user) || user == null) {
             return "redirect:/login";
-        }
-        else {
+        } else if (user.getRoles().equals("startup")) {
             model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
             model.addAttribute("listProjectOfUser", projectService.getAllProjectByUsername(user.getUsername()));
-            return "startup/userListProject";
+            return "user/userListProject";
+        } else if (user.getRoles().equals("investors")) {
+            model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
+            model.addAttribute("listInvesterOfUser", investorsServices.getAllProjectByUsername(user.getUsername()));
+            return "user/userListProject";
         }
+        return "user/userListProject";
     }
 
     @GetMapping("startup/saveProject")
-    public String getProject(Model model, HttpSession session){
+    public String getProject(Model model, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
-        if(("").equals(user) || user == null){
+        if (("").equals(user) || user == null) {
             return "redirect:/login";
-        }
-        else {
-            model.addAttribute("provinces", provinceService.getAllProvinces());
-            model.addAttribute("categories", categoryService.getALlCategories());
-            model.addAttribute("projectForm", new ProjectForm());
-            return "startup/saveProject";
+        } else {
+            if (!user.getRoles().equals("startup")) {
+                return "page404";
+            }else {
+                model.addAttribute("provinces", provinceService.getAllProvinces());
+                model.addAttribute("categories", categoryService.getALlCategories());
+                model.addAttribute("projectForm", new ProjectForm());
+                return "startup/saveProject";
+            }
         }
     }
 
     @GetMapping("startup/saveProject/{id}")
-    public String getUpdateProject(Model model, HttpSession session,  @PathVariable("id") Long projectId){
+    public String getUpdateProject(Model model, HttpSession session, @PathVariable("id") Long projectId) {
         Users user = (Users) session.getAttribute("user");
         Projects project = projectService.getProjectById(projectId);
-        if(("").equals(user) || user == null){
+        if (("").equals(user) || user == null) {
             return "redirect:/login";
-        }
-        else{
-            if(!user.getUsername().equals(project.getUser().getUsername())){
+        } else {
+            if (!user.getUsername().equals(project.getUser().getUsername())) {
                 return "page404";
-            } else{
+            } else {
                 model.addAttribute("project", project);
                 model.addAttribute("provinces", provinceService.getAllProvinces());
                 model.addAttribute("categories", categoryService.getALlCategories());
@@ -93,13 +113,15 @@ public class ProjectController {
     }
 
     @PostMapping("startup/saveProject")
-    public String postProject (Model model, @RequestParam("imageofproject") MultipartFile[] imageOfProject, @RequestParam("imagepresent") MultipartFile imagepresent,
-                              @Valid @ModelAttribute("projectForm") ProjectForm projectForm, BindingResult bindingResult, HttpSession session) throws IOException {
+    public String postProject(Model model, @RequestParam("imageofproject") MultipartFile[]
+            imageOfProject, @RequestParam("imagepresent") MultipartFile imagepresent,
+                              @Valid @ModelAttribute("projectForm") ProjectForm projectForm, BindingResult bindingResult, HttpSession
+                                      session) throws IOException {
         Users user = (Users) session.getAttribute("user");
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("error");
-        }else {
-            if (projectForm.getId()== null || projectForm.getId().equals("")) {
+        } else {
+            if (projectForm.getId() == null || projectForm.getId().equals("")) {
                 java.util.Date posteddate = new java.util.Date();
                 String imgPresent = imagepresent.getOriginalFilename();
                 Path imgPresentPath = Paths.get("src/main/resources/static/images/projects/" + imgPresent);
@@ -177,35 +199,33 @@ public class ProjectController {
                 return "redirect:/startup/listProject";
             }
         }
-        if(projectForm.getId() == null || projectForm.getId().equals("")){
+        if (projectForm.getId() == null || projectForm.getId().equals("")) {
             model.addAttribute("message", "Vui lòng không để trống các trường, nhấn back để quay lại!");
             return "startup/saveProject";
-        }else{
-            return "redirect:/startup/saveProject/"+projectForm.getId();
+        } else {
+            return "redirect:/startup/saveProject/" + projectForm.getId();
         }
     }
 
-    @GetMapping("/startup/userListImage")
-    public String getUserListImage (Model model, HttpSession session){
+    @GetMapping("/user/userListImage")
+    public String getUserListImage(Model model, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
-        if(("").equals(user) || user == null){
+        if (("").equals(user) || user == null) {
             return "redirect:/login";
-        }
-        else {
+        } else {
             model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
             model.addAttribute("listImageOfUser", projectService.getAllImageByUsername(user.getUsername()));
-            return "startup/userListImage";
+            return "user/userListImage";
         }
     }
 
 
     @GetMapping("/startup/acceptInvestion")
-    public String getAcceptInvestion (Model model, HttpSession session){
+    public String getAcceptInvestion(Model model, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
-        if(("").equals(user) || user == null){
+        if (("").equals(user) || user == null) {
             return "redirect:/login";
-        }
-        else {
+        } else {
             model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
             model.addAttribute("listProjectOfUser", projectService.getAllProjectByUsernameAndAcceptStatus(user.getUsername(), 0));
             return "startup/acceptInvestion";
@@ -214,12 +234,11 @@ public class ProjectController {
 
     @GetMapping("/startup/acceptForInvestor/{projectId}/{userId}")
     public String getAcceptForInvestor(Model model, HttpSession session, @PathVariable("userId") Long userId,
-                                       @PathVariable("projectId")Long projectId){
+                                       @PathVariable("projectId") Long projectId) {
         Users user = (Users) session.getAttribute("user");
-        if(("").equals(user) || user == null){
+        if (("").equals(user) || user == null) {
             return "redirect:/login";
-        }
-        else {
+        } else {
 //            model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
             projectService.acceptInvestor(projectId, userId);
             projectService.deleteInvestorRequest(projectId, 0);

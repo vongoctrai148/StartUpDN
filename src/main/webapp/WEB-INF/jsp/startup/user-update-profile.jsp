@@ -64,10 +64,20 @@
                         <div class="widget">
                             <h3 class="widget-title">Danh Mục</h3>
                             <ul class="nav service-menu">
-                                <li class="active"><a href="/startup/userProfile">Thông tin của tôi</a></li>
-                                <li><a href="/startup/userListProject">Các dự án của tôi</a></li>
-                                <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>
-                                <li><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>
+                                <li class="active"><a href="/user/userProfile">Thông tin của tôi</a></li>
+                                <%--                                <li class="active"><a href="/startup/userListProject">Các dự án của tôi</a></li>--%>
+                                <%--                                <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>--%>
+                                <%--                                <li><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>--%>
+                                <%--                                <li><a href="/startup/userProfile">Thông tin của tôi</a></li>--%>
+                                <c:if test="${profileUser.roles == 'investors'}">
+                                    <li><a href="/user/userListProject">Thông tin công ty</a></li>
+                                    <%--                                    <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>--%>
+                                </c:if>
+                                <c:if test="${profileUser.roles == 'startup'}">
+                                    <li><a href="/user/userListProject">Các dự án của tôi</a></li>
+                                    <li><a href="/user/userListImage">Hình ảnh dự án</a></li>
+                                    <li><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>
+                                </c:if>
                             </ul>
                         </div><!-- Widget end -->
 
@@ -99,7 +109,7 @@
                                 <div class="col-12">
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                            <form:form action="/startup/updateProfile" name="formUpdate" method="post" onsubmit="return validateProfile()" modelAttribute="updateForm"  enctype="multipart/form-data">
+                                            <form:form action="/user/updateProfile" name="formUpdate" method="post" onsubmit="return validateProfile()" modelAttribute="updateForm"  enctype="multipart/form-data">
                                                 <div class="row register-form">
                                                     <form:hidden path="id"/>
                                                     <div class="col-md-6">

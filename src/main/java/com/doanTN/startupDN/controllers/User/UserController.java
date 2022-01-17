@@ -92,18 +92,18 @@ public class UserController {
         return "register";
     }
 
-    @GetMapping("/startup/userProfile")
+    @GetMapping("/user/userProfile")
     public String getUserProfile(Model model, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
         if (("").equals(user) || user == null) {
             return "redirect:/login";
         } else {
             model.addAttribute("profileUser", userService.getUserByUserName(user.getUsername()));
-            return "startup/userProfile";
+            return "user/userProfile";
         }
     }
 
-    @GetMapping("/startup/updateProfile")
+    @GetMapping("/user/updateProfile")
     public String getUpdateProfile(Model model, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
         if (("").equals(user) || user == null) {
@@ -115,11 +115,11 @@ public class UserController {
                     getUser.getEmail(), getUser.getPhone(), getUser.getCccd(), user.getBirthday().toString(),
                     getUser.getProvince(), user.getDistrict(), getUser.getSubdistrict(), getUser.getHouseno(), getUser.getJob(), getUser.getAvataruser()));
             model.addAttribute("provinces", provinceService.getAllProvinces());
-            return "startup/updateProfile";
+            return "user/updateProfile";
         }
     }
 
-    @PostMapping("/startup/updateProfile")
+    @PostMapping("/user/updateProfile")
     public String postUpdateProfile(Model model, @Valid @ModelAttribute("updateForm") UserForm userForm, BindingResult bindingResult
             , @RequestParam("avatarUser") MultipartFile avatarUser, HttpSession session) throws IOException {
         model.addAttribute("provinces", provinceService.getAllProvinces());
@@ -139,7 +139,7 @@ public class UserController {
                 java.util.Date date = new java.util.Date();
                 if (birthDay.after(date)) {
                     bindingResult.rejectValue("birthday", "error.user", "Hãy chọn ngày sinh nhỏ hơn!");
-                    return "startup/updateProfile";
+                    return "user/updateProfile";
                 }
             }
             String filename;
@@ -163,9 +163,9 @@ public class UserController {
                         userForm.getEmail(), userForm.getPhone(), userForm.getCccd(), Date.valueOf(userForm.getBirthday()),
                         userForm.getProvince(), userForm.getDistrict(), userForm.getSubdistrict(), userForm.getHouseno(), userForm.getJob(), filename);
             }
-            return "redirect:/startup/userProfile";
+            return "redirect:/user/userProfile";
 
         }
-        return "startup/updateProfile";
+        return "user/updateProfile";
     }
 }

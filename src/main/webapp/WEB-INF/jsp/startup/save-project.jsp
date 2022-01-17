@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="col-lg mb-5 mb-lg-0">
                     <h1 style="margin-bottom: 10%">Dự án của bạn</h1>
-                    <form:form action="/startup/saveProject" method="POST" modelAttribute="projectForm" enctype="multipart/form-data">
+                    <form:form action="/startup/saveProject" method="POST" modelAttribute="projectForm" onsubmit="return validateProject()" enctype="multipart/form-data">
                         <form:hidden path="id"/>
                         <h5 style="color: red">${message}</h5>
                         <div class="form-group">
@@ -164,7 +164,7 @@
     ================================================== -->
 
     <!-- initialize jQuery Library -->
-
+    <script src="/js/validation.js"></script>
     <script src="/plugins/jQuery/jquery.min.js"></script>
     <!-- Bootstrap jQuery -->
     <script src="/plugins/bootstrap/bootstrap.min.js" defer></script>
@@ -197,6 +197,7 @@
                             s += '<option value="' + result[i].id + '">' + result[i].name + '</option>';
                         }
                         $('#districtId').html(s);
+                        $('#subdistrictId').html('<option value=""></option>')
                     }
                 });
             });

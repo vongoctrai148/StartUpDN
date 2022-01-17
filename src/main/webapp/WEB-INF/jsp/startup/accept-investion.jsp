@@ -64,10 +64,20 @@
                         <div class="widget">
                             <h3 class="widget-title">Danh Mục</h3>
                             <ul class="nav service-menu">
-                                <li><a href="/startup/userProfile">Thông tin của tôi</a></li>
-                                <li><a href="/startup/userListProject">Các dự án của tôi</a></li>
-                                <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>
-                                <li class="active"><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>
+                                <li><a href="/user/userProfile">Thông tin của tôi</a></li>
+                                <%--                                <li class="active"><a href="/startup/userListProject">Các dự án của tôi</a></li>--%>
+                                <%--                                <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>--%>
+                                <%--                                <li><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>--%>
+                                <%--                                <li><a href="/startup/userProfile">Thông tin của tôi</a></li>--%>
+                                <c:if test="${profileUser.roles == 'investors'}">
+                                    <li class="active"><a href="/user/userListProject">Thông tin công ty</a></li>
+                                    <%--                                    <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>--%>
+                                </c:if>
+                                <c:if test="${profileUser.roles == 'startup'}">
+                                    <li><a href="/user/userListProject">Các dự án của tôi</a></li>
+                                    <li ><a href="/user/userListImage">Hình ảnh dự án</a></li>
+                                    <li class="active"><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>
+                                </c:if>
                             </ul>
                         </div><!-- Widget end -->
 
