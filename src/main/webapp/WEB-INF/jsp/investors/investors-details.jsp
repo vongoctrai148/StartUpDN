@@ -66,7 +66,8 @@
     <section id="main-container" class="main-container">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="col-lg mb-5 mb-lg-0">
+                    <div class="post-content post-single">
                     <div class="navigation"><a href="#"><i class="fas fa-home"></i>Trang chủ</a><a href="#"> > Nhà đầu
                         tư</a><a href="#"> > ${details.investorsname}</a></div>
 
@@ -83,8 +84,8 @@
                                 </h4>
                             </div>
                             <div class="row no-gutters">
-                                <div class="col-2"><strong>Ảnh đại diện:</strong></div>
-                                <div class="col-10 logo_supporter"><img src="/ndt/images/nhadautu/${details.logo}"
+                                <div class="col-2"><strong>Logo:</strong></div>
+                                <div class="col-10 logo_supporter"><img height="180" width="180" src="/ndt/images/nhadautu/${details.logo}"
                                                                         alt="Quỹ đổi mới công nghệ quốc gia"></div>
                             </div>
 
@@ -97,14 +98,7 @@
                             </div>
                             <div id="page-slider" class="page-slider">
                             </div><!-- Page slider end -->
-                            <div class="tags-area d-flex align-items-center justify-content-between">
-                                <div class="post-tags">
-                                    <p>Tag:</p>
-                                    <p>#Construction</p>
-                                    <p>#Safety</p>
-                                    <p>#Planning</p>
-                                </div>
-                            </div>
+
                         </div>
                         <!-- post-body end -->
                     </div>
@@ -134,6 +128,7 @@
                 <!-- Content Col end -->
 
             </div>
+        </div>
             <!-- Main row end -->
         </div>
         <!-- Conatiner end -->

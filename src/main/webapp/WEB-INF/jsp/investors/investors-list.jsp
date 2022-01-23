@@ -81,9 +81,10 @@
                             <a href="#">Nước ngoài</a>
                         </div>
                         <div class="row">
+                            <c:forEach items="${investors}" var="investors">
                             <div class="col-12 col-sm-6 col-md-3 item">
                                 <div>
-                                    <c:forEach items="${investors}" var="investors">
+
                                         <a href="/investor/details/${investors.id}" ><img src="/ndt/images/nhadautu/${investors.logo}" alt="Quỹ đổi mới công nghệ quốc gia" style="height: 140px;"></a>
                                         <div class="item_b">
                                             <h3><a href="investor/details/${investors.id}">${investors.investorsname}</a></h3>
@@ -92,9 +93,10 @@
                                             </p>
                                             <span><a href="/investor/details/${investors.id}">Xem chi tiết</a></span>
                                         </div>
-                                    </c:forEach>
+
                                 </div>
                             </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

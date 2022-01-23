@@ -78,6 +78,15 @@
         <put-attribute name="body" value="/WEB-INF/jsp/investors/invested-projects.jsp" />
     </definition>
 
+    <definition name="company"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/investors/company.jsp" />
+    </definition>
+    <definition name="saveCompany"
+                extends="homepage-startup.definition">
+        <put-attribute name="body" value="/WEB-INF/jsp/investors/saveCompany.jsp" />
+    </definition>
+<!--====================================================================-->
     <definition name="event"
                 extends="homepage-startup.definition">
         <put-attribute name="body" value="/WEB-INF/jsp/event/list-event.jsp" />

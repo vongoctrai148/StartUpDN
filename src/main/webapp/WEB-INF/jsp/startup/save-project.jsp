@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="col-lg mb-5 mb-lg-0">
                     <h1 style="margin-bottom: 10%">Dự án của bạn</h1>
-                    <form:form action="/startup/saveProject" method="POST" modelAttribute="projectForm" onsubmit="return validateProject()" enctype="multipart/form-data">
+                    <form:form action="/startup/saveProject" method="POST" name="saveProjectForm" modelAttribute="projectForm" onsubmit="return validateProject()" enctype="multipart/form-data">
                         <form:hidden path="id"/>
                         <h5 style="color: red">${message}</h5>
                         <div class="form-group">
@@ -98,6 +98,7 @@
                             <label for="amountcalled">Số tiền muốn kêu gọi</label>
                             <form:input path="amountcalled" class="form-control" id="amountcalled" />
                             <form:errors path="amountcalled"/>
+                            <p id="isNumeric" style="color: red"></p>
                         </div>
                         <div class="form-group">
                             <label for="projectdetail">Mô tả chi tiết dự án</label>
@@ -109,28 +110,26 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col">
-                                <label for="country">Country: </label>
-                                <form:select class="form-control" id="country" path="country">
-                                    <option value="Việt Nam">Việt Nam</option>
-                                </form:select>
-                            </div>
-                            <div class="form-group col">
-                                <label for="provinceId">Tỉnh/Thành phố: </label>
+                                <label for="provinceId">Tỉnh/TP: </label>
                                 <form:select class="form-control" id="provinceId" path="province">
+                                    <option class="hidden"  selected disabled>Tỉnh/Thành phố*</option>
                                     <form:options items="${provinces}" itemLabel="name" itemValue="id"/>
                                 </form:select>
+                                <p id="checkProvince" style="color: red"></p>
                             </div>
                             <div class="form-group col">
                                 <label for="districtId">Quận/Huyện: </label>
                                 <form:select class="form-control" id="districtId" path="district">
                                     <option selected value="">Chọn Quận Huyện</option>
                                 </form:select>
+                                <p id="checkDistrict" style="color: red"></p>
                             </div>
                             <div class="form-group col">
                                 <label for="subdistrictId">Xã/Phường: </label>
                                 <form:select class="form-control" id="subdistrictId" path="subdistrict">
                                     <option selected value="">Chọn Xã Phường</option>
                                 </form:select>
+                                <p id="checkSubDistrict" style="color: red"></p>
                             </div>
                         </div>
                         <div class="form-group">

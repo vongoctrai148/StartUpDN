@@ -162,16 +162,19 @@
                                                                 <form:option value="${user.province}" selected="selected">${user.province}</form:option>
                                                                 <form:options items="${provinces}" itemLabel="name" itemValue="id"/>
                                                             </form:select>
+                                                            <p id="checkProvince" style="color: red"></p>
                                                         </div>
                                                         <div class="form-group">
                                                             <form:select class="form-control" id="districtId" path="district">
                                                                 <form:option value="${user.district}">${user.district}</form:option>
                                                             </form:select>
+                                                            <p id="checkDistrict" style="color: red"></p>
                                                         </div>
                                                         <div class="form-group">
                                                             <form:select class="form-control" id="subdistrictId" path="subdistrict">
                                                                 <form:option value="${user.subdistrict}" class="hidden">${user.subdistrict}</form:option>
                                                             </form:select>
+                                                            <p id="checkSubDistrict" style="color: red"></p>
                                                         </div>
                                                         <div class="form-group">
                                                             <form:input path="houseno" class="form-control" placeholder="Số nhà - đường*" value="" />

@@ -27,4 +27,9 @@ public class InvestedProjects {
     @JoinColumn(name = "projectid")
     private Projects project;
     private int acceptstatus;
+
+    public InvestedProjects(Users user, Projects project) {
+        this.user = user;
+        this.project = project;
+    }
 }

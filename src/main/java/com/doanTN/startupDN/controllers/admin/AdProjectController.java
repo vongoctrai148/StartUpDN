@@ -23,7 +23,10 @@ public class AdProjectController {
         if (("").equals(user) || user == null) {
             return "redirect:/login";
         } else {
-            return "homepage";
+            if (("admin").equals(user.getRoles())){
+                return "homepage";
+            }
+            return "page404";
         }
     }
 
@@ -33,6 +36,9 @@ public class AdProjectController {
         if (("").equals(user) || user == null) {
             return "redirect:/login";
         } else {
+            if (!("admin").equals(user.getRoles())){
+                return "page404";
+            }
             model.addAttribute("listProject", projectService.getProjectsByAceptedstatus());
             return "listProject";
         }
@@ -44,6 +50,9 @@ public class AdProjectController {
         if (("").equals(user) || user == null) {
             return "redirect:/login";
         } else {
+            if (!("admin").equals(user.getRoles())){
+                return "page404";
+            }
             model.addAttribute("project", projectService.getDetailProjectById(id));
             return "detailsProject";
         }
@@ -55,6 +64,9 @@ public class AdProjectController {
         if (("").equals(user) || user == null) {
             return "redirect:/login";
         } else {
+            if (!("admin").equals(user.getRoles())){
+                return "page404";
+            }
             projectService.acept(id);
             return "redirect:/admin/ListProject";
         }
@@ -66,6 +78,9 @@ public class AdProjectController {
         if (("").equals(user) || user == null) {
             return "redirect:/login";
         } else {
+            if (!("admin").equals(user.getRoles())){
+                return "page404";
+            }
             projectService.deny(id);
             return "redirect:/admin/ListProject";
         }
@@ -77,6 +92,9 @@ public class AdProjectController {
         if (("").equals(user) || user == null) {
             return "redirect:/login";
         } else {
+            if (!("admin").equals(user.getRoles())){
+                return "page404";
+            }
             model.addAttribute("total", projectService.getTotalProject());
             model.addAttribute("projects", projectService.getAllProject());
             return "statistical";

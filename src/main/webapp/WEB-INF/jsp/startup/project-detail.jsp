@@ -20,6 +20,8 @@
 ================================================== -->
     <link rel="icon" type="image/png" href="/images/favicon.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- CSS
 ================================================== -->
     <!-- Bootstrap -->
@@ -106,14 +108,7 @@
                                     </div>
                                 </c:forEach>
                             </div><!-- Page slider end -->
-                            <div class="tags-area d-flex align-items-center justify-content-between">
-                                <div class="post-tags">
-                                    <p>Tag:</p>
-                                    <p>#Construction</p>
-                                    <p>#Safety</p>
-                                    <p>#Planning</p>
-                                </div>
-                            </div>
+
                         </div>
                         <!-- post-body end -->
                     </div>
@@ -159,11 +154,56 @@
                                 <a><i class="fa fa-star checked"></i></a>
                                 <a><i class="fa fa-star checked"></i></a>
                                 <a><i class="fa fa-star checked"></i></a>
-                                <a><i class="fa fa-star-half-alt checked"></i></a>
+                                <a><i class="fa fa-star checked"></i></a>
+                                (${project.sumvoted} đánh giá)
                             </p>
-                            <button type="button" class="btn btn-primary" href="#"><i class="fas fa-envelope"></i>Liên hệ với ${project.user.email}</button>
+
+                            <button type="button" data-toggle="modal"  data-target="#myModal" class="btn btn-primary" href="#"><i class="fas fa-envelope"></i>Liên hệ với ${project.user.email}</button>
                         </div>
                     </div>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Gửi mail thông báo</h5>
+                                    <button type="button" class="close btn btn-danger" data-dismiss="modal" aria-label="Close"  id="close-button">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" action="/investor/registration">
+                                        <input type="hidden" value="${project.id}" name="id">
+                                        <div class="form-group">
+                                            <label  class="col-form-label">From:</label>
+                                            <input type="text" class="form-control" name="from" value="${user.email}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label  class="col-form-label">To:</label>
+                                            <input type="text" class="form-control"  name = "to" id="email" value="${project.user.email}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label  class="col-form-label">Chủ đề:</label>
+                                            <input type="text" class="form-control" name="subject" value="Đăng ký đầu tư dự án"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-form-label">Nội dung:</label>
+                                            <textarea class="form-control" name="body"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" title="Quay lại">
+                                                Thoát
+                                            </button>
+                                            <button type="submit" class="btn btn-success" title="Gửi mail" id="submit-button">
+                                                Gửi mail
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Author box end -->
 
                     <!-- Post comment start -->
@@ -226,39 +266,7 @@
                     </div>
                     <!-- Post comment end -->
                 </div>
-                <!-- Content Col end -->
-<%--                <div class="col-lg-4">--%>
-<%--                    <div class="sidebar sidebar-right">--%>
-<%--                        <div class="widget">--%>
-<%--                            <h3 class="widget-title">Categories</h3>--%>
-<%--                            <ul class="arrow nav nav-tabs">--%>
-<%--                                <li><a href="#">Construction</a></li>--%>
-<%--                                <li><a href="#">Commercial</a></li>--%>
-<%--                                <li><a href="#">Building</a></li>--%>
-<%--                                <li><a href="#">Safety</a></li>--%>
-<%--                                <li><a href="#">Structure</a></li>--%>
-<%--                            </ul>--%>
-<%--                        </div>--%>
-<%--                        <!-- Categories end -->--%>
-<%--                        <div class="widget widget-tags">--%>
-<%--                            <h3 class="widget-title">Tags</h3>--%>
 
-<%--                            <ul class="list-unstyled">--%>
-<%--                                <li><a href="#">Construction</a></li>--%>
-<%--                                <li><a href="#">Design</a></li>--%>
-<%--                                <li><a href="#">Project</a></li>--%>
-<%--                                <li><a href="#">Building</a></li>--%>
-<%--                                <li><a href="#">Finance</a></li>--%>
-<%--                                <li><a href="#">Safety</a></li>--%>
-<%--                                <li><a href="#">Contracting</a></li>--%>
-<%--                                <li><a href="#">Planning</a></li>--%>
-<%--                            </ul>--%>
-<%--                        </div>--%>
-<%--                        <!-- Tags end -->--%>
-<%--                    </div>--%>
-<%--                    <!-- Sidebar end -->--%>
-<%--                </div>--%>
-<%--                <!-- Sidebar Col end -->--%>
             </div>
             <!-- Main row end -->
         </div>
@@ -285,6 +293,11 @@
                 }
             });
         });
+        function submitForm() {
+            $("#close-button").trigger("click");
+            $("#send-form").submit();
+        }
+
     </script>
     <!-- initialize jQuery Library -->
     <script src="/plugins/jQuery/jquery.min.js"></script>

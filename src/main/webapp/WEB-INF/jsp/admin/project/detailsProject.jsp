@@ -106,45 +106,15 @@
                                     </div>
                                 </c:forEach>
                             </div><!-- Page slider end -->
-                            <div class="tags-area d-flex align-items-center justify-content-between">
-                                <div class="share-items">
-                                    <ul class="post-social-icons list-unstyled">
-                                        <li class="social-icons-head">Share:</li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-google-plus"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+
                         </div>
                         <!-- post-body end -->
                     </div>
                     <!-- post content end -->
-                    <div class="author-box d-nlock d-sm-flex">
-                        <div class="author-img mb-4 mb-md-0">
-                            <img loading="lazy" src="/images/userImages/${project.user.avataruser}" alt="author" />
-                        </div>
-                        <div class="author-info">
-                            <h3>Thông tin liên hệ</h3>
-                            <h3>${project.user.fullname}<span>${project.user.job}</span></h3>
-                            <p class="mb-2"><strong>Địa chỉ:</strong> ${project.user.houseno} - ${project.user.subdistrict} - ${project.user.district} - ${project.user.province} - ${project.user.country}</p>
-                            <p class="mb-2"><strong>Điện thoại:</strong> ${project.user.phone}</p>
-                            <p class="mb-2"><strong>Email:</strong>${project.user.email}</p>
-                            <button type="button" class="btn btn-primary" href="#"><i class="fas fa-envelope"></i>Liên hệ với ${project.user.email}</button>
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-success"><a href="/admin/listProject/detailsProject/acept/${project.id}" >Đồng ý</a></button>
-                        <button type="button" class="btn btn-danger"><a href="/admin/listProject/detailsProject/deny/${project.id}">Từ chối</a></button>
+
+                    <div style="display: flex ;justify-content: center">
+                        <button  type="button" class="btn btn-danger"><a href="/admin/listProject/detailsProject/deny/${project.id}">Từ chối</a></button>
+                        <button style="margin-left: 20%" type="button" class="btn btn-success"><a href="/admin/listProject/detailsProject/acept/${project.id}" >Đồng ý</a></button>
                     </div>
                     <!-- Author box end -->
 

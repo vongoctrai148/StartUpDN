@@ -82,7 +82,9 @@ public class UserController {
                         if (("startup").equals(user.getRoles())) {
                             return "redirect:/startup/listProject";
                         } else if (("investors").equals(user.getRoles())) {
-                            return "redirect:/investor/";
+                            return "redirect:/investor";
+                        }else if (("admin").equals(user.getRoles())) {
+                            return "redirect:/admin";
                         }
                     }
                 }

@@ -26,7 +26,6 @@ public class ProjectForm {
     private String province;
     private String district;
     private String subdistrict;
-    @NotBlank(message = "Vui lòng nhập địa chỉ cụ thể")
     private String houseno;
 
     public ProjectForm(Long id, Long categoryId, String projectname, double amountcalled,

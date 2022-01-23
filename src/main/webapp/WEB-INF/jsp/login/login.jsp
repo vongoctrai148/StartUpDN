@@ -15,6 +15,10 @@
 </head>
 <body>
     <div class="container">
+        <a class="d-block" href="/startup/listProject">
+            <img loading="lazy" src="/images/projectImages/logodanang.png" style="width: 70px; height: 70px" alt="StartupDN">
+            Trang chủ
+        </a>
         <div class="d-flex justify-content-center h-100">
             <div class="card">
 

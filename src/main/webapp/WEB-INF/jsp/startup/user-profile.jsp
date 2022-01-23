@@ -70,8 +70,7 @@
                                 <%--                                <li><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>--%>
                                 <%--                                <li><a href="/startup/userProfile">Thông tin của tôi</a></li>--%>
                                 <c:if test="${profileUser.roles == 'investors'}">
-                                    <li><a href="/user/userListProject">Thông tin công ty</a></li>
-                                    <%--                                    <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>--%>
+                                    <li><a href="/investor/company">Thông tin công ty</a></li>
                                 </c:if>
                                 <c:if test="${profileUser.roles == 'startup'}">
                                     <li><a href="/user/userListProject">Các dự án của tôi</a></li>

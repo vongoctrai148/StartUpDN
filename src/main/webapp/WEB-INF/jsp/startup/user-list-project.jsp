@@ -70,7 +70,7 @@
                                 <%--                                <li><a href="/startup/acceptInvestion">Các yêu cầu đầu tư</a></li>--%>
                                 <%--                                <li><a href="/startup/userProfile">Thông tin của tôi</a></li>--%>
                                 <c:if test="${profileUser.roles == 'investors'}">
-                                    <li class="active"><a href="/user/userListProject">Thông tin công ty</a></li>
+                                    <li class="active"><a href="/investor/company">Thông tin công ty</a></li>
                                     <%--                                    <li><a href="/startup/userListImage">Hình ảnh dự án</a></li>--%>
                                 </c:if>
                                 <c:if test="${profileUser.roles == 'startup'}">
@@ -122,23 +122,6 @@
                                         </th>
                                         <th align="center" scope="col" colspan="3">Hoạt động</th>
                                     </tr>
-                                    </thead>
-                                </c:if>
-                                <c:if test="${profileUser.roles == 'investors'}">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">
-                                                <div style="width: 200px">Tên nhà đầu tư</div>
-                                            </th>
-                                            <th scope="col">
-                                                <div style="width: 100px">Tên viết tắt</div>
-                                            </th>
-                                            <th scope="col">
-                                                <div style="width: 120px">Quốc gia</div>
-                                            </th>
-                                            <th align="center" scope="col" colspan="1">Email</th>
-                                            <th align="center" scope="col" colspan="2">Hoạt động</th>
-                                        </tr>
                                     </thead>
                                 </c:if>
                                 <tbody>
@@ -194,21 +177,7 @@
                                     </c:forEach>
                                 </c:if>
 
-                                <c:if test="${profileUser.roles == 'investors'}">
-                                    <c:forEach items="${listInvesterOfUser}" var="investors">
-                                        <tr>
-                                            <td>${investors.investorsname}</td>
-                                            <td>${investors.abbreviations}</td>
-                                            <td>${investors.country}</td>
-                                            <td>${investors.email}</td>
-                                            <td align="center"><a href="/investor/details/${investors.id}"
-                                                                  title="Chi tiết"><i class="fa fa-info-circle"></i></a>
-                                            </td>
-                                            <td align="center"><a href="/investor/save/${investors.id}"
-                                                                  title="Chỉnh sửa"><i class="fa fa-pen"></i></a></td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:if>
+
                                 </tbody>
                             </table>
                         </div>

@@ -74,21 +74,19 @@
                                 </li>
 
                                 <li class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Các công ty <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Our People</a></li>
-                                        <li><a href="#">Testimonials</a></li>
-                                        <li><a href="#">Faq</a></li>
-                                        <li><a href="#">Pricing</a></li>
-                                    </ul>
+                                    <a href="/investor" class="nav-link dropdown-toggle" >Nhà đầu tư</a>
+
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dự án <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="/startup/userListProject">Các dự án của tôi</a></li>
-                                        <li><a href="/startup/saveProject">Đăng dự án</a></li>
-                                    </ul>
+                                    <a href="/startup/listProject" class="nav-link dropdown-toggle">Dự án</a>
+                                    <c:if test="${user.roles == 'startup'}">
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="/user/userListProject">Các dự án của tôi</a></li>
+                                            <li><a href="/startup/saveProject">Đăng dự án</a></li>
+                                        </ul>
+                                    </c:if>
+
+
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Services <i class="fa fa-angle-down"></i></a>

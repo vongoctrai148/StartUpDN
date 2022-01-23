@@ -33,6 +33,12 @@ public class InvestorsServices {
         return investorsDAO.save(new Investors(user, investorsname, abbreviations, logo, content, country, province,
                 district, subdistrict, houseno,sdt,email));
     }
+
+    @Transactional
+    public void delete(long id){
+        investorsDAO.deleteById(id);
+    }
+
     @Transactional
     public Investors updateInvestorWithOutIMG (Long id, String investorsname, String abbreviations, String content, String country, String province, String district, String subdistrict, String houseno, String sdt, String email){
         Investors investors = investorsDAO.findById(id).get();

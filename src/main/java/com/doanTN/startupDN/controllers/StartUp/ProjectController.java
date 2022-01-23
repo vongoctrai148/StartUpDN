@@ -127,7 +127,7 @@ public class ProjectController {
                 Path imgPresentPath = Paths.get("src/main/resources/static/images/projects/" + imgPresent);
                 Files.write(imgPresentPath, imagepresent.getBytes());
                 Projects project = projectService.saveProject(userDAO.getUsersByUsername(user.getUsername()), categoryService.getCategoryById(projectForm.getCategoryId()),
-                        projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
+                        projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), "Việt Nam",
                         provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
                         subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno(), imgPresent, posteddate);
                 List<String> fileNames = new ArrayList<>();
@@ -147,12 +147,12 @@ public class ProjectController {
                 if (imagepresent.isEmpty() || imagepresent == null &&
                         imageOfProject.toString() == null || imageOfProject.toString().isEmpty()) {
                     projectService.updateProjectWithOutIMG(projectForm.getId(), categoryService.getCategoryById(projectForm.getCategoryId()),
-                            projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
+                            projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), "Việt Nam",
                             provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
                             subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno());
                 } else if (imagepresent.isEmpty() || imagepresent == null) {
                     Projects project = projectService.updateProjectWithOutIMG(projectForm.getId(), categoryService.getCategoryById(projectForm.getCategoryId()),
-                            projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
+                            projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), "Việt Nam",
                             provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
                             subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno());
                     List<String> fileNames = new ArrayList<>();
@@ -176,7 +176,7 @@ public class ProjectController {
                     Path imgPresentPath = Paths.get("src/main/resources/static/images/projects/" + imgPresent);
                     Files.write(imgPresentPath, imagepresent.getBytes());
                     Projects project = projectService.updateProject(projectForm.getId(), categoryService.getCategoryById(projectForm.getCategoryId()),
-                            projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), projectForm.getCountry(),
+                            projectForm.getProjectname(), projectForm.getAmountcalled(), projectForm.getProjectdetail(), projectForm.getTitle(), "Việt Nam",
                             provinceService.findProvinceNameById(projectForm.getProvince()), districtService.findDistrictNameById(projectForm.getDistrict()),
                             subDistrictService.findSubDistrictNameById(projectForm.getSubdistrict()), projectForm.getHouseno(), imgPresent);
                     List<String> fileNames = new ArrayList<>();
