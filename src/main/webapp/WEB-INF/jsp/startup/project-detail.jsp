@@ -134,7 +134,9 @@
                                     <button class="btn btn-outline-success" style="margin-left: 4%">Xác nhận</button>
                                 </c:when>
                                 <c:otherwise>
-                                    <button class="btn btn-outline-success" onclick="return confirm('Bạn cần đăng nhập trước!')" style="margin-left: 4%">Xác nhận</button>
+                                    <a class="btn btn-outline-success" style="margin-left: 4%"data-toggle="modal" data-target="#loginModal">
+                                        Xác nhận
+                                    </a>
                                 </c:otherwise>
                             </c:choose>
                         </form>
@@ -232,7 +234,9 @@
                                             <button class="btn btn-primary" type="submit" aria-label="post-comment">Gửi</button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button class="btn btn-primary" type="submit" onclick="return confirm('Bạn cần đăng nhập trước')" aria-label="post-comment">Gửi</button>
+                                            <a class="btn btn-outline-success" style="margin-left: 4%"data-toggle="modal" data-target="#loginModal">
+                                                Gửi
+                                            </a>
                                         </c:otherwise>
                                     </c:choose>
 
@@ -278,6 +282,24 @@
 
     <!-- Javascript Files
 ================================================== -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Bạn cần đăng nhập trước! </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" style="font-weight: bold">TRỞ VỀ</button>
+                    <a class="btn btn-primary" href="/login">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $(function() {
             $(".my-rating-9").starRating({

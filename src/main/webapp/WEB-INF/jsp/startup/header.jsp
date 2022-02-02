@@ -43,7 +43,9 @@
                                    <c:choose>
                                        <c:when test="${user.fullname!=null}">
                                            <a class="btn btn-primary" id="userLogin" href="/user/userProfile" title="Thông tin cá nhân">${user.fullname}</a>
-                                           <a href="/logout" onclick="return confirm('Bạn có muốn đăng xuất?')" class="btn-outline-warning">Đăng xuất</a>
+                                           <a class="btn-outline-warning" data-toggle="modal" data-target="#logoutModal">
+                                               Đăng xuất
+                                           </a>
                                        </c:when>
                                        <c:otherwise>
                                            <a class="btn btn-primary" id="userLogin" href="/user/userProfile" title="Thông tin cá nhân">Login</a>
@@ -143,3 +145,21 @@
     </div>
     <!--/ Navigation end -->
 </header>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Bạn có muốn đăng xuất! </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal" style="font-weight: bold">TRỞ VỀ</button>
+                <a class="btn btn-primary" href="/logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+</div>
