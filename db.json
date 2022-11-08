@@ -1,0 +1,20 @@
+{
+  "insertUpdateList": [
+    {
+      "recordType": "0",
+      "companyCode": "001",
+      "consignorCode": "001",
+      "code": "A004",
+      "year": "2020",
+      "month": "10",
+      "day": "18",
+      "name": "",
+      "dayOfWeek": "日",
+      "entryDatet": "2021-07-27 15:26:08",
+      "entryUserid": "string",
+      "updateDatet": "2021-07-27 15:26:08",
+      "updateUserid": "string",
+      "operatingPermit": "1"
+    }
+  ]
+}
